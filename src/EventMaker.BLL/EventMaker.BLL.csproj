@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EventMaker.Common\EventMaker.Common.csproj" />
+    <ProjectReference Include="..\EventMaker.DAL\EventMaker.DAL.csproj" />
+  </ItemGroup>
+
+</Project>
