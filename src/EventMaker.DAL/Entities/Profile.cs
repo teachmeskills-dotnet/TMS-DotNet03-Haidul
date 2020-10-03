@@ -1,7 +1,5 @@
 ﻿using EventMaker.Common.Interface;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EventMaker.DAL.Entities
 {
@@ -10,14 +8,10 @@ namespace EventMaker.DAL.Entities
     /// </summary>
     public class Profile : IHasDbIdentity, IHasUserIdentity
     {
-        /// <summary>
-        /// inheritdoc.
-        /// </summary>
+        /// <inheritdoc/>
         public int Id { get; set; }
 
-        /// <summary>
-        /// inheritdoc.
-        /// </summary>
+        /// <inheritdoc/>
         public string UserId { get; set; }
 
         /// <summary>

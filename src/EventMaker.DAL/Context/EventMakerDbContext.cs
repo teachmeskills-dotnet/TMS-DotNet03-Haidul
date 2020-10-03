@@ -24,6 +24,16 @@ namespace EventMaker.DAL.Context
         public DbSet<Profile> Profiles { get; set; }
 
         /// <summary>
+        /// Events.
+        /// </summary>
+        public DbSet<Event> Events { get; set; }
+
+        /// <summary>
+        /// Event participants.
+        /// </summary>
+        public DbSet<EventParticipant> EventParticipants { get; set; }
+
+        /// <summary>
         /// Apply Configurations for Database.
         /// </summary>
         /// <param name="modelBuilder"></param>
@@ -32,6 +42,8 @@ namespace EventMaker.DAL.Context
             modelBuilder = modelBuilder ?? throw new ArgumentNullException(nameof(modelBuilder));
 
             modelBuilder.ApplyConfiguration(new ProfileConfiguration());
+            modelBuilder.ApplyConfiguration(new EventConfiguration());
+            modelBuilder.ApplyConfiguration(new EventParticipantConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

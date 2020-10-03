@@ -11,15 +11,13 @@ namespace EventMaker.DAL.Configurations
     /// </summary>
     class ProfileConfiguration : IEntityTypeConfiguration<Profile>
     {
-        /// <summary>
-        /// inheritdoc.
-        /// </summary>
+        /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<Profile> builder)
         {
             builder = builder ?? throw new ArgumentNullException(nameof(builder));
 
-            builder.ToTable("Profiles")
-             .HasKey(p => p.Id);
+            builder.ToTable(TableConstants.Profiles)
+             .HasKey(profile => profile.Id);
 
             builder.Property(profile => profile.Email)
              .IsRequired()
@@ -50,7 +48,8 @@ namespace EventMaker.DAL.Configurations
 
             builder.HasOne(profile => profile.User)
                 .WithOne(user => user.Profile)
-                .HasForeignKey<Profile>(profile => profile.UserId);
+                .HasForeignKey<Profile>(profile => profile.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

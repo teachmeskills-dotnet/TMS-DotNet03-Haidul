@@ -13,5 +13,15 @@ namespace EventMaker.Common.Constants
         /// Profiles.
         /// </summary>
         public const string Profiles = nameof(Profiles);
+
+        /// <summary>
+        /// Events.
+        /// </summary>
+        public const string Events = nameof(Events);
+
+        /// <summary>
+        /// EventParticipants.
+        /// </summary>
+        public const string EventParticipants = nameof(EventParticipants);
     }
 }
