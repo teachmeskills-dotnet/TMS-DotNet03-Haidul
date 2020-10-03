@@ -63,5 +63,10 @@ namespace EventMaker.DAL.Entities
         /// Navigation to Event participants.
         /// </summary>
         public ICollection<EventParticipant> EventParticipants { get; set; }
+
+        /// <summary>
+        /// Navigation to event tags.
+        /// </summary>
+        public ICollection<EventTag> EventTags { get; set; }
     }
 }

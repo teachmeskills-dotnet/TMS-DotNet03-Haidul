@@ -34,6 +34,16 @@ namespace EventMaker.DAL.Context
         public DbSet<EventParticipant> EventParticipants { get; set; }
 
         /// <summary>
+        /// Event participants.
+        /// </summary>
+        public DbSet<Tag> Tags { get; set; }
+
+        /// <summary>
+        /// Event participants.
+        /// </summary>
+        public DbSet<EventTag> EventTags { get; set; }
+
+        /// <summary>
         /// Apply Configurations for Database.
         /// </summary>
         /// <param name="modelBuilder"></param>
@@ -44,6 +54,8 @@ namespace EventMaker.DAL.Context
             modelBuilder.ApplyConfiguration(new ProfileConfiguration());
             modelBuilder.ApplyConfiguration(new EventConfiguration());
             modelBuilder.ApplyConfiguration(new EventParticipantConfiguration());
+            modelBuilder.ApplyConfiguration(new EventTagConfiguration());
+            modelBuilder.ApplyConfiguration(new TagConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

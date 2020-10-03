@@ -23,5 +23,15 @@ namespace EventMaker.Common.Constants
         /// EventParticipants.
         /// </summary>
         public const string EventParticipants = nameof(EventParticipants);
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public const string Tags = nameof(Tags);
+
+        /// <summary>
+        /// EventTags.
+        /// </summary>
+        public const string EventTags = nameof(EventTags);
     }
 }
