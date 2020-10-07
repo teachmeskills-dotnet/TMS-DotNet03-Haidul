@@ -1,4 +1,4 @@
-﻿using EventMaker.Common.Interface;
+﻿using EventMaker.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 
