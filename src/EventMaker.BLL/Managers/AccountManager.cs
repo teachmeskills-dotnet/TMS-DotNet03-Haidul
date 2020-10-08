@@ -1,4 +1,4 @@
-﻿using EventMaker.BLL.Interfaces;
+﻿ using EventMaker.BLL.Interfaces;
 using EventMaker.DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -16,16 +16,19 @@ namespace EventMaker.BLL.Managers
         public AccountManager(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+
         }
 
-        public async Task<IdentityResult> RegisterAsync(string email , string password , string username)
+        public async Task<(IdentityResult , ApplicationUser)> SignUpAsync(string email , string username , string password)
         {
              var user = new ApplicationUser 
              { 
                  Email = email,
                  UserName = username 
              };
-             return await _userManager.CreateAsync(user, password);
+
+            var result = await _userManager.CreateAsync(user, password);
+            return (result, user);
         }
     }
 } 

@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EventMaker.Web.ViewModel
+namespace EventMaker.Web.ViewModels
 {
     /// <summary>
-    /// Register model.
+    /// Sign up model.
     /// </summary>
-    public class RegisterViewModel
+    public class SignUpViewModel
     {
         /// <summary>
         /// UserName.

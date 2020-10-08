@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using EventMaker.DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +19,7 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="password"></param>
         /// <param name="username"></param>
         /// <returns>IdentityResult</returns>
-        Task<IdentityResult> RegisterAsync(string email , string password , string username);
+        Task<(IdentityResult , ApplicationUser)> SignUpAsync(string email , string username , string password);
     }
 }
  
