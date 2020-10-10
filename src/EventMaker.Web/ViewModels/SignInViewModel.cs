@@ -7,17 +7,10 @@ using System.Threading.Tasks;
 namespace EventMaker.Web.ViewModels
 {
     /// <summary>
-    /// Sign up model.
+    /// Sign in model.
     /// </summary>
-    public class SignUpViewModel
+    public class SignInViewModel
     {
-        /// <summary>
-        /// UserName.
-        /// </summary>
-        [Required]
-        [Display(Name = nameof(Username))]
-        public string Username { get; set; }
-
         /// <summary>
         /// Email.
         /// </summary>
@@ -34,12 +27,14 @@ namespace EventMaker.Web.ViewModels
         public string Password { get; set; }
 
         /// <summary>
-        /// Password confirm.
+        /// Remember me.
         /// </summary>
-        [Required]
-        [Compare("Password", ErrorMessage = "Passwords do not match")]
-        [DataType(DataType.Password)]
-        [Display(Name = nameof(PasswordConfirm))]
-        public string PasswordConfirm { get; set; }
+        [Display(Name = nameof(RememberMe))]
+        public bool RememberMe { get; set; }
+
+        /// <summary>
+        /// Return Url.
+        /// </summary>
+        public string ReturnUrl { get; set; }
     }
 }
