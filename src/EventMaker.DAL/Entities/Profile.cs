@@ -1,4 +1,4 @@
-﻿using EventMaker.Common.Interface;
+﻿using EventMaker.Common.Interfaces;
 using System;
 
 namespace EventMaker.DAL.Entities
