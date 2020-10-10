@@ -1,5 +1,6 @@
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Managers;
+using EventMaker.BLL.Repository;
 using EventMaker.DAL.Context;
 using EventMaker.DAL.Entities;
 using Microsoft.AspNetCore.Builder;
@@ -24,6 +25,7 @@ namespace EventMaker.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Managers
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IAccountManager, AccountManager>();
 
             // Database context
