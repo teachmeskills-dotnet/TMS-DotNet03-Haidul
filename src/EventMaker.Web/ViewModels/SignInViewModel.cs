@@ -15,8 +15,8 @@ namespace EventMaker.Web.ViewModels
         /// Email.
         /// </summary>
         [Required]
-        [Display(Name = nameof(Email))]
-        public string Email { get; set; }
+        [Display(Name = nameof(Username))]
+        public string Username { get; set; }
 
         /// <summary>
         /// Password.

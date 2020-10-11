@@ -12,8 +12,9 @@ namespace EventMaker.Web.Controllers
     {
         private readonly IAccountManager _accountManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        
 
-        public AccountController(IAccountManager accountManager , SignInManager<ApplicationUser> signInManager)
+        public AccountController(IAccountManager accountManager, SignInManager<ApplicationUser> signInManager)
         {
             _accountManager = accountManager ?? throw new ArgumentNullException(nameof(accountManager));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
@@ -55,7 +56,7 @@ namespace EventMaker.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password , model.RememberMe , false);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
@@ -84,3 +85,4 @@ namespace EventMaker.Web.Controllers
         }
     }
 }
+
