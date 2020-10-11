@@ -1,23 +1,24 @@
-﻿using EventMaker.Common.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace EventMaker.DAL.Entities
+namespace EventMaker.Web.ViewModels
 {
     /// <summary>
-    /// Event.
+    /// Event view model.
     /// </summary>
-    public class Event : IHasDbIdentity, IHasUserIdentity
+    public class EventViewModel
     {
-        /// <inheritdoc/>
+        /// <summary>
+        /// Event id.
+        /// </summary>
         public int Id { get; set; }
-        /// <inheritdoc/>
-        public string UserId { get; set; }
 
         /// <summary>
-        /// Navigation to User.
+        /// User Id.
         /// </summary>
-        public ApplicationUser User { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// Name.
@@ -71,16 +72,6 @@ namespace EventMaker.DAL.Entities
         /// Remaining free seats of participants.
         /// </summary>
         public int PFreeNumber { get; set; }
-
-        /// <summary>
-        /// Navigation to Event participants.
-        /// </summary>
-       
-        public ICollection<EventParticipant>? EventParticipants { get; set; }
-
-        /// <summary>
-        /// Navigation to event tags.
-        /// </summary>
-        public ICollection<EventTag>? EventTags { get; set; }
     }
 }
+

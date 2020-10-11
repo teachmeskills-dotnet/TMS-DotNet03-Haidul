@@ -1,23 +1,18 @@
-﻿using EventMaker.Common.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace EventMaker.DAL.Entities
+namespace EventMaker.BLL.Models
 {
     /// <summary>
-    /// Event.
+    /// Event data transfer object.
     /// </summary>
-    public class Event : IHasDbIdentity, IHasUserIdentity
+    public class EventDto
     {
         /// <inheritdoc/>
         public int Id { get; set; }
         /// <inheritdoc/>
         public string UserId { get; set; }
-
-        /// <summary>
-        /// Navigation to User.
-        /// </summary>
-        public ApplicationUser User { get; set; }
 
         /// <summary>
         /// Name.
@@ -48,16 +43,6 @@ namespace EventMaker.DAL.Entities
         public DateTime Created { get; set; }
 
         /// <summary>
-        /// Start of the event.
-        /// </summary>
-        public DateTime Started { get; set; }
-
-        /// <summary>
-        /// End of the event.
-        /// </summary>
-        public DateTime? Closed { get; set; }
-
-        /// <summary>
         /// Format.
         /// </summary>
         public bool Format { get; set; }
@@ -71,16 +56,6 @@ namespace EventMaker.DAL.Entities
         /// Remaining free seats of participants.
         /// </summary>
         public int PFreeNumber { get; set; }
-
-        /// <summary>
-        /// Navigation to Event participants.
-        /// </summary>
-       
-        public ICollection<EventParticipant>? EventParticipants { get; set; }
-
-        /// <summary>
-        /// Navigation to event tags.
-        /// </summary>
-        public ICollection<EventTag>? EventTags { get; set; }
     }
 }
+

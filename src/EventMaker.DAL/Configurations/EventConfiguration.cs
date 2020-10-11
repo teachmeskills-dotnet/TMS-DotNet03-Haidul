@@ -36,6 +36,13 @@ namespace EventMaker.DAL.Configurations
             builder.Property(events => events.Created)
                 .HasColumnType(ConfigurationContants.SqlDateFormat);
 
+            builder.Property(events => events.Started)
+                .IsRequired()
+                .HasColumnType(ConfigurationContants.SqlDateFormat);
+
+            builder.Property(events => events.Created)
+                .HasColumnType(ConfigurationContants.SqlDateFormat);
+
             builder.Property(events => events.PNumber)
                 .IsRequired();
 
