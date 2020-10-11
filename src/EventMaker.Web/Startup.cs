@@ -33,9 +33,15 @@ namespace EventMaker.Web
                 options.UseSqlServer(Configuration.GetConnectionString("MSSQLConnection")));
 
             // ASP.NET Core Identity
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<EventMakerDbContext>();
-
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = true;
+            })
+              .AddEntityFrameworkStores<EventMakerDbContext>();
             // Microsoft services
             services.AddControllersWithViews();
         }

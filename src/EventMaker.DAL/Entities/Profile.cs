@@ -32,11 +32,13 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// FirstName..
         /// </summary>
+#nullable enable
         public string? FirstName { get; set; }
 
         /// <summary>
         /// LastName..
         /// </summary>
+#nullable enable
         public string? LastName { get; set; }
 
         /// <summary>
@@ -57,16 +59,19 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Telephone number.
         /// </summary>
+#nullable enable
         public string? Phone { get; set; }
 
         /// <summary>
         /// Telegram username.
         /// </summary>
+#nullable enable
         public string? Telegram { get; set; }
 
         /// <summary>
         /// Social network.
         /// </summary>
+#nullable enable
         public string? SocialNetwork { get; set; }
 
     }

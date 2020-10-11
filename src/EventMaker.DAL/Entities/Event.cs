@@ -27,16 +27,19 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Title
         /// </summary>
+#nullable enable
         public string? Title { get; set; }
 
         /// <summary>
         /// Info.
         /// </summary>
-        public string Info { get; set; }
+#nullable enable
+        public string? Info { get; set; }
 
         /// <summary>
         /// Comment.
         /// </summary>
+#nullable enable
         public string? Comment { get; set; }
 
         /// <summary>
@@ -62,11 +65,12 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Navigation to Event participants.
         /// </summary>
-        public ICollection<EventParticipant> EventParticipants { get; set; }
+       
+        public ICollection<EventParticipant>? EventParticipants { get; set; }
 
         /// <summary>
         /// Navigation to event tags.
         /// </summary>
-        public ICollection<EventTag> EventTags { get; set; }
+        public ICollection<EventTag>? EventTags { get; set; }
     }
 }
