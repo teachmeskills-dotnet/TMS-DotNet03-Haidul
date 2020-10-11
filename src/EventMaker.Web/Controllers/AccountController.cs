@@ -48,11 +48,6 @@ namespace EventMaker.Web.Controllers
         [HttpGet]
         public IActionResult SignIn(string returnUrl = null)
         {
-            var signinviewmodel = new SignInViewModel
-            {
-                ReturnUrl = returnUrl
-            };
-
             return View(new SignInViewModel { ReturnUrl = returnUrl });
         }
 
@@ -88,6 +83,42 @@ namespace EventMaker.Web.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
+                var result = await _accountManager.ChangePasswordAsync(userId, model.OldPassword, model.NewPassword);
+                if (result.Item2 != null)
+                {
+                    if (result.Item1.Succeeded)
+                    {
+                        await SignOut();
+                    }
+                    else
+                    {
+                        foreach (var error in result.Item1.Errors)
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "User didn't found");
+                }
+            }
+            return View(model);
+        }
     }
 }
 
+    

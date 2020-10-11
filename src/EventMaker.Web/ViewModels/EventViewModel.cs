@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace EventMaker.Web.ViewModels
 {
@@ -23,18 +21,24 @@ namespace EventMaker.Web.ViewModels
         /// <summary>
         /// Name.
         /// </summary>
+        [Required]
+        [Display(Name = nameof(Name))]
         public string Name { get; set; }
 
         /// <summary>
         /// Title
         /// </summary>
 #nullable enable
+        [Required]
+        [Display(Name = nameof(Title))]
         public string? Title { get; set; }
 
         /// <summary>
         /// Info.
         /// </summary>
 #nullable enable
+        [Required]
+        [Display(Name = nameof(Info))]
         public string? Info { get; set; }
 
         /// <summary>
@@ -46,11 +50,15 @@ namespace EventMaker.Web.ViewModels
         /// <summary>
         /// Day of creation
         /// </summary>
+        [Required]
+        [Display(Name = nameof(Created))]
         public DateTime Created { get; set; }
 
         /// <summary>
         /// Start of the event.
         /// </summary>
+        [Required]
+        [Display(Name = nameof(Started))]
         public DateTime Started { get; set; }
 
         /// <summary>
@@ -61,11 +69,15 @@ namespace EventMaker.Web.ViewModels
         /// <summary>
         /// Format.
         /// </summary>
+        [Required]
+        [Display(Name = nameof(Format))]
         public bool Format { get; set; }
 
         /// <summary>
         /// Participants number
         /// </summary>
+        [Required]
+        [Display(Name = nameof(PNumber))]
         public int? PNumber { get; set; }
 
         /// <summary>
