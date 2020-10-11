@@ -1,10 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using EventMaker.BLL.Interfaces;
+﻿using EventMaker.BLL.Interfaces;
 using EventMaker.DAL.Entities;
 using EventMaker.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace EventMaker.Web.Controllers
 {
@@ -12,7 +12,7 @@ namespace EventMaker.Web.Controllers
     {
         private readonly IAccountManager _accountManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        
+
 
         public AccountController(IAccountManager accountManager, SignInManager<ApplicationUser> signInManager)
         {
@@ -48,6 +48,11 @@ namespace EventMaker.Web.Controllers
         [HttpGet]
         public IActionResult SignIn(string returnUrl = null)
         {
+            var signinviewmodel = new SignInViewModel
+            {
+                ReturnUrl = returnUrl
+            };
+
             return View(new SignInViewModel { ReturnUrl = returnUrl });
         }
 
