@@ -1,3 +1,4 @@
+using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Managers;
 using EventMaker.BLL.Repository;
@@ -27,10 +28,14 @@ namespace EventMaker.Web
             // Managers
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IAccountManager, AccountManager>();
+            services.AddScoped<IEventManager, EventManager>();
 
             // Database context
             services.AddDbContext<EventMakerDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MSSQLConnection")));
+
+            // Registering and Initializing AutoMapper
+            services.AddAutoMapper(typeof(Startup).Assembly);
 
             // ASP.NET Core Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>

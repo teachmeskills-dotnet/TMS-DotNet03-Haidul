@@ -35,7 +35,7 @@ namespace EventMaker.BLL.Managers
             var user = await _userManager.Users.FirstAsync(u => u.UserName == name);
             return user.Id;
         }
-
+        
         public async Task<(IdentityResult , ApplicationUser)> ChangePasswordAsync(string id , string oldPassword , string newPassword)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(id);

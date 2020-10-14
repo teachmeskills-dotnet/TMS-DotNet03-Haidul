@@ -43,6 +43,16 @@ namespace EventMaker.BLL.Models
         public DateTime Created { get; set; }
 
         /// <summary>
+        /// Start of the event.
+        /// </summary>
+        public DateTime Started { get; set; }
+
+        /// <summary>
+        /// End of the event.
+        /// </summary>
+        public DateTime? Closed { get; set; }
+
+        /// <summary>
         /// Format.
         /// </summary>
         public bool Format { get; set; }

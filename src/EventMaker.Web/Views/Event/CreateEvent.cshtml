@@ -1,5 +1,37 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model EventViewModel
+
+<h1>Create event page</h1>
+<form method="post" asp-controller="Event" asp-action="CreateEvent">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="Name"></label><br />
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label asp-for="Title"></label><br />
+        <input asp-for="Title" />
+    </div>
+    <div>
+        <label asp-for="Info"></label><br />
+        <input asp-for="Info" />
+    </div>
+    <div>
+        <label asp-for="Created"></label><br />
+        <input asp-for="Created" />
+    </div>
+    <div>
+        <label asp-for="Started"></label><br />
+        <input asp-for="Started" />
+    </div>
+    <div>
+        <label asp-for="Format"></label><br />
+        <input asp-for="Format" />
+    </div>
+    <div>
+        <label asp-for="PNumber"></label><br />
+        <input asp-for="PNumber" />
+    </div>
+    <div>
+        <input type="submit" value="Sign In" />
+    </div>
+</form>

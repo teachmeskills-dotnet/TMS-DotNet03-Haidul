@@ -1,1 +1,9 @@
-﻿
+﻿@model EventViewModel
+
+
+@{ ViewData["Title"] = "Index page"; }
+
+
+<a asp-controller="Event" asp-action="CreateEvent">CreateEvent</a>
+<a asp-controller="Event" asp-action="EditEvent">Edit Event</a>
+<a asp-controller="Event" asp-action="DeleteEvent">Delete Event</a>
