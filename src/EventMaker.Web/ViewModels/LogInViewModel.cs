@@ -9,7 +9,7 @@ namespace EventMaker.Web.ViewModels
     /// <summary>
     /// Sign in model.
     /// </summary>
-    public class SignInViewModel
+    public class LogInViewModel
     {
         /// <summary>
         /// Email.

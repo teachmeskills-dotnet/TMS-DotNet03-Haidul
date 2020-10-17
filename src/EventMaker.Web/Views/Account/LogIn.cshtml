@@ -1,0 +1,22 @@
+﻿@model LogInViewModel
+
+@{ ViewData["Title"] = "Sign In Page"; }
+
+<div class="wrapper">
+    <h2 class="wrapper__header">Log in Here</h2>
+    <form class="wrapper__form">
+        <input class="wrapper__form__username" type="text" placeholder="Username" asp-for="Username" required />
+        <input class="wrapper__form__password" type="password" placeholder="Password" asp-for="Password" required />
+        <input class="wrapper__form__submit" type="submit" value="Submit" />
+    </form>
+    <div class="wrapper__passwordquestion">
+        <a href="#">Lost your password?</a>
+    </div>
+    <div class="wrapper__accountquestion">
+        <a asp-controller="Account" asp-action="SignUp">Dont have an account?</a>
+    </div>
+</div>
+
+@section css {
+    <link href="~/css/logIn.css" rel="stylesheet" />
+}

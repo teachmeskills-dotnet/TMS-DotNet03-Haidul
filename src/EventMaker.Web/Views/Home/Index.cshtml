@@ -1,19 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Index page";
-}
+﻿    <head>
+        <title>Home page</title>
+    </head>
+<body>
+
+</body>
 
 
-<h1>Index page</h1>
-<a asp-controller="Account" asp-action="SignUp">Sign Up</a>
-<a asp-controller="Account" asp-action="SignIn">Sign In</a>
 
-@if (User.Identity.IsAuthenticated)
-{
-    <p>@User.Identity.Name</p>
 
-    <form method="post" asp-controller="Account" asp-action="SignOut">
-        <input type="submit" value="Выход" />
-    </form>
-    <a asp-controller="Account" asp-action="ChangePassword"> Change Password</a>
-    <a asp-controller="Event" asp-action="Index"> Event</a>
-}
+
+
+

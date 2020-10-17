@@ -46,13 +46,13 @@ namespace EventMaker.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult SignIn(string returnUrl = null)
+        public IActionResult LogIn(string returnUrl = null)
         {
-            return View(new SignInViewModel { ReturnUrl = returnUrl });
+            return View(new LogInViewModel { ReturnUrl = returnUrl });
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignIn(SignInViewModel model)
+        public async Task<IActionResult> LogIn(LogInViewModel model)
         {
             if (ModelState.IsValid)
             {

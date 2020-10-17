@@ -1,0 +1,38 @@
+﻿
+.wrapper {
+    max-width: 350px;
+    border-radius: 20px;
+    margin: auto;
+    padding: 40px;
+    margin-top: 100px;
+    color: #2c2c2c;
+}
+
+.wrapper__header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.wrapper__form {
+
+    text-align: center;
+}
+
+input {
+    margin: 20px;
+    border-radius: 30px;
+}
+
+.wrapper__passwordquestion  a {
+    margin: 10px;
+}
+
+.wrapper__accountquestion a {
+    margin: 10px;
+}
+
+.logo__image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}

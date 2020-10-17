@@ -4,10 +4,40 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+        <link href="~/css/app.css" rel="stylesheet" />
+    @RenderSection("css", false)
 </head>
+
+
 <body>
-    <div>
-        @RenderBody()
-    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+            <header class="navigation">
+        <div class="logo">
+            <img class="logo__image" src="~/images/logo.svg" alt="logo" />
+        </div>
+        <div class="navigation__log-in"> 
+            <a class="navigation__log-in-button" asp-controller="Profile">@User.Identity.Name</a>
+        </div>
+        <div class="navigation__sign-up">
+            <a class="navigation__sign-up-button" asp-controller="Account" asp-action="SignOut">SignOut</a>
+        </div>
+    </header>
+    }
+    else
+    {
+        <header class="navigation">
+            <div class="logo">
+                <img class="logo__image" src="~/images/logo.svg" alt="logo" />
+            </div>
+            <div class="navigation__log-in">
+                <a class="navigation__log-in-button" asp-controller="Account" asp-action="LogIn">Log In</a>
+            </div>
+            <div class="navigation__sign-up">
+                <a class="navigation__sign-up-button" asp-controller="Account" asp-action="SignUp">Sign Up</a>
+            </div>
+        </header>
+    }
+    @RenderBody()
 </body>
 </html>

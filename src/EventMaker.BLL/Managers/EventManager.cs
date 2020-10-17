@@ -3,6 +3,7 @@ using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Models;
 using EventMaker.DAL.Entities;
 using System;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace EventMaker.BLL.Managers
@@ -45,8 +46,8 @@ namespace EventMaker.BLL.Managers
             {
                 eventDto.UserId = userId;
                 var userEvent = _mapper.Map<Event>(eventDto);
-                System.Linq.Expressions.Expression<Func<Event, bool>> exprName = evName => evName.Name.ToLower().Contains(eventDto.Name);
-                System.Linq.Expressions.Expression<Func<Event, bool>> exprTitle = evTitle => evTitle.Title.ToLower().Contains(eventDto.Title);
+                Expression<Func<Event, bool>> exprName = evName => evName.Name.ToLower().Contains(eventDto.Name);
+                Expression<Func<Event, bool>> exprTitle = evTitle => evTitle.Title.ToLower().Contains(eventDto.Title);
                 var result = await _repositoryEvent.GetEntityAsync(exprName);
                 if (result == null)
                 {

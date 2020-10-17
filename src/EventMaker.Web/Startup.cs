@@ -49,6 +49,8 @@ namespace EventMaker.Web
               .AddEntityFrameworkStores<EventMakerDbContext>();
             // Microsoft services
             services.AddControllersWithViews();
+            services.AddRazorPages()
+                .AddRazorRuntimeCompilation();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
