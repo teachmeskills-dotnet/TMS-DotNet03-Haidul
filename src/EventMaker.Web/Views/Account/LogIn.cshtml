@@ -3,18 +3,29 @@
 @{ ViewData["Title"] = "Sign In Page"; }
 
 <div class="wrapper">
-    <h2 class="wrapper__header">Log in Here</h2>
-    <form class="wrapper__form">
-        <input class="wrapper__form__username" type="text" placeholder="Username" asp-for="Username" required />
-        <input class="wrapper__form__password" type="password" placeholder="Password" asp-for="Password" required />
-        <input class="wrapper__form__submit" type="submit" value="Submit" />
+    <h2 class="wrapper__header">Log In Here</h2>
+    <form class="wrapper-form" asp-controller="Account" asp-action="LogIn" asp-route-returnUrl="@Model.ReturnUrl">
+        <div class="wrapper-form__username">
+            <input class="wrapper-form__input-username" spellcheck="false" type="text" name="Username" asp-for="Username" required />
+            <label for="Email" class="wrapper-form__label">
+                <span class="wrapper-form__label-content">Username</span>
+            </label>
+        </div>
+        <div class="wrapper-form__password">
+            <input class="wrapper-form__input-password" spellcheck="false" type="password" name="Password" asp-for="Password" required />
+            <label for="Email" class="wrapper-form__label">
+                <span class="wrapper-form__label-content">Password</span>
+            </label>
+        </div>
+        <div class="wrapper-form__remember-me">
+            <p class="wrapper-form__remember-me" asp-for="RememberMe">Remember me?
+            <input class="wrapper-form__input-remember-me" spellcheck="false" type="checkbox" name="Remember me" asp-for="RememberMe" />
+            </p>
+        </div>
+        <div class="wrapper-form__submit">
+            <input class="wrapper-form__input-submit" type="submit" value="Log in" required />
+        </div>
     </form>
-    <div class="wrapper__passwordquestion">
-        <a href="#">Lost your password?</a>
-    </div>
-    <div class="wrapper__accountquestion">
-        <a asp-controller="Account" asp-action="SignUp">Dont have an account?</a>
-    </div>
 </div>
 
 @section css {

@@ -66,7 +66,7 @@ namespace EventMaker.Web.Controllers
                     else
                     {
                         return RedirectToAction("Index", "Home");
-                    }
+                    } 
                 }
                 else
                 {

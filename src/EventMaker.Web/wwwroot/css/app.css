@@ -8,11 +8,16 @@
 }
 
 a,
-button {
-    font-family: "Mulish", sans-serif;
+button,
+.navigation__sign-out-input {
     font-weight: 500;
     font-size: 16px;
     text-decoration: none;
+}
+
+.navigation__sign-out-input {
+    outline: none;
+    border: none;
 }
 
 header {
@@ -27,25 +32,30 @@ header {
 }
 
 .logo {
+    margin-left: 40px;
     margin-right: auto;
 }
 
-.navigation__sign-up {
+.navigation__sign-up,
+.navigation__sign-out {
     height: 100%;
     padding: 25px 67.73px 28.78px 68.9px;
     margin-left: 46.71px;
     background-color: #2E2E2E;
+    cursor:pointer;
 }
 
 .navigation__log-in {
     background-color: #ffffff;
 }
 
-.navigation__sign-up-button {
+.navigation__sign-up-button,
+.navigation__sign-out-input {
     font-weight: bold;
     line-height: 20px;
     color: #FFFFFF;
     background-color: #2E2E2E;
+    cursor: pointer;
 }
 
 .navigation__log-in-button {

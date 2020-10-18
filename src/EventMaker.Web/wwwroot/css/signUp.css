@@ -1,4 +1,14 @@
 ﻿
+:invalid {
+    box-shadow: none;
+}
+
+input, label {
+    font-family: "Mulish", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+
 .wrapper {
     display:flex;
     width:100%;
@@ -31,8 +41,9 @@
     height: 50px;
 }
 
-.wrapper-form__submit{
-    margin-top: 30px;
+.wrapper-form__submit {
+    width: 20%;
+    margin: 40px auto;
 }
 
 .wrapper-form input {
@@ -85,7 +96,16 @@
     transform:translateX(0%);
 }
 
-.logo__image { 
+
+.wrapper-form__input-submit {
+    margin: 0 auto;
+    background-color: #FFFF;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.logo__image {
     display: block;
     margin-left: auto;
     margin-right: auto
