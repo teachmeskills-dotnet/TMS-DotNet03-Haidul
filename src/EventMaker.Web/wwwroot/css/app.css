@@ -47,6 +47,9 @@ header {
 
 .navigation__log-in {
     background-color: #ffffff;
+    height: 100%;
+    padding: 25px 46.71px 28.78px 68.9px;
+    cursor:pointer;
 }
 
 .navigation__sign-up-button,
