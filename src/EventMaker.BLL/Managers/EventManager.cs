@@ -3,7 +3,8 @@ using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Models;
 using EventMaker.DAL.Entities;
 using System;
-using System.Linq.Expressions;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EventMaker.BLL.Managers
@@ -45,16 +46,32 @@ namespace EventMaker.BLL.Managers
             //TODO : add human error handling
             {
                 eventDto.UserId = userId;
-                var userEvent = _mapper.Map<Event>(eventDto);
-                Expression<Func<Event, bool>> exprName = evName => evName.Name.ToLower().Contains(eventDto.Name);
-                Expression<Func<Event, bool>> exprTitle = evTitle => evTitle.Title.ToLower().Contains(eventDto.Title);
-                var result = await _repositoryEvent.GetEntityAsync(exprName);
+                //var userEvent = _mapper.Map<Event>(eventDto); - is that dont needed?
+                var result = await _repositoryEvent.GetEntityAsync(evName => evName.Name.ToLower().Contains(eventDto.Name));
                 if (result == null)
                 {
-                    result = await _repositoryEvent.GetEntityAsync(exprTitle);
+                    result = await _repositoryEvent.GetEntityAsync(evTitle => evTitle.Title.ToLower().Contains(eventDto.Title));
                 }
                 _repositoryEvent.Delete(result);
                 await _repositoryEvent.SaveChangesAsync();
+            }
+        }
+
+        public IEnumerable<EventDto> GetAllEvents()
+        {
+            // todo : try it on auto mapper profile
+            //TODO : add human error handling
+            {
+                var events = _repositoryEvent.GetAll().ToList();
+                var userEvents = _mapper.Map<IEnumerable<EventDto>>(events);
+                if (userEvents == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return userEvents;
+                }
             }
         }
     }

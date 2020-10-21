@@ -30,5 +30,11 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="eventTitle">Event title.</param>
         /// <param name="eventDto">Event DTO.</param>
         Task DeleteEventAsync(string userId, EventDto eventDto);
+
+        /// <summary>
+        /// Get all events.
+        /// </summary>
+        /// <returns> IEnumerable<EventDto></returns>
+        IEnumerable<EventDto> GetAllEvents();
     }
 }

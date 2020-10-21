@@ -1,9 +1,11 @@
 using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Managers;
+using EventMaker.BLL.Mappings;
 using EventMaker.BLL.Repository;
 using EventMaker.DAL.Context;
 using EventMaker.DAL.Entities;
+using EventMaker.Web.Mappings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -34,8 +36,9 @@ namespace EventMaker.Web
             services.AddDbContext<EventMakerDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MSSQLConnection")));
 
-            // Registering and Initializing AutoMapper
-            services.AddAutoMapper(typeof(Startup).Assembly);
+            // Registering and Initializing AutoMapper Profiles
+            services.AddAutoMapper(typeof(EventWebProfile));
+            services.AddAutoMapper(typeof(EventProfile));
 
             // ASP.NET Core Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
