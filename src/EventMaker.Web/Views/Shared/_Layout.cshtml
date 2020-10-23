@@ -11,34 +11,36 @@
 
 
 <body>
-    @if (User.Identity.IsAuthenticated)
-    {
-            <header class="navigation">
+    <div class="main-wrapper">
+        @if (User.Identity.IsAuthenticated)
+        {
+    <header class="navigation">
         <div class="logo">
             <a asp-controller="Home" asp-action="Index"><img class="logo__image" src="~/images/logo.svg" alt="logo" /></a>
         </div>
-        <div class="navigation__log-in"> 
+        <div class="navigation__log-in">
             <a class="navigation__log-in-button" asp-controller="Profile">@User.Identity.Name</a>
         </div>
         <form method="post" class="navigation__sign-out">
-            <input class="navigation__sign-out-input" type="submit" value="Sign Out" asp-controller="Account" asp-action="SignOut"/>
+            <input class="navigation__sign-out-input" type="submit" value="Sign Out" asp-controller="Account" asp-action="SignOut" />
         </form>
-    </header>
-    }
-    else
-    {
-        <header class="navigation">
-            <div class="logo">
-                <a asp-controller="Home" asp-action="Index"><img class="logo__image" src="~/images/logo.svg" alt="logo" /></a>
-            </div>
-            <div class="navigation__log-in">
-                <a class="navigation__log-in-button" asp-controller="Account" asp-action="LogIn">Log In</a>
-            </div>
-            <div class="navigation__sign-up">
-                <a class="navigation__sign-up-button" asp-controller="Account" asp-action="SignUp">Sign Up</a>
-            </div>
-        </header>
-    }
+    </header> }
+                else
+                {
+    <header class="navigation">
+        <div class="logo">
+            <a asp-controller="Home" asp-action="Index"><img class="logo__image" src="~/images/logo.svg" alt="logo" /></a>
+        </div>
+        <div class="navigation__log-in">
+            <a class="navigation__log-in-button" asp-controller="Account" asp-action="LogIn">Log In</a>
+        </div>
+        <div class="navigation__sign-up">
+            <a class="navigation__sign-up-button" asp-controller="Account" asp-action="SignUp">Sign Up</a>
+        </div>
+    </header>}
+    </div>
+<div class="main-wrapper">
     @RenderBody()
+</div>
 </body>
 </html>
