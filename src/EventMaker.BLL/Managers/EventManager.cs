@@ -24,6 +24,7 @@ namespace EventMaker.BLL.Managers
         public async Task CreateEventAsync(string userId, EventDto eventDto)
         {
             eventDto.UserId = userId; // todo : try it on auto mapper profile
+            eventDto.Created = DateTime.UtcNow;
             var userEvent = _mapper.Map<Event>(eventDto);
             await _repositoryEvent.AddAsync(userEvent);
             await _repositoryEvent.SaveChangesAsync();

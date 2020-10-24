@@ -1,0 +1,46 @@
+﻿
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    height: 100%;
+}
+
+.event-list {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:20px;
+
+}
+
+.event-list__event {
+    margin: 20px 20px;
+    box-shadow: 0 14px 8px rgba(0,0,0,.2);
+    padding: 10px;
+    min-width: 586px;
+}
+
+.event-list__dates span {
+    display: block;
+    color: rgba(0,0,0,.5);
+    font-weight: 600;
+    margin: 5px 0;
+}
+
+.event-list__participants {
+    display: block;
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+.event-list__title {
+    word-break: break-all;
+    color: #4facfe;
+    font-size: 30px;
+}
+
+.event-list__name {
+    word-break: break-all;
+    font-size: 25px;
+}

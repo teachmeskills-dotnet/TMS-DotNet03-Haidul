@@ -4,14 +4,16 @@ using EventMaker.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EventMaker.DAL.Migrations
 {
     [DbContext(typeof(EventMakerDbContext))]
-    partial class EventMakerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201024151935_ReworkFormat")]
+    partial class ReworkFormat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,7 +115,7 @@ namespace EventMaker.DAL.Migrations
                         .HasColumnType("nvarchar(127)")
                         .HasMaxLength(127);
 
-                    b.Property<int?>("PFreeNumber")
+                    b.Property<int>("PFreeNumber")
                         .HasColumnType("int");
 
                     b.Property<int?>("PNumber")

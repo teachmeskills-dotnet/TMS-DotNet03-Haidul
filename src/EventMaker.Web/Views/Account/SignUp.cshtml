@@ -6,26 +6,26 @@
     <h2 class="wrapper__header">Sign up Here</h2>
     <form method="post" class="wrapper-form" asp-controller="Account" asp-action="SignUp">
         <div class="wrapper-form__email">
-            <input class="wrapper-form__input-email" spellcheck="false" type="email" name="Email" asp-for="Email" required />
+            <input class="wrapper-form__input-email" spellcheck="false" type="email" asp-for="Email" required />
             <label for="Email" class="wrapper-form__label">
                 <span class="wrapper-form__label-content">Email</span>
             </label>
         </div>
         <div class="wrapper-form__username">
-            <input class="wrapper-form__input-username" spellcheck="false" type="text" name="Username" asp-for="Username" required />
-            <label for="Email" class="wrapper-form__label">
+            <input class="wrapper-form__input-username" spellcheck="false" type="text" asp-for="Username" required />
+            <label for="Username" class="wrapper-form__label">
                 <span class="wrapper-form__label-content">Username</span>
             </label>
         </div>
         <div class="wrapper-form__password">
-            <input class="wrapper-form__input-password" spellcheck="false" type="password" name="Password" asp-for="Password" required />
-            <label for="Email" class="wrapper-form__label">
+            <input class="wrapper-form__input-password" spellcheck="false" type="password" asp-for="Password" required />
+            <label for="Password" class="wrapper-form__label">
                 <span class="wrapper-form__label-content">Password</span>
             </label>
         </div>
         <div class="wrapper-form__password-confirm">
-            <input class="wrapper-form__input-password-confirm" spellcheck="false" type="password" name="Password-confirm" asp-for="PasswordConfirm" required />
-            <label for="Email" class="wrapper-form__label">
+            <input class="wrapper-form__input-password-confirm" spellcheck="false" type="password" asp-for="PasswordConfirm" required />
+            <label for="PasswordConfirm" class="wrapper-form__label">
                 <span class="wrapper-form__label-content">Confirm Password</span>
             </label>
         </div>

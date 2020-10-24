@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventMaker.Common.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace EventMaker.Web.ViewModels
@@ -71,7 +72,7 @@ namespace EventMaker.Web.ViewModels
         /// </summary>
         [Required]
         [Display(Name = nameof(Format))]
-        public bool Format { get; set; }
+        public EventFormat? Format { get; set; }
 
         /// <summary>
         /// Participants number

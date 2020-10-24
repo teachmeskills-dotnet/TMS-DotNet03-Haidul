@@ -1,0 +1,75 @@
+﻿.event-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    border: 1px solid #E2E6ED;
+    border-radius: 10px;
+    box-shadow: 0 14px 8px rgba(0,0,0,.2);
+}
+
+h1{
+    margin:40px auto;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+    height:100%;
+}
+
+.event-buttons button {
+    margin: 30px 40px;
+    padding: 20px 70px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .event-buttons button:hover {
+        background-color: #2E2E2E;
+        color: #FFFFFF;
+        transition: 0.6s ease;
+    }
+
+.event-list{
+    margin-left:70px;
+    min-width:450px;
+}
+
+.event-list__event {
+    margin: 20px 20px;
+    box-shadow: 0 14px 8px rgba(0,0,0,.2);
+    padding: 10px;
+    min-width:486px;
+    max-width: 586px;
+    
+}
+
+.event-list__dates span{
+    display:block;
+    color:rgba(0,0,0,.5);
+    font-weight:600;
+    margin: 5px 0;
+}
+
+.event-list__participants {
+    display: block;
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+.event-list__title {
+    word-break:break-all;
+    color: #4facfe;
+    font-size: 30px;
+}
+
+.event-list__name {
+    word-break: break-all;
+    font-size: 25px;
+}

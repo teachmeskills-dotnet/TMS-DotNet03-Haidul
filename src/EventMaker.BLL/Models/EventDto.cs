@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventMaker.Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -55,7 +56,7 @@ namespace EventMaker.BLL.Models
         /// <summary>
         /// Format.
         /// </summary>
-        public bool Format { get; set; }
+        public EventFormat? Format { get; set; }
 
         /// <summary>
         /// Participants number
@@ -65,7 +66,7 @@ namespace EventMaker.BLL.Models
         /// <summary>
         /// Remaining free seats of participants.
         /// </summary>
-        public int PFreeNumber { get; set; }
+        public int? PFreeNumber { get; set; }
     }
 }
 

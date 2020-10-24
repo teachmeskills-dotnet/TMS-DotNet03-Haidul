@@ -47,7 +47,7 @@ namespace EventMaker.Web.Controllers
                 await _eventManager.CreateEventAsync(userId, modelDto);
                 if (modelDto != null)
                 {
-                    return RedirectToAction("Event", "Index");
+                    return RedirectToAction("Home", "Index");
                 }
                 return NotFound("Event not created");
             }

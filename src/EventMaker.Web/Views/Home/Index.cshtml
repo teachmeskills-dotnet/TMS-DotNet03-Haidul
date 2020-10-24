@@ -7,51 +7,77 @@
     @if (User.Identity.IsAuthenticated)
     {
     <div class="container">
-        <div class="event-list">
+        @if (Model.Any())
+        {
+            <div class="event-list">
             @foreach (var usersEvent in Model)
             {
-            <div class="event-list__event">
-                <h1>Title: @usersEvent.Title</h1>
-                <h2>Name: @usersEvent.Name</h2>
-                <p>Started: @usersEvent.Started</p>
-                <p>Participants number: @usersEvent.PNumber</p>
-                <p>Free places: @usersEvent.PFreeNumber</p>
-            </div>}
+    <div class="event-list__event">
+        <h1 class="event-list__title">@usersEvent.Title</h1>
+        <h2 class="event-list__name">@usersEvent.Name</h2>
+        <div class="event-list__dates">
+            <span>Started: @usersEvent.Started</span>
+            <span>Created: @usersEvent.Created</span>
         </div>
+        <div class="event-list__participants">
+            <span>Participants number: @usersEvent.PNumber</span>
+            <span>Free places: @usersEvent.PFreeNumber</span>
+        </div>
+    </div>}
+        </div>
+        }
+        else
+        {
+            <h1>Event list is empty</h1>
+        }
+        
         <form method="get" class="event-buttons">
             <button class="event-buttons__create" asp-controller="Event" asp-action="CreateEvent">Create Event</button>
             <button class="event-buttons__edit" asp-controller="Event" asp-action="EditEvent">Edit Event</button>
             <button class="event-buttons__delete" asp-controller="Event" asp-action="DeleteEvent">Delete Event</button>
         </form>
-    </div>
-    }
-    else
-    {
+    </div> }
+            else
+            {
 <div class="event-list">
     @if (Model.Any())
     {
-        @foreach (var usersEvent in Model)
-        {
-    <div class="event-list__event">
-        <h1>@usersEvent.Title</h1>
-        <h2>@usersEvent.Name</h2>
-        <p>@usersEvent.Started</p>
-        <p>@usersEvent.Closed</p>
-        <p>@usersEvent.PFreeNumber</p>
-    </div>
-        }
-    }
-    else
+<div class="event-list">
+    @foreach (var usersEvent in Model)
     {
-        <h1>Event list is empty</h1>
-    }
-</div>
-    }
+<div class="event-list__event">
+    <h1 class="event-list__title">@usersEvent.Title</h1>
+    <h2 class="event-list__name">@usersEvent.Name</h2>
+    <div class="event-list__dates">
+        <span>Started: @usersEvent.Started</span>
+        <span>Created: @usersEvent.Created</span>
+    </div>
+    <div class="event-list__participants">
+        <span>Participants number: @usersEvent.PNumber</span>
+        <span>Free places: @usersEvent.PFreeNumber</span>
+    </div>
+</div>}
+</div> }
+                else
+                {
+<h1>Event list is empty</h1>}
+</div>}
 </body>
 
-@section css{
-    <link href="~/css/home.css" rel="stylesheet" asp-append-version="true"/>
+@if (User.Identity.IsAuthenticated)
+{
+    @section css{
+        <link href="~/css/authHome.css" rel="stylesheet" asp-append-version="true" />
+    }
 }
+else
+{
+      @section css{
+        <link href="~/css/nonAuthHome.css" rel="stylesheet" asp-append-version="true" />
+    }
+}
+
+
 
 
 
