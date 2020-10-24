@@ -1,0 +1,33 @@
+﻿@model LogInViewModel
+
+@{ ViewData["Title"] = "Sign In Page"; }
+
+<div class="wrapper">
+    <h2 class="wrapper__header">Log In Here</h2>
+    <form class="wrapper-form" asp-controller="Account" asp-action="LogIn" asp-route-returnUrl="@Model.ReturnUrl">
+        <div class="wrapper-form__username">
+            <input class="wrapper-form__input-username" spellcheck="false" type="text" name="Username" asp-for="Username" required />
+            <label class="wrapper-form__label">
+                <span class="wrapper-form__label-content">Username</span>
+            </label>
+        </div>
+        <div class="wrapper-form__password">
+            <input class="wrapper-form__input-password" spellcheck="false" type="password" name="Password" asp-for="Password" required />
+            <label class="wrapper-form__label">
+                <span class="wrapper-form__label-content">Password</span>
+            </label>
+        </div>
+        <div class="wrapper-form__remember-me">
+            <p class="wrapper-form__remember-me" asp-for="RememberMe">Remember me?
+            <input class="wrapper-form__input-remember-me" spellcheck="false" type="checkbox" name="Remember me" asp-for="RememberMe" />
+            </p>
+        </div>
+        <div class="wrapper-form__submit">
+            <input class="wrapper-form__input-submit" type="submit" value="Log in" required />
+        </div>
+    </form>
+</div>
+
+@section css {
+    <link href="~/css/logIn.css" rel="stylesheet" asp-append-version="true" />
+}

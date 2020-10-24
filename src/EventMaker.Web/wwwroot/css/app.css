@@ -1,0 +1,76 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@500;700&display=swap");
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Mulish", sans-serif;
+    font-size:18px;
+}
+
+.main-wrapper{
+    width:1100px;
+    margin: 0 auto;
+}
+
+header {
+    height: 73.78px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom-style: solid;
+    border-bottom-color: #E2E6ED;
+    border-bottom-width: 1px;
+}
+
+.logo {
+    margin-left: 40px;
+    margin-right: auto;
+}
+
+.navigation__account-form{
+    display:flex;
+    height:100%;
+    width:30%;
+    justify-content:space-between;
+}
+
+.navigation__profile-button,
+.navigation__sign-out-button,
+.navigation__log-in-button,
+.navigation__sign-up-button {
+    height: 100%;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 2px;
+}
+
+.navigation__sign-out-button,
+.navigation__sign-up-button {
+    background-color: #2E2E2E;
+    color:#FFFFFF;
+}
+
+.navigation__sign-out-button:hover,
+.navigation__sign-up-button:hover {
+    background-color:#FFFFFF;
+    transition:0.6s all ease;
+    color: #2E2E2E;
+}
+
+.navigation__profile-button,
+.navigation__log-in-button {
+    opacity: 0.6;
+    background-color: #FFFFFF
+}
+
+.navigation__profile-button:hover,
+.navigation__log-in-button:hover {
+    background-color: #2E2E2E;
+    opacity: initial;
+    transition: 0.6s all ease;
+    color: #FFFFFF;
+}

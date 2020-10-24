@@ -1,23 +1,22 @@
 ﻿@model EventDeleteViewModel
 
-<h1>Delete event page</h1>
-<br />
-@User.Identity.Name
-<br />
+<h1>Delete event</h1>
 <form method="post" asp-controller="Event" asp-action="DeleteEvent">
     <div asp-validation-summary="ModelOnly"></div>
     <div>
-        <label asp-for="Name"></label><br />
+        <label asp-for="Name"></label>
         <input asp-for="Name" />
     </div>
-    <br/>
     <span>Or</span>
-    <br />
     <div>
-        <label asp-for="Title"></label><br />
+        <label asp-for="Title"></label>
         <input asp-for="Title" />
     </div>
     <div>
         <input type="submit" value="Delete" />
     </div>
 </form>
+
+@section css {
+    <link href="~/css/createEvent.css" rel="stylesheet" asp-append-version="true" />
+}

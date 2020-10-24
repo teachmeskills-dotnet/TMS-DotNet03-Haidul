@@ -31,13 +31,13 @@ namespace EventMaker.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _accountManager.SignUpAsync(model.Email, model.Username, model.Password);
-                if (result.Item1.Succeeded)
+                (IdentityResult result, ApplicationUser user) result = await _accountManager.SignUpAsync(model.Email, model.Username, model.Password);
+                if (result.result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(result.Item2, false);
+                    await _signInManager.SignInAsync(result.user, false);
                     return RedirectToAction("Index", "Home");
                 }
-                foreach (var error in result.Item1.Errors)
+                foreach (var error in result.result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
@@ -46,13 +46,13 @@ namespace EventMaker.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult SignIn(string returnUrl = null)
+        public IActionResult LogIn(string returnUrl = null)
         {
-            return View(new SignInViewModel { ReturnUrl = returnUrl });
+            return View(new LogInViewModel { ReturnUrl = returnUrl });
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignIn(SignInViewModel model)
+        public async Task<IActionResult> LogIn(LogInViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace EventMaker.Web.Controllers
                     else
                     {
                         return RedirectToAction("Index", "Home");
-                    }
+                    } 
                 }
                 else
                 {
@@ -96,16 +96,16 @@ namespace EventMaker.Web.Controllers
             if (ModelState.IsValid)
             {
                 var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
-                var result = await _accountManager.ChangePasswordAsync(userId, model.OldPassword, model.NewPassword);
-                if (result.Item2 != null)
+                (IdentityResult result, ApplicationUser user) result = await _accountManager.ChangePasswordAsync(userId, model.OldPassword, model.NewPassword);
+                if (result.user != null)
                 {
-                    if (result.Item1.Succeeded)
+                    if (result.result.Succeeded)
                     {
                         await SignOut();
                     }
                     else
                     {
-                        foreach (var error in result.Item1.Errors)
+                        foreach (var error in result.result.Errors)
                         {
                             ModelState.AddModelError(string.Empty, error.Description);
                         }
@@ -121,4 +121,3 @@ namespace EventMaker.Web.Controllers
     }
 }
 
-    

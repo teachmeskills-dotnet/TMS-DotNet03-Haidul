@@ -1,19 +1,100 @@
-﻿@{
-    ViewData["Title"] = "Index page";
-}
+﻿@model IEnumerable<EventViewModel>
+<head>
+    <title>Home page</title>
+</head>
+<body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="container">
+            @if (Model.Any())
+            {
+                <div class="event-list">
+                    @foreach (var usersEvent in Model)
+                    {
+                        <div class="event-list__event">
+                            <a class="event-list__title"
+                               asp-controller="Event"
+                               asp-action="Index"
+                               asp-route-name="@usersEvent.Name">@usersEvent.Name</a>
+                            <h2 class="event-list__name">@usersEvent.Title</h2>
+                            <div class="event-list__dates">
+                                <span>Started: @usersEvent.Started</span>
+                                <span>Created: @usersEvent.Created</span>
+                            </div>
+                            <div class="event-list__participants">
+                                <span>Participants number: @usersEvent.PNumber</span>
+                                <span>Free places: @usersEvent.PFreeNumber</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <h1 id="empty">Event list is empty</h1>
+            }
 
-
-<h1>Index page</h1>
-<a asp-controller="Account" asp-action="SignUp">Sign Up</a>
-<a asp-controller="Account" asp-action="SignIn">Sign In</a>
+            <form method="get" class="event-buttons">
+                <button class="event-buttons__create"
+                        asp-controller="Event"
+                        asp-action="CreateEvent">
+                    Create Event
+                </button>
+                <button class="event-buttons__edit"
+                        asp-controller="Event"
+                        asp-action="EditEvent">
+                    Edit Event
+                </button>
+                <button class="event-buttons__delete"
+                        asp-controller="Event"
+                        asp-action="DeleteEvent">
+                    Delete Event
+                </button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            @if (Model.Any())
+            {
+                <div class="event-list">
+                    @foreach (var usersEvent in Model)
+                    {
+                        <div class="event-list__event">
+                            <a class="event-list__title"
+                               asp-controller="Event"
+                               asp-action="Index">@usersEvent.Title</a>
+                            <h2 class="event-list__name">@usersEvent.Name</h2>
+                            <div class="event-list__dates">
+                                <span>Started: @usersEvent.Started</span>
+                                <span>Created: @usersEvent.Created</span>
+                            </div>
+                            <div class="event-list__participants">
+                                <span>Participants number: @usersEvent.PNumber</span>
+                                <span>Free places: @usersEvent.PFreeNumber</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <h1 id="empty">Event list is empty</h1>
+            }
+        </div>
+    }
+</body>
 
 @if (User.Identity.IsAuthenticated)
 {
-    <p>@User.Identity.Name</p>
-
-    <form method="post" asp-controller="Account" asp-action="SignOut">
-        <input type="submit" value="Выход" />
-    </form>
-    <a asp-controller="Account" asp-action="ChangePassword"> Change Password</a>
-    <a asp-controller="Event" asp-action="Index"> Event</a>
-}
+    @section css{
+        <link href="~/css/authHome.css" rel="stylesheet" asp-append-version="true" />
+} }
+else
+{ 
+    @section css{
+    <link href="~/css/nonAuthHome.css"
+          rel="stylesheet"
+          asp-append-version="true" />
+}         }

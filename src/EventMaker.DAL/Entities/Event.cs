@@ -1,4 +1,5 @@
 ﻿using EventMaker.Common.Interfaces;
+using EventMaker.Common.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -60,7 +61,7 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Format.
         /// </summary>
-        public bool Format { get; set; }
+        public EventFormat? Format { get; set; }
 
         /// <summary>
         /// Participants number
@@ -70,7 +71,7 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Remaining free seats of participants.
         /// </summary>
-        public int PFreeNumber { get; set; }
+        public int? PFreeNumber { get; set; }
 
         /// <summary>
         /// Navigation to Event participants.
