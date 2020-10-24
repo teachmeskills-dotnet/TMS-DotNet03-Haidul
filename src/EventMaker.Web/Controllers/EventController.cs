@@ -25,9 +25,11 @@ namespace EventMaker.Web.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(EventViewModel model)
         {
-            return View();
+            var userEvent = await _eventManager.GetEventByName(model.Name);
+            var eventViewModel = _mapper.Map<EventViewModel>(userEvent);
+            return View(eventViewModel);
         }
 
         [HttpGet]
@@ -47,7 +49,7 @@ namespace EventMaker.Web.Controllers
                 await _eventManager.CreateEventAsync(userId, modelDto);
                 if (modelDto != null)
                 {
-                    return RedirectToAction("Home", "Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 return NotFound("Event not created");
             }
@@ -71,7 +73,7 @@ namespace EventMaker.Web.Controllers
                 await _eventManager.DeleteEventAsync(userId,modelDto);
                 if (modelDto != null)
                 {
-                    return RedirectToAction("Event", "Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 return NotFound("Event not created");
             }
@@ -95,7 +97,7 @@ namespace EventMaker.Web.Controllers
                 await _eventManager.EditEventAsync(userId, modelDto);
                 if (modelDto != null)
                 {
-                    return RedirectToAction("Event", "Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 return NotFound("Event not found");
             }

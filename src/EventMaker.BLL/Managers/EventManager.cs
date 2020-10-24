@@ -21,6 +21,14 @@ namespace EventMaker.BLL.Managers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
+
+        ///TODO: Add error handling;
+        public async Task<EventDto> GetEventByName(string eventName)
+        {
+            var result = await _repositoryEvent.GetEntityWithoutTrackingAsync(e => e.Name == eventName);
+            return _mapper.Map<EventDto>(result);
+        }
+
         public async Task CreateEventAsync(string userId, EventDto eventDto)
         {
             eventDto.UserId = userId; // todo : try it on auto mapper profile
@@ -75,6 +83,8 @@ namespace EventMaker.BLL.Managers
                 }
             }
         }
+
+        
     }
 }
 

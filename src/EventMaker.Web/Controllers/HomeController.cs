@@ -22,9 +22,9 @@ namespace EventMaker.Web.Controllers
         public IActionResult Index()
         {
             var events = _eventManager.GetAllEvents();
-            var models = _mapper.Map<IEnumerable<EventViewModel>>(events);
+            var eventModels = _mapper.Map<IEnumerable<EventViewModel>>(events);
 
-            return View(models);
+            return View(eventModels);
         }
     }
 }

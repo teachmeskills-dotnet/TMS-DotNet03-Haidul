@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EventMaker.BLL.Models;
 using EventMaker.Web.ViewModels;
+using System.Threading.Tasks;
 
 namespace EventMaker.Web.Mappings
 {

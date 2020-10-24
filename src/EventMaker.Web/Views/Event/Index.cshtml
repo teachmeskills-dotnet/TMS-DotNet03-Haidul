@@ -2,3 +2,35 @@
 
 
 @{ ViewData["Title"] = "Index page"; }
+
+    <div class="create-form">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="Name"></label>
+            <h1 asp-for="Name">@Model.Name</h1>
+        </div>
+        <div>
+            <label asp-for="Title"></label>
+            <h2 asp-for="Title">@Model.Title</h2>
+        </div>
+        <div>
+            <label asp-for="Info"></label>
+            <p asp-for="Info">@Model.Info</p>
+        </div>
+        <div>
+            <label asp-for="Started" for="started">Started</label>
+            <time asp-for="Started" >@Model.Started</time>
+        </div>
+        <div>
+            <label asp-for="Format"></label>
+            <span asp-for="Format" >@Model.Format</span>
+        </div>
+        <div>
+            <label asp-for="PNumber"></label>
+            <span asp-for="PNumber">@Model.PNumber</span>
+        </div>
+    </div>
+
+@section css {
+    <link href="~/css/createEvent.css" rel="stylesheet" asp-append-version="true" />
+}

@@ -27,6 +27,13 @@ namespace EventMaker.BLL.Interfaces
         Task<T> GetEntityAsync(Expression<Func<T, bool>> predicate);
 
         /// <summary>
+        /// Get entity async by predicate (without tracking).
+        /// </summary>
+        /// <param name="predicate">LINQ predicate.</param>
+        /// <returns>T entity.</returns>
+        Task<T> GetEntityWithoutTrackingAsync(Expression<Func<T, bool>> predicate);
+
+        /// <summary>
         /// Add new entity async.
         /// </summary>
         /// <param name="entity">Entity object</param>
