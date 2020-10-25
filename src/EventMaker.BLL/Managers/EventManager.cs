@@ -2,6 +2,7 @@
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Models;
 using EventMaker.Common.Exceptions;
+using EventMaker.Common.Resources;
 using EventMaker.DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace EventMaker.BLL.Managers
             {
                 return _mapper.Map<EventDto>(result);
             }
-            throw new EventNotFoundException("Event not found");
+            throw new EventNotFoundException(ExceptionResource.EventNotFound);
         }
 
         public async Task CreateEventAsync(string userId, EventDto eventDto)
@@ -49,7 +50,7 @@ namespace EventMaker.BLL.Managers
                 _repositoryEvent.Update(userEvent);
                 await _repositoryEvent.SaveChangesAsync();
             }
-            throw new EventNotFoundException("Event not found or you have no permissions to this action");
+            throw new EventNotFoundException(ExceptionResource.EventNotFound);
         }
 
         public async Task DeleteEventAsync(string userId, EventDto eventDto)
@@ -62,7 +63,7 @@ namespace EventMaker.BLL.Managers
                     result = await _repositoryEvent.GetEntityAsync(evTitle => evTitle.Title.ToLower().Contains(eventDto.Title));
                     if (result == null)
                     {
-                        throw new EventNotFoundException("Event not found");
+                        throw new EventNotFoundException(ExceptionResource.EventNotFound);
                     }
                 }
                 _repositoryEvent.Delete(result);

@@ -1,6 +1,8 @@
 ﻿@model SignUpViewModel
 
-@{ ViewData["Title"] = "Sign up page"; }
+@{
+    ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.AccountRegister, PageTitlesResource.SiteName);
+}
 
 <div class="wrapper">
     <h2 class="wrapper__header">Sign up Here</h2>

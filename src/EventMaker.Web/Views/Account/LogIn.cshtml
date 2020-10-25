@@ -1,6 +1,8 @@
 ﻿@model LogInViewModel
 
-@{ ViewData["Title"] = "Sign In Page"; }
+@{
+    ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.AccountLogin, PageTitlesResource.SiteName);
+}
 
 <div class="wrapper">
     <h2 class="wrapper__header">Log In Here</h2>
@@ -18,8 +20,9 @@
             </label>
         </div>
         <div class="wrapper-form__remember-me">
-            <p class="wrapper-form__remember-me" asp-for="RememberMe">Remember me?
-            <input class="wrapper-form__input-remember-me" spellcheck="false" type="checkbox" name="Remember me" asp-for="RememberMe" />
+            <p class="wrapper-form__remember-me" asp-for="RememberMe">
+                Remember me?
+                <input class="wrapper-form__input-remember-me" spellcheck="false" type="checkbox" name="Remember me" asp-for="RememberMe" />
             </p>
         </div>
         <div class="wrapper-form__submit">

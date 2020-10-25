@@ -1,5 +1,8 @@
 ﻿@model EventViewModel
 
+@{
+    ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.EventCreate, PageTitlesResource.SiteName);
+}
 
     <form class="create-form" method="post" asp-controller="Event" asp-action="CreateEvent">
         <h1>Create event</h1>

@@ -1,4 +1,6 @@
 ﻿using EventMaker.BLL.Interfaces;
+using EventMaker.Common.Exceptions;
+using EventMaker.Common.Resources;
 using EventMaker.DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -33,7 +35,11 @@ namespace EventMaker.BLL.Managers
         public async Task<string> GetUserIdByNameAsync(string name)
         {
             var user = await _userManager.Users.FirstAsync(u => u.UserName == name);
-            return user.Id;
+            if(user != null)
+            {
+                return user.Id;
+            }
+            throw new UserNotFoundException(ExceptionResource.UserNotFound);
         }
 
         public async Task<(IdentityResult, ApplicationUser)> ChangePasswordAsync(string id, string oldPassword, string newPassword)
@@ -44,7 +50,7 @@ namespace EventMaker.BLL.Managers
                 var result = await _userManager.ChangePasswordAsync(user, oldPassword, newPassword);
                 return (result, user);
             }
-            return (null, null);
+            throw new UserNotFoundException(ExceptionResource.UserNotFound);
         }
     }
 }

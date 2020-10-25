@@ -1,5 +1,9 @@
 ﻿@model EventDeleteViewModel
 
+@{
+    ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.EventDelete, PageTitlesResource.SiteName);
+}
+
 <h1>Delete event</h1>
 <form method="post" asp-controller="Event" asp-action="DeleteEvent">
     <div asp-validation-summary="ModelOnly"></div>
