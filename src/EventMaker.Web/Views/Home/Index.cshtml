@@ -64,8 +64,10 @@
                         <div class="event-list__event">
                             <a class="event-list__title"
                                asp-controller="Event"
-                               asp-action="Index">@usersEvent.Title</a>
-                            <h2 class="event-list__name">@usersEvent.Name</h2>
+                               asp-action="Index"
+                               asp-route-name="@usersEvent.Name"
+                               >@usersEvent.Name</a>
+                            <h2 class="event-list__name">@usersEvent.Title</h2>
                             <div class="event-list__dates">
                                 <span>Started: @usersEvent.Started</span>
                                 <span>Created: @usersEvent.Created</span>

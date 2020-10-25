@@ -25,11 +25,15 @@ namespace EventMaker.Web.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<IActionResult> Index(EventViewModel model)
+        public async Task<IActionResult> Index(string name)
         {
-            var userEvent = await _eventManager.GetEventByName(model.Name);
-            var eventViewModel = _mapper.Map<EventViewModel>(userEvent);
-            return View(eventViewModel);
+                var userEvent = await _eventManager.GetEventByName(name);
+                if (userEvent != null)
+                {
+                    var eventViewModel = _mapper.Map<EventViewModel>(userEvent);
+                    return View(eventViewModel);
+                }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

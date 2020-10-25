@@ -6,6 +6,7 @@ using EventMaker.BLL.Repository;
 using EventMaker.DAL.Context;
 using EventMaker.DAL.Entities;
 using EventMaker.Web.Mappings;
+using EventMaker.Web.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -67,6 +68,9 @@ namespace EventMaker.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            // Middlewares
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

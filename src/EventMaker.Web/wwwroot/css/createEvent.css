@@ -10,6 +10,14 @@
         opacity: 0;
     }
 
+textarea{
+    min-height:89px;
+    max-height:250px;
+    min-width:300px;
+    max-width:454px;
+}
+
+
 label {
     display: block;
     margin-top:30px;
