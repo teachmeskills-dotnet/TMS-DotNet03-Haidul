@@ -15,6 +15,7 @@ namespace EventMaker.Web.ViewModels
         /// Email.
         /// </summary>
         [Required]
+        [MaxLength(20)]
         [Display(Name = nameof(Username))]
         public string Username { get; set; }
 

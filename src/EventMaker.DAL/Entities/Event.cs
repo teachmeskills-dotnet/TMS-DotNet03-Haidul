@@ -21,6 +21,11 @@ namespace EventMaker.DAL.Entities
         public ApplicationUser User { get; set; }
 
         /// <summary>
+        /// Author.
+        /// </summary>
+        public string AuthorName { get; set; }
+
+        /// <summary>
         /// Name.
         /// </summary>
         public string Name { get; set; }

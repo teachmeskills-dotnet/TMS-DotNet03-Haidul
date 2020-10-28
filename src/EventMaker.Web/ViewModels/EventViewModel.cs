@@ -20,6 +20,11 @@ namespace EventMaker.Web.ViewModels
         public string UserId { get; set; }
 
         /// <summary>
+        /// Author.
+        /// </summary>
+        public string AuthorName { get; set; }
+
+        /// <summary>
         /// Name.
         /// </summary>
         [Required]

@@ -23,8 +23,8 @@
        asp-route-name="@usersEvent.Name">@usersEvent.Name</a>
     <h2 class="event-list__name">@usersEvent.Title</h2>
     <div class="event-list__dates">
-        <span>Started: @usersEvent.Started</span>
-        <span>Created: @usersEvent.Created</span>
+        <span>Started: @usersEvent.Started.ToShortDateString()</span>
+        <span>Created: @usersEvent.Created.ToShortDateString()</span>
     </div>
     <div class="event-list__participants">
         <span>Participants number: @usersEvent.PNumber</span>
@@ -42,16 +42,7 @@
                 asp-action="CreateEvent">
             Create Event
         </button>
-        <button class="event-buttons__edit"
-                asp-controller="Event"
-                asp-action="EditEvent">
-            Edit Event
-        </button>
-        <button class="event-buttons__delete"
-                asp-controller="Event"
-                asp-action="DeleteEvent">
-            Delete Event
-        </button>
+
     </form>
 </div> }
             else

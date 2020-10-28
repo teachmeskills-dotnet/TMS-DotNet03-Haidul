@@ -70,7 +70,7 @@ namespace EventMaker.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Incorrect email or (and) password.");
+                    ModelState.AddModelError(string.Empty, "Incorrect email or (and) password."); /// TODO : rework this exceptions
                 }
             }
             return View(model);
@@ -113,7 +113,7 @@ namespace EventMaker.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "User didn't found");
+                    ModelState.AddModelError(string.Empty, "User didn't found"); /// TODO : rework this exceptions
                 }
             }
             return View(model);

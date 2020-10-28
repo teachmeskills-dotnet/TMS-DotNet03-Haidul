@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventMaker.BLL.Interfaces
 {
+    /// <summary>
+    /// Event manager.
+    /// </summary>
     public interface IEventManager
     {
         /// <summary>
@@ -18,18 +21,14 @@ namespace EventMaker.BLL.Interfaces
         /// <summary>
         /// Edit event.
         /// </summary>
-        /// <param name="userId">string (GUID).</param>
         /// <param name="eventDto">Event DTO</param>
-        Task EditEventAsync(string userId, EventDto eventDto);
+        Task EditEventAsync(EventDto eventDto);
 
         /// <summary>
-        /// Delete event.
+        /// Delete event on index page.
         /// </summary>
-        /// <param name="userId">string (GUID).</param>
-        /// <param name="eventName">Event name.</param>
-        /// <param name="eventTitle">Event title.</param>
         /// <param name="eventDto">Event DTO.</param>
-        Task DeleteEventAsync(string userId, EventDto eventDto);
+        Task DeleteEventAsync(EventDto eventDto);
 
         /// <summary>
         /// Get event by name.

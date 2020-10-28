@@ -6,11 +6,13 @@ using EventMaker.Common.Resources;
 using EventMaker.DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace EventMaker.BLL.Managers
 {
+    /// <inheritdoc cref="IEventManager"/>
     public class EventManager : IEventManager
     {
         private readonly IRepository<Event> _repositoryEvent;
@@ -25,7 +27,7 @@ namespace EventMaker.BLL.Managers
 
         public async Task<EventDto> GetEventByName(string eventName)
         {
-            var result = await _repositoryEvent.GetEntityWithoutTrackingAsync(e => e.Name == eventName);
+            var result = await _repositoryEvent.GetEntityAsync(e => e.Name == eventName);
             if (result != null)
             {
                 return _mapper.Map<EventDto>(result);
@@ -42,9 +44,9 @@ namespace EventMaker.BLL.Managers
             await _repositoryEvent.SaveChangesAsync();
         }
 
-        public async Task EditEventAsync(string userId, EventDto eventDto)
+        public async Task EditEventAsync(EventDto eventDto)
         {
-            if (eventDto.UserId == userId)
+            if (eventDto != null)
             {
                 var userEvent = _mapper.Map<Event>(eventDto);
                 _repositoryEvent.Update(userEvent);
@@ -53,10 +55,9 @@ namespace EventMaker.BLL.Managers
             throw new EventNotFoundException(ExceptionResource.EventNotFound);
         }
 
-        public async Task DeleteEventAsync(string userId, EventDto eventDto)
+        public async Task DeleteEventAsync(EventDto eventDto)
         {
             {
-                eventDto.UserId = userId;
                 var result = await _repositoryEvent.GetEntityAsync(evName => evName.Name.ToLower().Contains(eventDto.Name));
                 if (result == null)
                 {
@@ -79,8 +80,6 @@ namespace EventMaker.BLL.Managers
                 return userEvents;
             }
         }
-
-
     }
 }
 

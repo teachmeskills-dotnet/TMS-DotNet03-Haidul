@@ -27,12 +27,14 @@ namespace EventMaker.Web.Controllers
 
         public async Task<IActionResult> Index(string name)
         {
-                var userEvent = await _eventManager.GetEventByName(name);
-                if (userEvent != null)
-                {
-                    var eventViewModel = _mapper.Map<EventViewModel>(userEvent);
-                    return View(eventViewModel);
-                }
+            var userEvent = await _eventManager.GetEventByName(name);
+
+            if (userEvent != null)
+            {
+                ViewBag.UserId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
+                var eventViewModel = _mapper.Map<EventViewModel>(userEvent);
+                return View(eventViewModel);
+            }
             return RedirectToAction("Index", "Home");
         }
 
@@ -43,69 +45,69 @@ namespace EventMaker.Web.Controllers
         }
 
         [HttpPost]
-        //TODO : add human error handling
         public async Task<IActionResult> CreateEvent(EventViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
+                model.AuthorName = User.Identity.Name;
                 var modelDto = _mapper.Map<EventDto>(model);
                 await _eventManager.CreateEventAsync(userId, modelDto);
                 if (modelDto != null)
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                return NotFound("Event not created");
+                return NotFound("Event not created");/// TODO : rework this exceptions
             }
             return View(model);
         }
 
-        [HttpGet]
-        public IActionResult DeleteEvent()
-        {
-            return View();
-        }
 
-        //TODO : add human error handling
         [HttpPost]
-        public async Task<IActionResult> DeleteEvent(EventDeleteViewModel model)
+        public async Task<IActionResult> DeleteEvent(EventViewModel model)
         {
-            if (ModelState.IsValid)
+            if (User.Identity.Name == model.AuthorName)
             {
-                var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
                 var modelDto = _mapper.Map<EventDto>(model);
-                await _eventManager.DeleteEventAsync(userId,modelDto);
-                if (modelDto != null)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                return NotFound("Event not created");
+                await _eventManager.DeleteEventAsync(modelDto);
             }
-            return View(model);
-        }
+            else
+            {
+                return NotFound("Event not found"); /// TODO : rework this exceptions
 
-        [HttpGet]
-        public IActionResult EditEvent()
-        {
-            return View();
+            }
+            return RedirectToAction("Index", "Home");
+
         }
 
         [HttpPost]
-        //TODO : add human error handling
+        public async Task<IActionResult> EditEventIndex(EventViewModel model)
+        {
+            if (User.Identity.Name == model.AuthorName)
+            {
+                var userEvent = await _eventManager.GetEventByName(model.Name);
+                var eventViewModel = _mapper.Map<EventViewModel>(userEvent);
+                return View(eventViewModel);
+            }
+            return NotFound("Event not found"); /// TODO : rework this exceptions
+        }
+
+        [HttpPost]
         public async Task<IActionResult> EditEvent(EventViewModel model)
         {
-            if (ModelState.IsValid)
+
+            if (User.Identity.Name == model.AuthorName)
             {
-                var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
                 var modelDto = _mapper.Map<EventDto>(model);
-                await _eventManager.EditEventAsync(userId, modelDto);
-                if (modelDto != null)
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                return NotFound("Event not found");
+                await _eventManager.EditEventAsync(modelDto);
+            }
+            else
+            {
+                return NotFound("Event not found"); /// TODO : rework this exceptions
+
             }
             return View(model);
+
         }
     }
 }
