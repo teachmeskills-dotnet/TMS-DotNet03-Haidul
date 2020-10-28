@@ -23,6 +23,10 @@ namespace EventMaker.DAL.Configurations
                 .IsRequired()
                 .HasMaxLength(ConfigurationContants.SqlMaxLengthMedium);
 
+            builder.Property(events => events.AuthorName)
+               .IsRequired()
+               .HasMaxLength(ConfigurationContants.SqlMaxLengthShort);
+
             builder.Property(events => events.Title)
                 .HasMaxLength(ConfigurationContants.SqlMaxLengthMedium);
 

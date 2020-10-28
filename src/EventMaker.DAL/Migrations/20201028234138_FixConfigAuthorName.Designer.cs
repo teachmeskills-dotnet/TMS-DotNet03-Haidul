@@ -4,14 +4,16 @@ using EventMaker.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EventMaker.DAL.Migrations
 {
     [DbContext(typeof(EventMakerDbContext))]
-    partial class EventMakerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201028234138_FixConfigAuthorName")]
+    partial class FixConfigAuthorName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
