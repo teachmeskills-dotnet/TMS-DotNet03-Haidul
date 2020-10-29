@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EventMaker.Common.Enums
+﻿namespace EventMaker.Common.Enums
 {
     /// <summary>
     /// Format of event.
@@ -23,6 +19,5 @@ namespace EventMaker.Common.Enums
         /// Web.
         /// </summary>
         Web = 3,
-
     }
 }

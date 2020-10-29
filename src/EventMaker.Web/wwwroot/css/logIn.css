@@ -1,6 +1,6 @@
-﻿:invalid{
-    box-shadow:none;
-} 
+﻿:invalid {
+    box-shadow: none;
+}
 
 input::a
 
@@ -42,16 +42,16 @@ input, label {
 .wrapper-form__submit {
     width: 20%;
     margin: 40px auto;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .wrapper-form__remember-me {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top:30px;
+    margin-top: 30px;
 }
 
 .wrapper-form__input-username,
@@ -109,9 +109,9 @@ input, label {
     margin: 0 auto;
     background-color: #FFFF;
     color: #595f6e;
-    outline:none;
-    border:none;
-    cursor:pointer;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }
 
 .wrapper-form__input-remember-me {

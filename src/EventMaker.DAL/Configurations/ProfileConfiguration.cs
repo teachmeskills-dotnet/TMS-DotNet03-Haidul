@@ -1,15 +1,15 @@
-﻿using EventMaker.DAL.Entities;
+﻿using EventMaker.Common.Constants;
+using EventMaker.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
-using EventMaker.Common.Constants;
 
 namespace EventMaker.DAL.Configurations
 {
     /// <summary>
     /// EF configuration for Profile entity
     /// </summary>
-    class ProfileConfiguration : IEntityTypeConfiguration<Profile>
+    internal class ProfileConfiguration : IEntityTypeConfiguration<Profile>
     {
         /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<Profile> builder)

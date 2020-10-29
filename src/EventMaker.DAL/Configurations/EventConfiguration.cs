@@ -9,7 +9,7 @@ namespace EventMaker.DAL.Configurations
     /// <summary>
     /// EF configuration for Profile entity
     /// </summary>
-    class EventConfiguration : IEntityTypeConfiguration<Event>
+    internal class EventConfiguration : IEntityTypeConfiguration<Event>
     {
         /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<Event> builder)

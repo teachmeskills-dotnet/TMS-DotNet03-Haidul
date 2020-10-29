@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EventMaker.Common.Constants
+﻿namespace EventMaker.Common.Constants
 {
     /// <summary>
     /// Table constants.

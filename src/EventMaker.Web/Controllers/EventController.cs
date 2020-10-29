@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Models;
-using EventMaker.DAL.Entities;
 using EventMaker.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -63,7 +62,6 @@ namespace EventMaker.Web.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> DeleteEvent(EventViewModel model)
         {
@@ -75,14 +73,12 @@ namespace EventMaker.Web.Controllers
             else
             {
                 return NotFound("Event not found"); /// TODO : rework this exceptions
-
             }
             return RedirectToAction("Index", "Home");
-
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditEventIndex(string name , string authorName)
+        public async Task<IActionResult> EditEventIndex(string name, string authorName)
         {
             if (User.Identity.Name == authorName)
             {
@@ -100,14 +96,13 @@ namespace EventMaker.Web.Controllers
             if (ModelState.IsValid)
             {
                 var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
-                var userEvent = await _eventManager.GetEventById(model.Id , userId);
-                _mapper.Map<EventViewModel, EventDto>(model , userEvent);
+                var userEvent = await _eventManager.GetEventById(model.Id, userId);
+                _mapper.Map<EventViewModel, EventDto>(model, userEvent);
                 await _eventManager.EditEventAsync(userEvent);
             }
             else
             {
                 return NotFound("Event not found"); /// TODO : rework this exceptions
-
             }
             return View(model);
         }

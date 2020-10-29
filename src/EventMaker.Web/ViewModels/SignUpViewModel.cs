@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace EventMaker.Web.ViewModels
 {
@@ -24,7 +20,7 @@ namespace EventMaker.Web.ViewModels
         /// </summary>
         [Required]
         [MaxLength(20)]
-        [DataType(DataType.EmailAddress , ErrorMessage = "Please enter a email in format email@mail.com")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a email in format email@mail.com")]
         [Display(Name = nameof(Email))]
         public string Email { get; set; }
 

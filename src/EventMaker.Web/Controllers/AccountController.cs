@@ -13,7 +13,6 @@ namespace EventMaker.Web.Controllers
         private readonly IAccountManager _accountManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-
         public AccountController(IAccountManager accountManager, SignInManager<ApplicationUser> signInManager)
         {
             _accountManager = accountManager ?? throw new ArgumentNullException(nameof(accountManager));
@@ -66,7 +65,7 @@ namespace EventMaker.Web.Controllers
                     else
                     {
                         return RedirectToAction("Index", "Home");
-                    } 
+                    }
                 }
                 else
                 {
@@ -120,4 +119,3 @@ namespace EventMaker.Web.Controllers
         }
     }
 }
-

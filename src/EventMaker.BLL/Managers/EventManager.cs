@@ -6,7 +6,6 @@ using EventMaker.Common.Resources;
 using EventMaker.DAL.Entities;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,7 +34,7 @@ namespace EventMaker.BLL.Managers
             throw new EventNotFoundException(ExceptionResource.EventNotFound);
         }
 
-        public async Task<EventDto> GetEventById(int eventId , string userId)
+        public async Task<EventDto> GetEventById(int eventId, string userId)
         {
             var result = await _repositoryEvent.GetEntityAsync(e => e.Id == eventId && e.UserId == userId);
             if (result != null)
@@ -45,7 +44,7 @@ namespace EventMaker.BLL.Managers
             throw new EventNotFoundException(ExceptionResource.EventNotFound);
         }
 
-        public async Task CreateEventAsync( EventDto eventDto)
+        public async Task CreateEventAsync(EventDto eventDto)
         {
             eventDto.Created = DateTime.UtcNow;
             var userEvent = _mapper.Map<Event>(eventDto);
@@ -91,4 +90,3 @@ namespace EventMaker.BLL.Managers
         }
     }
 }
-

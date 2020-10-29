@@ -1,7 +1,5 @@
 ﻿using EventMaker.Common.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EventMaker.BLL.Models
 {
@@ -12,6 +10,7 @@ namespace EventMaker.BLL.Models
     {
         /// <inheritdoc/>
         public int Id { get; set; }
+
         /// <inheritdoc/>
         public string UserId { get; set; }
 
@@ -74,4 +73,3 @@ namespace EventMaker.BLL.Models
         public int? PFreeNumber { get; set; }
     }
 }
-

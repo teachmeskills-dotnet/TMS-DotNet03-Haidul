@@ -1,5 +1,5 @@
-﻿using EventMaker.Common.Interfaces;
-using EventMaker.Common.Enums;
+﻿using EventMaker.Common.Enums;
+using EventMaker.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -12,6 +12,7 @@ namespace EventMaker.DAL.Entities
     {
         /// <inheritdoc/>
         public int Id { get; set; }
+
         /// <inheritdoc/>
         public string UserId { get; set; }
 
@@ -82,7 +83,7 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Navigation to Event participants.
         /// </summary>
-       
+
         public ICollection<EventParticipant>? EventParticipants { get; set; }
 
         /// <summary>

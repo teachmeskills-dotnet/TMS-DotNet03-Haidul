@@ -35,6 +35,7 @@ namespace EventMaker.Web.ViewModels
         /// Title
         /// </summary>
 #nullable enable
+
         [Required]
         [Display(Name = nameof(Title))]
         public string? Title { get; set; }
@@ -43,6 +44,7 @@ namespace EventMaker.Web.ViewModels
         /// Info.
         /// </summary>
 #nullable enable
+
         [Required]
         [Display(Name = nameof(Info))]
         public string? Info { get; set; }
@@ -92,4 +94,3 @@ namespace EventMaker.Web.ViewModels
         public int PFreeNumber { get; set; }
     }
 }
-

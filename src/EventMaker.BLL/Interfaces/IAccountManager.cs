@@ -31,6 +31,6 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="id">Id.</param>
         /// <returns>(IdentityResult , ApplicationUser).</returns>
         /// <returns>Null if user not found.</returns>
-        Task<(IdentityResult , ApplicationUser)> ChangePasswordAsync(string id , string oldPassword , string newPassword);
+        Task<(IdentityResult, ApplicationUser)> ChangePasswordAsync(string id, string oldPassword, string newPassword);
     }
 }

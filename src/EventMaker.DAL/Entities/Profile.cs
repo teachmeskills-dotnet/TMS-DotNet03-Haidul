@@ -73,6 +73,5 @@ namespace EventMaker.DAL.Entities
         /// </summary>
 #nullable enable
         public string? SocialNetwork { get; set; }
-
     }
 }

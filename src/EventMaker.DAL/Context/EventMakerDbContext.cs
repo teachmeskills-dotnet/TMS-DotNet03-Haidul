@@ -61,4 +61,3 @@ namespace EventMaker.DAL.Context
         }
     }
 }
-  

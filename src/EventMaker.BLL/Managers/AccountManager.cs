@@ -17,7 +17,6 @@ namespace EventMaker.BLL.Managers
         public AccountManager(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
-
         }
 
         public async Task<(IdentityResult, ApplicationUser)> SignUpAsync(string email, string username, string password)
@@ -35,7 +34,7 @@ namespace EventMaker.BLL.Managers
         public async Task<string> GetUserIdByNameAsync(string name)
         {
             var user = await _userManager.Users.FirstAsync(u => u.UserName == name);
-            if(user != null)
+            if (user != null)
             {
                 return user.Id;
             }

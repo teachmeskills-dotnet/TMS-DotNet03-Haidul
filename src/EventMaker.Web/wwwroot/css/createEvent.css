@@ -10,20 +10,19 @@
         opacity: 0;
     }
 
-textarea{
-    min-height:89px;
-    max-height:250px;
-    min-width:300px;
-    max-width:454px;
+textarea {
+    min-height: 89px;
+    max-height: 250px;
+    min-width: 300px;
+    max-width: 454px;
 }
-
 
 label {
     display: block;
-    margin-top:30px;
+    margin-top: 30px;
 }
 
-input , select , textarea {
+input, select, textarea {
     border: 1px solid #c4c4c4;
     border-radius: 5px;
     background-color: #fff;
@@ -32,12 +31,12 @@ input , select , textarea {
     width: 300px;
 }
 
-.create-form{
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    flex-direction:column;
-    margin:30px;
+.create-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 30px;
 }
 
 .create-form__submit-input {

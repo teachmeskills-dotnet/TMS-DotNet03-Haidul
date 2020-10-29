@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EventMaker.BLL.Interfaces;
+using EventMaker.DAL.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using EventMaker.BLL.Interfaces;
-using EventMaker.DAL.Context;
 
 namespace EventMaker.BLL.Repository
 {

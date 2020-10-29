@@ -5,11 +5,11 @@
     margin: 0;
     padding: 0;
     font-family: "Mulish", sans-serif;
-    font-size:18px;
+    font-size: 18px;
 }
 
-.main-wrapper{
-    width:1100px;
+.main-wrapper {
+    width: 1100px;
     margin: 0 auto;
 }
 
@@ -29,11 +29,11 @@ header {
     margin-right: auto;
 }
 
-.navigation__account-form{
-    display:flex;
-    height:100%;
-    width:30%;
-    justify-content:space-between;
+.navigation__account-form {
+    display: flex;
+    height: 100%;
+    width: 30%;
+    justify-content: space-between;
 }
 
 .navigation__profile-button,
@@ -51,15 +51,15 @@ header {
 .navigation__sign-out-button,
 .navigation__sign-up-button {
     background-color: #2E2E2E;
-    color:#FFFFFF;
+    color: #FFFFFF;
 }
 
-.navigation__sign-out-button:hover,
-.navigation__sign-up-button:hover {
-    background-color:#FFFFFF;
-    transition:0.6s all ease;
-    color: #2E2E2E;
-}
+    .navigation__sign-out-button:hover,
+    .navigation__sign-up-button:hover {
+        background-color: #FFFFFF;
+        transition: 0.6s all ease;
+        color: #2E2E2E;
+    }
 
 .navigation__profile-button,
 .navigation__log-in-button {
@@ -67,10 +67,10 @@ header {
     background-color: #FFFFFF
 }
 
-.navigation__profile-button:hover,
-.navigation__log-in-button:hover {
-    background-color: #2E2E2E;
-    opacity: initial;
-    transition: 0.6s all ease;
-    color: #FFFFFF;
-}
+    .navigation__profile-button:hover,
+    .navigation__log-in-button:hover {
+        background-color: #2E2E2E;
+        opacity: initial;
+        transition: 0.6s all ease;
+        color: #FFFFFF;
+    }

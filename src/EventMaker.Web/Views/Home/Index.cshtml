@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<EventViewModel>
 
-@{
-    ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.HomeIndex, PageTitlesResource.SiteName);
-}
+@{ ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.HomeIndex, PageTitlesResource.SiteName); }
 
 <head>
     <title>Home page</title>
@@ -30,10 +28,10 @@
         <span>Participants number: @usersEvent.PNumber</span>
         <span>Free places: @usersEvent.PFreeNumber</span>
     </div>
-</div>                    }
+</div>              }
 </div> }
-                else
-                {
+else
+{
 <h1 id="empty">Event list is empty</h1>}
 
     <form method="get" class="event-buttons">
@@ -42,11 +40,10 @@
                 asp-action="CreateEvent">
             Create Event
         </button>
-
     </form>
 </div> }
-            else
-            {
+else
+{
 <div class="container">
     @if (Model.Any())
     {
@@ -67,10 +64,10 @@
         <span>Participants number: @usersEvent.PNumber</span>
         <span>Free places: @usersEvent.PFreeNumber</span>
     </div>
-</div>                    }
+</div>              }
 </div> }
-                else
-                {
+else
+{
 <h1 id="empty">Event list is empty</h1>}
 </div>}
 </body>

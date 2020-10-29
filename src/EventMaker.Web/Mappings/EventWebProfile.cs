@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using EventMaker.BLL.Models;
 using EventMaker.Web.ViewModels;
-using System.Threading.Tasks;
 
 namespace EventMaker.Web.Mappings
 {
@@ -12,7 +11,8 @@ namespace EventMaker.Web.Mappings
             CreateMap<EventViewModel, EventDto>().ReverseMap();
 
             CreateMap<EventViewModel, EventDto>()
-                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+                .ForMember(ev => ev.Created, opt => opt.Ignore())
+                 .ForAllOtherMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }

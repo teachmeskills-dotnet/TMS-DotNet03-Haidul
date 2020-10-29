@@ -33,10 +33,12 @@ namespace EventMaker.Web.Middlewares
                         // User not found error
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
+
                     case EventNotFoundException e:
                         // Event not found error
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
+
                     default:
                         // Unhandled error
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
