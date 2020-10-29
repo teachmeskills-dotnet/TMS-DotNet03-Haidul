@@ -38,12 +38,12 @@
             </div>
         </div>
         <form class="create-form__event-buttons">
-            <button formmethod="post" class="event-buttons__edit" type="submit" value="Submit"
+            <button formmethod="post" class="event-buttons__edit"
                     asp-controller="Event"
                     asp-action="EditEventIndex"
-                    asp-route-Name=@Model.Name
-                    asp-route-Title=@Model.Title
-                    asp-route-AuthorName=@Model.AuthorName>
+                    asp-route-name="@Model.Name"
+                    asp-route-authorName="@Model.AuthorName">
+
                 Edit Event
             </button>
             <button formmethod="post" class="event-buttons__delete"

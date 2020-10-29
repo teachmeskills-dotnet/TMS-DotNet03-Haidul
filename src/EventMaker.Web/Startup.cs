@@ -38,8 +38,13 @@ namespace EventMaker.Web
                 options.UseSqlServer(Configuration.GetConnectionString("MSSQLConnection")));
 
             // Registering and Initializing AutoMapper Profiles
-            services.AddAutoMapper(typeof(EventWebProfile));
-            services.AddAutoMapper(typeof(EventProfile));
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new EventWebProfile());
+                mc.AddProfile(new EventProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             // ASP.NET Core Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>

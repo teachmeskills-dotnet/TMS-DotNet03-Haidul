@@ -14,9 +14,8 @@ namespace EventMaker.BLL.Interfaces
         /// <summary>
         /// Create Event.
         /// </summary>
-        /// <param name="userId">string (GUID).</param>
         /// <param name="eventDto">Event DTO.</param>
-        Task CreateEventAsync(string userId, EventDto eventDto);
+        Task CreateEventAsync(EventDto eventDto);
 
         /// <summary>
         /// Edit event.
@@ -36,6 +35,14 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="eventName">Event name.</param>
         /// <returns>Task<EventDto></returns>
         Task<EventDto> GetEventByName(string eventName);
+
+        /// <summary>
+        /// Get event by id.
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <param name="userId"></param>
+        /// <returns>Task<EventDto></returns>
+        Task<EventDto> GetEventById(int eventId, string userId);
 
         /// <summary>
         /// Get all events.

@@ -10,6 +10,9 @@ namespace EventMaker.Web.Mappings
         public EventWebProfile()
         {
             CreateMap<EventViewModel, EventDto>().ReverseMap();
+
+            CreateMap<EventViewModel, EventDto>()
+                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }

@@ -35,9 +35,18 @@ namespace EventMaker.BLL.Managers
             throw new EventNotFoundException(ExceptionResource.EventNotFound);
         }
 
-        public async Task CreateEventAsync(string userId, EventDto eventDto)
+        public async Task<EventDto> GetEventById(int eventId , string userId)
         {
-            eventDto.UserId = userId;
+            var result = await _repositoryEvent.GetEntityAsync(e => e.Id == eventId && e.UserId == userId);
+            if (result != null)
+            {
+                return _mapper.Map<EventDto>(result);
+            }
+            throw new EventNotFoundException(ExceptionResource.EventNotFound);
+        }
+
+        public async Task CreateEventAsync( EventDto eventDto)
+        {
             eventDto.Created = DateTime.UtcNow;
             var userEvent = _mapper.Map<Event>(eventDto);
             await _repositoryEvent.AddAsync(userEvent);

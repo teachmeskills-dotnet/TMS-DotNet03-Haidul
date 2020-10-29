@@ -4,20 +4,20 @@
     ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.EventEdit, PageTitlesResource.SiteName);
 }
 
-<form class="create-form" method="post" asp-controller="Event" asp-action="EditEvent">
+<form class="create-form" method="post">
     <h1>Edit event</h1>
     <div asp-validation-summary="ModelOnly"></div>
     <div>
         <label asp-for="Name"></label>
-        <input asp-for="Name" required />
+        <input asp-for="Name" placeholder="@Model.Name"required />
     </div>
     <div>
         <label asp-for="Title"></label>
-        <input asp-for="Title" placeholder="@Model.Title" />
+        <input asp-for="Title" placeholder="@Model.Title"required />
     </div>
     <div>
         <label asp-for="Info"></label>
-        <textarea asp-for="Info" placeholder="@Model.Info"></textarea>
+        <textarea asp-for="Info" placeholder="@Model.Info"required></textarea>
     </div>
     <div>
         <label asp-for="Started" for="started">Started</label>
@@ -31,10 +31,10 @@
     </div>
     <div>
         <label asp-for="PNumber"></label>
-        <input asp-for="PNumber" />
+        <input asp-for="PNumber" required/>
     </div>
     <div class="create-form__submit-input">
-        <input type="submit" value="Edit Event" />
+        <input type="submit" value="Edit Event" asp-controller="Event" asp-action="EditEvent" asp-route-id="@Model.Id" />
     </div>
 </form>
 

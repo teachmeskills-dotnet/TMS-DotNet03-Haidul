@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Models;
+using EventMaker.DAL.Entities;
 using EventMaker.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -49,10 +50,10 @@ namespace EventMaker.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
+                model.UserId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
                 model.AuthorName = User.Identity.Name;
                 var modelDto = _mapper.Map<EventDto>(model);
-                await _eventManager.CreateEventAsync(userId, modelDto);
+                await _eventManager.CreateEventAsync(modelDto);
                 if (modelDto != null)
                 {
                     return RedirectToAction("Index", "Home");
@@ -81,12 +82,13 @@ namespace EventMaker.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditEventIndex(EventViewModel model)
+        public async Task<IActionResult> EditEventIndex(string name , string authorName)
         {
-            if (User.Identity.Name == model.AuthorName)
+            if (User.Identity.Name == authorName)
             {
-                var userEvent = await _eventManager.GetEventByName(model.Name);
+                var userEvent = await _eventManager.GetEventByName(name);
                 var eventViewModel = _mapper.Map<EventViewModel>(userEvent);
+                ViewBag.ModelName = eventViewModel.Name;
                 return View(eventViewModel);
             }
             return NotFound("Event not found"); /// TODO : rework this exceptions
@@ -95,11 +97,12 @@ namespace EventMaker.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> EditEvent(EventViewModel model)
         {
-
-            if (User.Identity.Name == model.AuthorName)
+            if (ModelState.IsValid)
             {
-                var modelDto = _mapper.Map<EventDto>(model);
-                await _eventManager.EditEventAsync(modelDto);
+                var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
+                var userEvent = await _eventManager.GetEventById(model.Id , userId);
+                _mapper.Map<EventViewModel, EventDto>(model , userEvent);
+                await _eventManager.EditEventAsync(userEvent);
             }
             else
             {
@@ -107,7 +110,6 @@ namespace EventMaker.Web.Controllers
 
             }
             return View(model);
-
         }
     }
 }
