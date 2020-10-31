@@ -28,7 +28,6 @@ namespace EventMaker.DAL.Configurations
              .HasMaxLength(ConfigurationContants.SqlMaxLengthShort);
 
             builder.Property(profile => profile.FirstName)
-             .IsRequired()
              .HasMaxLength(ConfigurationContants.SqlMaxLengthShort);
 
             builder.Property(profile => profile.LastName)

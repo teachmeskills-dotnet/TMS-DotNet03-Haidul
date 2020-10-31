@@ -32,6 +32,7 @@ namespace EventMaker.Web
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IAccountManager, AccountManager>();
             services.AddScoped<IEventManager, EventManager>();
+            services.AddScoped<IProfileManager, ProfileManager>();
 
             // Database context
             services.AddDbContext<EventMakerDbContext>(options =>

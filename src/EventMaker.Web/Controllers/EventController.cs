@@ -25,6 +25,7 @@ namespace EventMaker.Web.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index(string name)
         {
             var userEvent = await _eventManager.GetEventByName(name);

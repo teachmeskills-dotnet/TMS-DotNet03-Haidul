@@ -33,13 +33,11 @@ namespace EventMaker.BLL.Models
         /// <summary>
         /// Info.
         /// </summary>
-#nullable enable
         public string? Info { get; set; }
 
         /// <summary>
         /// Comment.
         /// </summary>
-#nullable enable
         public string? Comment { get; set; }
 
         /// <summary>

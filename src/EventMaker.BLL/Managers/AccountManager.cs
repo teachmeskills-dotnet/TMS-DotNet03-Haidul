@@ -13,22 +13,29 @@ namespace EventMaker.BLL.Managers
     public class AccountManager : IAccountManager
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IProfileManager _profileManager;
 
-        public AccountManager(UserManager<ApplicationUser> userManager)
+        public AccountManager(UserManager<ApplicationUser> userManager,
+                              IProfileManager profileManager)
         {
             _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            _profileManager = profileManager ?? throw new ArgumentNullException(nameof(profileManager));
         }
 
-        public async Task<(IdentityResult, ApplicationUser)> SignUpAsync(string email, string username, string password)
+        public async Task<(IdentityResult, ApplicationUser)> SignUpAsync(string email, string userName, string password)
         {
             var user = new ApplicationUser
             {
                 Email = email,
-                UserName = username
+                UserName = userName
             };
 
             var result = await _userManager.CreateAsync(user, password);
-            return (result, user);
+            if (result.Succeeded)
+            {
+                await _profileManager.CreateProfileAsync(email, userName, user.Id);
+            }
+            return (result, user);   /// Стоит ли тут сделать вызов метода с помощю делегата?
         }
 
         public async Task<string> GetUserIdByNameAsync(string name)

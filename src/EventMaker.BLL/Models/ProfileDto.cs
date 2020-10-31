@@ -1,23 +1,17 @@
-﻿using EventMaker.Common.Interfaces;
-using System;
+﻿using System;
 
-namespace EventMaker.DAL.Entities
+namespace EventMaker.BLL.Models
 {
     /// <summary>
-    /// Profile.
+    /// Profile data transfer object.
     /// </summary>
-    public class Profile : IHasDbIdentity, IHasUserIdentity
+    public class ProfileDto
     {
         /// <inheritdoc/>
         public int Id { get; set; }
 
         /// <inheritdoc/>
         public string UserId { get; set; }
-
-        /// <summary>
-        /// Navigation to ApplicationUser.
-        /// </summary>
-        public ApplicationUser User { get; set; }
 
         /// <summary>
         /// Email..

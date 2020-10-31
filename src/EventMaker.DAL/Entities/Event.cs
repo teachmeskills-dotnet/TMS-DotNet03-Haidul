@@ -35,19 +35,19 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Title
         /// </summary>
-#nullable enable
+        
         public string? Title { get; set; }
 
         /// <summary>
         /// Info.
         /// </summary>
-#nullable enable
+
         public string? Info { get; set; }
 
         /// <summary>
         /// Comment.
         /// </summary>
-#nullable enable
+
         public string? Comment { get; set; }
 
         /// <summary>

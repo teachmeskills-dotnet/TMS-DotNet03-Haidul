@@ -120,6 +120,12 @@
   <data name="EventNotFound" xml:space="preserve">
     <value>"Event not found or you have no permissions to this action"</value>
   </data>
+  <data name="NotCreated" xml:space="preserve">
+    <value>"Not Created"</value>
+  </data>
+  <data name="ProfileNotFound" xml:space="preserve">
+    <value>"Profile not found"</value>
+  </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>"User not found"</value>
   </data>
