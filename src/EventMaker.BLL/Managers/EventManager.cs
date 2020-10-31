@@ -52,15 +52,65 @@ namespace EventMaker.BLL.Managers
             await _repositoryEvent.SaveChangesAsync();
         }
 
-        public async Task EditEventAsync(EventDto eventDto)
+        public async Task EditEventAsync(EventDto dtoEvent)
         {
-            if (eventDto != null)
+            if (dtoEvent != null)
             {
-                var userEvent = _mapper.Map<Event>(eventDto);
-                _repositoryEvent.Update(userEvent);
-                await _repositoryEvent.SaveChangesAsync();
+                var userEvent = await _repositoryEvent.GetEntityAsync(ev => ev.Id == dtoEvent.Id && ev.UserId == dtoEvent.UserId);
+
+                static bool ValidateToUpdate(Event userEvent, EventDto dtoEvent)
+                {
+                    bool updated = false;
+
+                    if (userEvent.Title != dtoEvent.Title)
+                    {
+                        userEvent.Title = dtoEvent.Title;
+                        updated = true;
+                    }
+
+                    if (userEvent.Info != dtoEvent.Info)
+                    {
+                        userEvent.Info = dtoEvent.Info;
+                        updated = true;
+                    }
+
+                    if (userEvent.Format != dtoEvent.Format)
+                    {
+                        userEvent.Format = dtoEvent.Format;
+                        updated = true;
+                    }
+
+                    if (userEvent.Name != dtoEvent.Name)
+                    {
+                        userEvent.Name = dtoEvent.Name;
+                        updated = true;
+                    }
+
+                    if (userEvent.Started != dtoEvent.Started)
+                    {
+                        userEvent.Started = dtoEvent.Started;
+                        updated = true;
+                    }
+
+                    if (userEvent.PNumber != dtoEvent.PNumber)
+                    {
+                        userEvent.PNumber = dtoEvent.PNumber;
+                        updated = true;
+                    }
+
+                    return updated;
+                }
+
+                var result = ValidateToUpdate(userEvent, dtoEvent);
+                if (result)
+                {
+                    await _repositoryEvent.SaveChangesAsync();
+                }
             }
-            throw new EventNotFoundException(ExceptionResource.EventNotFound);
+            else
+            {
+                throw new EventNotFoundException(ExceptionResource.EventNotFound);
+            }
         }
 
         public async Task DeleteEventAsync(EventDto eventDto)

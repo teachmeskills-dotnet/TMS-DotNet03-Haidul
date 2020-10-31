@@ -104,7 +104,7 @@ namespace EventMaker.Web.Controllers
             {
                 return NotFound("Event not found"); /// TODO : rework this exceptions
             }
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
