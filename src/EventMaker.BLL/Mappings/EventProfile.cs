@@ -10,6 +10,7 @@ namespace EventMaker.BLL.Mappings
         public EventProfile()
         {
             CreateMap<EventDto, Event>().ReverseMap();
+
             CreateMap<ProfileDto, Profile>().ReverseMap();
         }
     }

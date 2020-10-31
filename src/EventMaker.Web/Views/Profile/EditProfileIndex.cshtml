@@ -1,0 +1,41 @@
+﻿@model ProfileEditViewModel
+
+@{ ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.ProfileEdit, PageTitlesResource.SiteName); }
+
+    <form class="profile-form__content">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label >Username</label>
+            <h1>@User.Identity.Name</h1>
+        </div>
+        <div>
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName">@Model.FirstName>
+        </div>
+        <div>
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName">: @Model.LastName>
+        </div>
+        <div>
+            <label asp-for="BirthDate" for="birthdate">BirthDate</label>
+            <input asp-for="BirthDate" type="date">:@if (Model.BirthDate != null) { Model.BirthDate.ToShortDateString(); }>
+        </div>
+        <div>
+            <label asp-for="Age" for="age">Age</label>
+            <input asp-for="Age">: @Model.Age>
+        </div>
+        <div>
+            <label asp-for="Telegram"></label>
+            <input asp-for="Telegram">: @Model.Telegram>
+        </div>
+        <div>
+            <label asp-for="SocialNetwork"></label>
+            <input asp-for="SocialNetwork">: @Model.SocialNetwork>
+        </div>
+        <div class="profile-form__submit-input">
+            <input type="submit" formmethod="post" value="Edit Profile" asp-controller="Profile" asp-action="EditProfile"/>
+        </div>
+    </form>
+
+
+<link href="~/css/editProfile.css" rel="stylesheet" asp-append-version="true" />

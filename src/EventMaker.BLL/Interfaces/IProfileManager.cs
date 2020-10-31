@@ -21,5 +21,11 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="email">Email</param>
         /// <param name="userName">Username</param>
         Task CreateProfileAsync(string email, string userName , string userId);
+
+        /// <summary>
+        /// Edit profile.
+        /// </summary>
+        /// <param name="profileDto">Profile DTO</param>
+        Task EditProfileAsync(ProfileDto profileDto);
     }
 }

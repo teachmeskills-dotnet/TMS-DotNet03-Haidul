@@ -1,0 +1,26 @@
+﻿
+.profile-form__content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+    .profile-form__content > div > label {
+        display: inline-block;
+        margin-bottom: 20px;
+        word-break: break-all;
+        color: #4facfe;
+        font-size: 20px;
+    }
+
+    .profile-form__content > div {
+        margin-top: 30px;
+    }
+
+.profile-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px;
+}

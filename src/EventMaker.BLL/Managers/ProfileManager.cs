@@ -28,7 +28,7 @@ namespace EventMaker.BLL.Managers
                 Email = email,
                 Username = userName,
                 Created = DateTime.Now,
-                UserId = userId              
+                UserId = userId,
             };
             await _repositoryProfile.AddAsync(profile);
 
@@ -44,6 +44,67 @@ namespace EventMaker.BLL.Managers
                 return profileDto;
             }
             throw new ProfileNotFoundException(ExceptionResource.ProfileNotFound);
+        }
+
+        public async Task EditProfileAsync(ProfileDto profileDto)
+        {
+            if (profileDto != null)
+            {
+                var userProfile = await _repositoryProfile.GetEntityAsync(pr => pr.Username == profileDto.Username && pr.UserId == profileDto.UserId);
+
+                static bool ValidateToUpdate(Profile userProfile, ProfileDto profileDto)
+                {
+                    bool updated = false;
+
+                    if (userProfile.FirstName != profileDto.FirstName)
+                    {
+                        userProfile.FirstName = profileDto.FirstName;
+                        updated = true;
+                    }
+
+                    if (userProfile.LastName != profileDto.LastName)
+                    {
+                        userProfile.LastName = profileDto.LastName;
+                        updated = true;
+                    }
+
+                    if (userProfile.Age != profileDto.Age)
+                    {
+                        userProfile.Age = profileDto.Age;
+                        updated = true;
+                    }
+
+                    if (userProfile.BirthDate != profileDto.BirthDate)
+                    {
+                        userProfile.BirthDate = profileDto.BirthDate;
+                        updated = true;
+                    }
+
+                    if (userProfile.Telegram != profileDto.Telegram)
+                    {
+                        userProfile.Telegram = profileDto.Telegram;
+                        updated = true;
+                    }
+
+                    if (userProfile.SocialNetwork != profileDto.SocialNetwork)
+                    {
+                        userProfile.SocialNetwork = profileDto.SocialNetwork;
+                        updated = true;
+                    }
+
+                    return updated;
+                }
+
+                var result = ValidateToUpdate(userProfile, profileDto);
+                if (result)
+                {
+                    await _repositoryProfile.SaveChangesAsync();
+                }
+            }
+            else
+            {
+                throw new ProfileNotFoundException(ExceptionResource.ProfileNotFound);
+            }
         }
     }
 }

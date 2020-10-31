@@ -94,6 +94,7 @@ namespace EventMaker.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> EditEvent(EventViewModel model)
         {
+            ////TODO:Refactor it
             if (ModelState.IsValid)
             {
                 var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);

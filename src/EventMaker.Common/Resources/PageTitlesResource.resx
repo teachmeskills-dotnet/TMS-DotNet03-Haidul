@@ -141,6 +141,12 @@
   <data name="HomeIndex" xml:space="preserve">
     <value>Index</value>
   </data>
+  <data name="ProfileEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ProfileIndex" xml:space="preserve">
+    <value>Index</value>
+  </data>
   <data name="SiteName" xml:space="preserve">
     <value>EventMaker</value>
   </data>
