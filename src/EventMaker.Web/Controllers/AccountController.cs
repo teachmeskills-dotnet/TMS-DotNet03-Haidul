@@ -55,7 +55,7 @@ namespace EventMaker.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe , false);
                 if (result.Succeeded)
                 {
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
@@ -115,7 +115,7 @@ namespace EventMaker.Web.Controllers
                     ModelState.AddModelError(string.Empty, "User didn't found"); /// TODO : rework this exceptions
                 }
             }
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

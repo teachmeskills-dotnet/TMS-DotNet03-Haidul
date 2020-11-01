@@ -30,7 +30,7 @@ namespace EventMaker.BLL.Managers
                 UserName = userName
             };
 
-            var result = await _userManager.CreateAsync(user, password);
+                var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
                 await _profileManager.CreateProfileAsync(email, userName, user.Id);
