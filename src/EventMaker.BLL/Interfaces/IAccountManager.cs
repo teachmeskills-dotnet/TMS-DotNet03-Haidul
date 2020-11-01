@@ -15,8 +15,16 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="email">Email.</param>
         /// <param name="password">Password.</param>
         /// <param name="username">Username.</param>
-        /// <returns>IdentityResult.</returns>
-        Task<(IdentityResult, ApplicationUser)> SignUpAsync(string email, string username, string password);
+        /// <returns>Task<(IdentityResult, ApplicationUser, string code)>.</returns>
+        Task<(IdentityResult, ApplicationUser, string code)> SignUpAsync(string email, string username, string password);
+
+        /// <summary>
+        /// Confirm email.
+        /// </summary>
+        /// <param name="userId">User Id.</param>
+        /// <param name="code">Code.</param>
+        /// <returns>Task<IdentityResult></returns>
+        Task<IdentityResult> ConfirmEmailAsync(string userId, string code);
 
         /// <summary>
         /// Get user id by name.
@@ -26,11 +34,26 @@ namespace EventMaker.BLL.Interfaces
         Task<string> GetUserIdByNameAsync(string name);
 
         /// <summary>
-        /// Change password async
+        /// Reset password.
+        /// </summary>
+        /// <param name="email">Email.</param>
+        /// <param name="code">Code.</param>
+        /// <param name="password">Password.</param>
+        /// <returns>Task<IdentityResult></returns>
+        Task<IdentityResult> ResetPasswordAsync(string email, string code, string password);
+
+        /// <summary>
+        /// Change password.
         /// </summary>
         /// <param name="id">Id.</param>
         /// <returns>(IdentityResult , ApplicationUser).</returns>
-        /// <returns>Null if user not found.</returns>
         Task<(IdentityResult, ApplicationUser)> ChangePasswordAsync(string id, string oldPassword, string newPassword);
+
+        /// <summary>
+        /// Restore password by email.
+        /// </summary>
+        /// <param name="email">Email.</param>
+        /// <returns>Task<(ApplicationUser, string, bool)></returns>
+        Task<(ApplicationUser, string, bool)> ForgotPasswordAsync(string email);
     }
 }

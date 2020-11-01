@@ -3,6 +3,7 @@ using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Managers;
 using EventMaker.BLL.Mappings;
 using EventMaker.BLL.Repository;
+using EventMaker.BLL.Services;
 using EventMaker.DAL.Context;
 using EventMaker.DAL.Entities;
 using EventMaker.Web.Mappings;
@@ -36,6 +37,7 @@ namespace EventMaker.Web
             services.AddScoped<IAccountManager, AccountManager>();
             services.AddScoped<IEventManager, EventManager>();
             services.AddScoped<IProfileManager, ProfileManager>();
+            services.AddScoped<IEmailService, EmailService>();
 
             // Database context
             services.AddDbContext<EventMakerDbContext>(options =>
@@ -68,22 +70,6 @@ namespace EventMaker.Web
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            //Add MailKit
-            var mailKitOptions = Configuration.GetSection("Mail").Get<MailKitOptions>();
-            services.AddMailKit(optionBuilder =>
-            {
-                optionBuilder.UseMailKit(new MailKitOptions()
-                {
-                    //get options from sercets.json
-                    Server = mailKitOptions.Server,
-                    Port = mailKitOptions.Port,
-                    SenderName = mailKitOptions.SenderName,
-                    SenderEmail = mailKitOptions.SenderEmail,
-                    Account = mailKitOptions.Account,
-                    Password = mailKitOptions.Password,
-                    Security = true
-                });
-            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

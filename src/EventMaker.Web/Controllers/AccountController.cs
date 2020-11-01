@@ -1,9 +1,10 @@
 ﻿using EventMaker.BLL.Interfaces;
+using EventMaker.BLL.Services;
 using EventMaker.DAL.Entities;
 using EventMaker.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using NETCore.MailKit.Core;
 using System;
 using System.Threading.Tasks;
 
@@ -12,8 +13,8 @@ namespace EventMaker.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountManager _accountManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailService _emailService;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         public AccountController(IAccountManager accountManager,
                                  IEmailService emailService,
@@ -35,12 +36,14 @@ namespace EventMaker.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                (IdentityResult result, ApplicationUser user) result = await _accountManager.SignUpAsync(model.Email, model.Username, model.Password);
+                (IdentityResult result, ApplicationUser user , string code) result = await _accountManager.SignUpAsync(model.Email, model.Username, model.Password);
                 if (result.result.Succeeded)
                 {
-                    _emailService.Send(model.Email, "EventMaker app", "You registered at EventMakerApp");
+                    var callbackUrl = Url.Action("ConfirmEmail","Account",new { userId = result.user.Id, result.code },protocol: HttpContext.Request.Scheme);
+                    EmailService emailService = new EmailService();
+                    await emailService.SendEmailAsync(model.Email, "Confirm your account",$"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");                   
                     await _signInManager.SignInAsync(result.user, false);
-                    return RedirectToAction("Index", "Home");
+                    return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме"); //TODO : introduce when improve security
                 }
                 foreach (var error in result.result.Errors)
                 {
@@ -48,6 +51,21 @@ namespace EventMaker.Web.Controllers
                 }
             }
             return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return View("Error");
+            }
+            var result = await _accountManager.ConfirmEmailAsync(userId, code);
+            if (result.Succeeded)
+                return RedirectToAction("Index", "Home");
+            else
+                return View("Error");
         }
 
         [HttpGet]
@@ -63,7 +81,7 @@ namespace EventMaker.Web.Controllers
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
-                {                   
+                {
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
                         return Redirect(model.ReturnUrl);
@@ -122,6 +140,65 @@ namespace EventMaker.Web.Controllers
                 }
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPassword(string code = null)
+        {
+            return code == null ? View("Error") : View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var result = await _accountManager.ResetPasswordAsync(model.Email , model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                return View("ResetPasswordConfirmation");
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View(model);
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                (ApplicationUser user, string code, bool isExist) = await _accountManager.ForgotPasswordAsync(model.Email); ///TODO : Refactor it;
+                if (!isExist)
+                {
+                    return View("ForgotPasswordConfirmation");
+                }
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code }, protocol: HttpContext.Request.Scheme);
+                EmailService emailService = new EmailService();
+                await emailService.SendEmailAsync(model.Email, "Reset Password",
+                    $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>link</a>");
+                return View("ForgotPasswordConfirmation");
+            }
+            return View(model);
         }
     }
 }
