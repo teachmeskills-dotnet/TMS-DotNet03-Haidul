@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NETCore.MailKit.Extensions;
+using NETCore.MailKit.Infrastructure.Internal;
 using System;
 
 namespace EventMaker.Web
@@ -38,15 +40,6 @@ namespace EventMaker.Web
             services.AddDbContext<EventMakerDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MSSQLConnection")));
 
-            // Registering and Initializing AutoMapper Profiles
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new EventWebProfile());
-                mc.AddProfile(new EventProfile());
-            });
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
-
             // ASP.NET Core Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -56,11 +49,40 @@ namespace EventMaker.Web
                 options.Password.RequireUppercase = false;
                 options.Password.RequireDigit = true;
             })
-              .AddEntityFrameworkStores<EventMakerDbContext>();
+              .AddEntityFrameworkStores<EventMakerDbContext>()
+              .AddDefaultTokenProviders();
+
             // Microsoft services
             services.AddControllersWithViews();
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
+
+            // NuGet Services
+            // Registering and Initializing AutoMapper Profiles
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new EventWebProfile());
+                mc.AddProfile(new EventProfile());
+            });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            //Add MailKit
+            var mailKitOptions = Configuration.GetSection("Mail").Get<MailKitOptions>();
+            services.AddMailKit(optionBuilder =>
+            {
+                optionBuilder.UseMailKit(new MailKitOptions()
+                {
+                    //get options from sercets.json
+                    Server = mailKitOptions.Server,
+                    Port = mailKitOptions.Port,
+                    SenderName = mailKitOptions.SenderName,
+                    SenderEmail = mailKitOptions.SenderEmail,
+                    Account = mailKitOptions.Account,
+                    Password = mailKitOptions.Password,
+                    Security = true
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

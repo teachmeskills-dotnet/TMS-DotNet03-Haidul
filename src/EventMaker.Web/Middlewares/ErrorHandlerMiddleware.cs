@@ -48,6 +48,6 @@ namespace EventMaker.Web.Middlewares
                 var result = JsonSerializer.Serialize(new { message = error?.Message });
                 await response.WriteAsync(result);
             }
-        }
+         }
     }
 }

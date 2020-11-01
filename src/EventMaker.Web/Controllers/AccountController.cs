@@ -3,6 +3,7 @@ using EventMaker.DAL.Entities;
 using EventMaker.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NETCore.MailKit.Core;
 using System;
 using System.Threading.Tasks;
 
@@ -12,10 +13,14 @@ namespace EventMaker.Web.Controllers
     {
         private readonly IAccountManager _accountManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IEmailService _emailService;
 
-        public AccountController(IAccountManager accountManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(IAccountManager accountManager,
+                                 IEmailService emailService,
+                                 SignInManager<ApplicationUser> signInManager)
         {
             _accountManager = accountManager ?? throw new ArgumentNullException(nameof(accountManager));
+            _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
             _signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
         }
 
@@ -33,6 +38,7 @@ namespace EventMaker.Web.Controllers
                 (IdentityResult result, ApplicationUser user) result = await _accountManager.SignUpAsync(model.Email, model.Username, model.Password);
                 if (result.result.Succeeded)
                 {
+                    _emailService.Send(model.Email, "EventMaker app", "You registered at EventMakerApp");
                     await _signInManager.SignInAsync(result.user, false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -55,9 +61,9 @@ namespace EventMaker.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe , false);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
-                {
+                {                   
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
                         return Redirect(model.ReturnUrl);

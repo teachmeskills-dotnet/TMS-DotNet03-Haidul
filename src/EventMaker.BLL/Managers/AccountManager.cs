@@ -58,5 +58,7 @@ namespace EventMaker.BLL.Managers
             }
             throw new UserNotFoundException(ExceptionResource.UserNotFound);
         }
+
+
     }
 }
