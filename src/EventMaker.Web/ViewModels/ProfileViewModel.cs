@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace EventMaker.Web.ViewModels
@@ -20,6 +21,16 @@ namespace EventMaker.Web.ViewModels
         [Required]
         [MaxLength(15)]
         public string Username { get; set; }
+
+        /// <summary>
+        /// Avatar.
+        /// </summary>
+        public IFormFile Image { get; set; }
+
+        /// <summary>
+        /// Avatar.
+        /// </summary>
+        public byte[] ByteImage { get; set; }
 
         /// <summary>
         /// FirstName.

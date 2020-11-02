@@ -4,14 +4,16 @@ using EventMaker.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EventMaker.DAL.Migrations
 {
     [DbContext(typeof(EventMakerDbContext))]
-    partial class EventMakerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201102221815_AddAvatarField")]
+    partial class AddAvatarField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,6 +198,9 @@ namespace EventMaker.DAL.Migrations
                     b.Property<int?>("Age")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("Avatar")
+                        .HasColumnType("Varbinary(Max)");
+
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("date");
 
@@ -210,9 +215,6 @@ namespace EventMaker.DAL.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(63)")
                         .HasMaxLength(63);
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("Varbinary(Max)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(63)")

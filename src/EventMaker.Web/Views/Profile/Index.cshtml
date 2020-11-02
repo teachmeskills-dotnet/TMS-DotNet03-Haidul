@@ -2,49 +2,53 @@
 
 @{ ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.ProfileIndex, PageTitlesResource.SiteName); }
 
-<div class="profile-form__content">
-    <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        <label asp-for="Username"></label>
-        <h1 asp-for="Username">@User.Identity.Name</h1>
+    <div class="profile-form__content">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="Username"></label>
+            <h1 asp-for="Username">@User.Identity.Name</h1>
+        </div>
+        @if (Model.ByteImage != null)
+        {
+            <img style='width:140px; height:110px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ByteImage))" />
+        }
+        <div>
+            <label asp-for="Email"></label>
+            <h2 asp-for="Email">@Model.Email</h2>
+        </div>
+        <div>
+            <label asp-for="FirstName"></label>
+            <p asp-for="FirstName">@Model.FirstName</p>
+        </div>
+        <div>
+            <label asp-for="LastName"></label>
+            <span asp-for="Format">: @Model.LastName</span>
+        </div>
+        <div>
+            <label asp-for="BirthDate" for="birthdate">BirthDate</label>
+            <time asp-for="BirthDate">:@if (Model.BirthDate != null) { Model.BirthDate.ToShortDateString(); }</time>
+        </div>
+        <div>
+            <label asp-for="Age" for="age">Age</label>
+            <span asp-for="Age">: @Model.Age</span>
+        </div>
+        <div>
+            <label asp-for="Created" for="created">Created</label>
+            <time asp-for="Created">: @Model.Created.ToShortDateString()</time>
+        </div>
+        <div>
+            <label asp-for="Phone"></label>
+            <span asp-for="Phone">: @Model.Phone</span>
+        </div>
+        <div>
+            <label asp-for="Telegram"></label>
+            <span asp-for="Telegram">: @Model.Telegram</span>
+        </div>
+        <div>
+            <label asp-for="SocialNetwork"></label>
+            <span asp-for="SocialNetwork">: @Model.SocialNetwork</span>
+        </div>
     </div>
-    <div>
-        <label asp-for="Email"></label>
-        <h2 asp-for="Email">@Model.Email</h2>
-    </div>
-    <div>
-        <label asp-for="FirstName"></label>
-        <p asp-for="FirstName">@Model.FirstName</p>
-    </div>
-    <div>
-        <label asp-for="LastName"></label>
-        <span asp-for="Format">: @Model.LastName</span>
-    </div>
-    <div>
-        <label asp-for="BirthDate" for="birthdate">BirthDate</label>
-        <time asp-for="BirthDate">:@if (Model.BirthDate != null) { Model.BirthDate.ToShortDateString(); }</time>
-    </div>
-    <div>
-        <label asp-for="Age" for="age">Age</label>
-        <span asp-for="Age">: @Model.Age</span>
-    </div>
-    <div>
-        <label asp-for="Created" for="created">Created</label>
-        <time asp-for="Created">: @Model.Created.ToShortDateString()</time>
-    </div>
-    <div>
-        <label asp-for="Phone"></label>
-        <span asp-for="Phone">: @Model.Phone</span>
-    </div>
-    <div>
-        <label asp-for="Telegram"></label>
-        <span asp-for="Telegram">: @Model.Telegram</span>
-    </div>
-    <div>
-        <label asp-for="SocialNetwork"></label>
-        <span asp-for="SocialNetwork">: @Model.SocialNetwork</span>
-    </div>
-</div>
 <form class="profile-form__buttons">
         <button formmethod="get" class="buttons__edit"
                 asp-controller="Profile"
@@ -57,5 +61,14 @@
             Change Password
         </button>
     </form>
+        <form method="post" asp-controller="Profile" asp-action="SetAvatar" enctype="multipart/form-data">
+            <p>
+                <label>Аватар</label>
+                <input asp-for="Image" type="file" />
+            </p>
+            <p>
+                <input type="submit" value="Добавить" />
+            </p>
+        </form>
 
 <link href="~/css/profile.css" rel="stylesheet" asp-append-version="true" />

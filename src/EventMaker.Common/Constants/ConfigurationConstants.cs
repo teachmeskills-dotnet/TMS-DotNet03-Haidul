@@ -11,6 +11,11 @@
         public const string SqlDateFormat = "date";
 
         /// <summary>
+        /// Custom img type.
+        /// </summary>
+        public const string SqlAvatarFormat = "Varbinary(Max)";
+
+        /// <summary>
         /// Min lenght for string field.
         /// </summary>
         public const int SqlMaxLengthShort = 63;

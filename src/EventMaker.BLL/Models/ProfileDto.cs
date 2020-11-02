@@ -23,10 +23,16 @@ namespace EventMaker.BLL.Models
         /// </summary>
         public string Username { get; set; }
 
+        ///<summary>
+        /// Avatar.
+        ///</summary>
+        public byte[] Image { get; set; }
+
+#nullable enable
         /// <summary>
         /// FirstName..
         /// </summary>
-#nullable enable
+
         public string? FirstName { get; set; }
 
         /// <summary>

@@ -21,7 +21,7 @@ namespace EventMaker.BLL.Managers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task CreateProfileAsync(string email, string userName , string userId)
+        public async Task CreateProfileAsync(string email, string userName, string userId)
         {
             var profile = new Profile
             {
@@ -56,39 +56,45 @@ namespace EventMaker.BLL.Managers
                 {
                     bool updated = false;
 
-                    if (userProfile.FirstName != profileDto.FirstName)
+                    if (userProfile.FirstName != profileDto.FirstName && profileDto.FirstName != null)
                     {
                         userProfile.FirstName = profileDto.FirstName;
                         updated = true;
                     }
 
-                    if (userProfile.LastName != profileDto.LastName)
+                    if (userProfile.LastName != profileDto.LastName && profileDto.LastName != null)
                     {
                         userProfile.LastName = profileDto.LastName;
                         updated = true;
                     }
 
-                    if (userProfile.Age != profileDto.Age)
+                    if (userProfile.Age != profileDto.Age && profileDto.Age != null)
                     {
                         userProfile.Age = profileDto.Age;
                         updated = true;
                     }
 
-                    if (userProfile.BirthDate != profileDto.BirthDate)
+                    if (userProfile.BirthDate != profileDto.BirthDate && profileDto.BirthDate != null)
                     {
                         userProfile.BirthDate = profileDto.BirthDate;
                         updated = true;
                     }
 
-                    if (userProfile.Telegram != profileDto.Telegram)
+                    if (userProfile.Telegram != profileDto.Telegram && profileDto.Telegram != null)
                     {
                         userProfile.Telegram = profileDto.Telegram;
                         updated = true;
                     }
 
-                    if (userProfile.SocialNetwork != profileDto.SocialNetwork)
+                    if (userProfile.SocialNetwork != profileDto.SocialNetwork && profileDto.SocialNetwork != null)
                     {
                         userProfile.SocialNetwork = profileDto.SocialNetwork;
+                        updated = true;
+                    }
+
+                    if (userProfile.Image != profileDto.Image && profileDto.Image != null)
+                    {
+                        userProfile.Image = profileDto.Image;
                         updated = true;
                     }
 

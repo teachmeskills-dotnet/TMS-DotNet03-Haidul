@@ -10,16 +10,21 @@ namespace EventMaker.Web.Mappings
         {
             CreateMap<EventViewModel, EventDto>().ReverseMap();
 
-            CreateMap<ProfileViewModel, ProfileDto>().ReverseMap();
+            CreateMap<ProfileViewModel, ProfileDto>()
+            .ForMember(ev => ev.Created, opt => opt.Ignore())
+            .ForMember(ev => ev.Image, opt => opt.Ignore())
+                 .ForAllOtherMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+
+            CreateMap<ProfileDto, ProfileViewModel>()
+                .ForMember(ev => ev.Image, opt => opt.Ignore())
+                .ForMember(ev => ev.ByteImage, opt => opt.MapFrom(ev => ev.Image));
+              
 
             CreateMap<ProfileEditViewModel, ProfileDto>().ReverseMap();
 
-            CreateMap<ProfileViewModel , ProfileDto>()
-            .ForMember(ev => ev.Created, opt => opt.Ignore())
-                 .ForAllOtherMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
-
             CreateMap<ProfileEditViewModel, ProfileDto>()
             .ForMember(ev => ev.Created, opt => opt.Ignore())
+            .ForMember(ev => ev.Image, opt => opt.Ignore())
                  .ForAllOtherMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
 
             CreateMap<EventViewModel, EventDto>()

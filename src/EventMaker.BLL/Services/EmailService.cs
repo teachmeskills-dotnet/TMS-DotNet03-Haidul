@@ -22,7 +22,7 @@ namespace EventMaker.BLL.Services
             using (var client = new SmtpClient())
             {
                 await client.ConnectAsync("smtp.gmail.com", 465, true);
-                await client.AuthenticateAsync("", "");
+                await client.AuthenticateAsync("testovt416@gmail.com", "1234567qQ");
                 await client.SendAsync(emailMessage);
 
                 await client.DisconnectAsync(true);

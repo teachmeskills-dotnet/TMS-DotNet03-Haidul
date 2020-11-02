@@ -27,6 +27,9 @@ namespace EventMaker.DAL.Configurations
              .IsRequired()
              .HasMaxLength(ConfigurationContants.SqlMaxLengthShort);
 
+            builder.Property(profile => profile.Image)
+                .HasColumnType(ConfigurationContants.SqlAvatarFormat);
+
             builder.Property(profile => profile.FirstName)
              .HasMaxLength(ConfigurationContants.SqlMaxLengthShort);
 

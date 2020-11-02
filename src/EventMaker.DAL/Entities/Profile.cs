@@ -30,6 +30,11 @@ namespace EventMaker.DAL.Entities
         public string Username { get; set; }
 
         /// <summary>
+        /// Avatar.
+        /// </summary>
+        public byte[] Image { get; set; }
+
+        /// <summary>
         /// FirstName..
         /// </summary>
 #nullable enable

@@ -4,6 +4,7 @@ using EventMaker.BLL.Models;
 using EventMaker.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace EventMaker.Web.Controllers
@@ -51,6 +52,26 @@ namespace EventMaker.Web.Controllers
                 return NotFound("Profile not found"); /// TODO : rework this exceptions
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SetAvatar(ProfileViewModel model)
+        {
+            if (model.Image != null)
+            {
+                byte[] imageData = null;
+                using (var binaryReader = new BinaryReader(model.Image.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)model.Image.Length);
+                }
+
+                var userProfile = await _profileManager.GetProfile(User.Identity.Name);
+
+                 _mapper.Map<ProfileViewModel, ProfileDto>(model , userProfile);
+                userProfile.Image = imageData;
+                await _profileManager.EditProfileAsync(userProfile);
+            }
+            return RedirectToAction("Index");
         }
     }
 }
