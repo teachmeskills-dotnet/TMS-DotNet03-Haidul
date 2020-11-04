@@ -33,6 +33,8 @@ namespace EventMaker.BLL.Interfaces
         /// <returns>Identifier (GUID).</returns>
         Task<string> GetUserIdByNameAsync(string name);
 
+        Task<string> GetUserNameByIdAsync(string id);
+
         /// <summary>
         /// Reset password.
         /// </summary>

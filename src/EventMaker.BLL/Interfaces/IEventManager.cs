@@ -48,6 +48,8 @@ namespace EventMaker.BLL.Interfaces
         /// <returns> IEnumerable<EventDto></returns>
         IEnumerable<EventDto> GetAllEvents();
 
+        IEnumerable<EventParticipantDto> GetAllParticipants(int eventId);
+
         Task AddParticipantAsync(int eventId, string userId , EventDto eventDto);
 
         Task DeleteParticipantAsync(int eventId, string userId, EventDto eventDto);

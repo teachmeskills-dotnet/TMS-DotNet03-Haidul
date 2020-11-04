@@ -50,6 +50,16 @@ namespace EventMaker.BLL.Managers
             throw new UserNotFoundException(ExceptionResource.UserNotFound);
         }
 
+        public async Task<string> GetUserNameByIdAsync(string id)
+        {
+            var user = await _userManager.Users.FirstAsync(u => u.Id == id);
+            if (user != null)
+            {
+                return user.UserName;
+            }
+            throw new UserNotFoundException(ExceptionResource.UserNotFound);
+        }
+
         public async Task<IdentityResult> ResetPasswordAsync(string email, string code, string password)
         {
             var user = await _userManager.FindByEmailAsync(email);

@@ -14,6 +14,12 @@
                     asp-route-authorId="@Model.UserId">
                 Delete participant
             </button>
+            <div class="participants-list">
+                @foreach(var participant in ViewBag.ParticipantsNames)
+                {
+                    @participant;
+                }
+            </div>
         </form>
         <div class="create-form__content">
             <div asp-validation-summary="ModelOnly"></div>
@@ -81,6 +87,12 @@ else
                 asp-route-authorId="@Model.UserId">
             Delete participant
         </button>
+        <div class="participants-list">
+            @foreach (var participant in ViewBag.ParticipantsNames)
+            {
+                @participant;
+            }
+        </div>
     </form>
     <div class="create-form__content">
         <div asp-validation-summary="ModelOnly"></div>

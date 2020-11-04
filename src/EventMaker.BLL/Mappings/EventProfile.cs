@@ -12,6 +12,8 @@ namespace EventMaker.BLL.Mappings
             CreateMap<EventDto, Event>().ReverseMap();
 
             CreateMap<ProfileDto, Profile>().ReverseMap();
+
+            CreateMap<EventParticipantDto, EventParticipant>().ReverseMap();
         }
     }
 }

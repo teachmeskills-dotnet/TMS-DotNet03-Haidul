@@ -38,7 +38,7 @@ namespace EventMaker.BLL.Managers
             {
                 throw new EventNotFoundException(ExceptionResource.EventNotFound);
             }
-            
+
         }
 
         public async Task<EventDto> GetEventById(int eventId, string userId)
@@ -52,7 +52,7 @@ namespace EventMaker.BLL.Managers
             {
                 throw new EventNotFoundException(ExceptionResource.EventNotFound);
             }
-            
+
         }
 
         public async Task CreateEventAsync(EventDto eventDto)
@@ -149,11 +149,21 @@ namespace EventMaker.BLL.Managers
 
         public IEnumerable<EventDto> GetAllEvents()
         {
+            var events = _repositoryEvent.GetAllWithoutTracking().ToList();
+            var userEvents = _mapper.Map<IEnumerable<EventDto>>(events);
+            return userEvents;
+        }
+
+        public IEnumerable<EventParticipantDto> GetAllParticipants(int eventId)
+        {
+            if (eventId != 0)
             {
-                var events = _repositoryEvent.GetAllWithoutTracking().ToList();
-                var userEvents = _mapper.Map<IEnumerable<EventDto>>(events);
-                return userEvents;
+                var eventParticipants = _repositoryEventParticipant.GetAllWithoutTracking().ToList();
+                var eventParticipantsDto = _mapper.Map<IEnumerable<EventParticipant>, IEnumerable<EventParticipantDto>>(eventParticipants);
+                eventParticipantsDto.Where(evPart => evPart.EventId == eventId); 
+                return eventParticipantsDto;
             }
+            throw new EventNotFoundException(ExceptionResource.EventNotFound);
         }
 
         public async Task AddParticipantAsync(int eventId, string userId, EventDto eventDto)
@@ -175,7 +185,7 @@ namespace EventMaker.BLL.Managers
             {
                 throw new AlreadyParticipantException(ExceptionResource.AlreadyParticipant);
             }
-            
+
         }
 
         public async Task DeleteParticipantAsync(int eventId, string userId, EventDto eventDto)
@@ -198,7 +208,7 @@ namespace EventMaker.BLL.Managers
             else
             {
                 throw new AlreadyParticipantException(ExceptionResource.AlreadyParticipant);
-            }  
+            }
         }
     }
 }

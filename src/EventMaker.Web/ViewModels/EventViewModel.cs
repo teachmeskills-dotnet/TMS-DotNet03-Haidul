@@ -1,5 +1,6 @@
 ﻿using EventMaker.Common.Enums;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EventMaker.Web.ViewModels
@@ -92,5 +93,7 @@ namespace EventMaker.Web.ViewModels
         /// Remaining free seats of participants.
         /// </summary>
         public int? PFreeNumber { get; set; }
+
+        public IEnumerable<string>? EventParticipants { get; set; }
     }
 }

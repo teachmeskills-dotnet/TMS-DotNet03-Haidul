@@ -5,6 +5,7 @@ using EventMaker.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EventMaker.Web.Controllers
@@ -25,7 +26,7 @@ namespace EventMaker.Web.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet]
+        [HttpGet]////TODO : Refactor it;
         public async Task<IActionResult> Index(string name)
         {
             var userEvent = await _eventManager.GetEventByName(name);
@@ -33,6 +34,13 @@ namespace EventMaker.Web.Controllers
             if (userEvent != null)
             {
                 ViewBag.UserId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
+                var eventParticipantsDto = _eventManager.GetAllParticipants(userEvent.Id);
+                var userNames = new List<string>();
+                foreach(var userId in eventParticipantsDto)
+                {
+                    userNames.Add(await _accountManager.GetUserNameByIdAsync(userId.UserId));
+                }
+                ViewBag.ParticipantsNames = userNames;
                 var eventViewModel = _mapper.Map<EventViewModel>(userEvent);
                 return View(eventViewModel);
             }
