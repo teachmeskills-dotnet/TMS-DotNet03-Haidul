@@ -1,4 +1,5 @@
-﻿using EventMaker.Common.Interfaces;
+﻿using EventMaker.Common.Enums;
+using EventMaker.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -11,6 +12,7 @@ namespace EventMaker.DAL.Entities
     {
         /// <inheritdoc/>
         public int Id { get; set; }
+
         /// <inheritdoc/>
         public string UserId { get; set; }
 
@@ -25,18 +27,27 @@ namespace EventMaker.DAL.Entities
         public string Name { get; set; }
 
         /// <summary>
+        /// Author.
+        /// </summary>
+#nullable enable
+        public string? AuthorName { get; set; }
+
+        /// <summary>
         /// Title
         /// </summary>
+        
         public string? Title { get; set; }
 
         /// <summary>
         /// Info.
         /// </summary>
-        public string Info { get; set; }
+
+        public string? Info { get; set; }
 
         /// <summary>
         /// Comment.
         /// </summary>
+
         public string? Comment { get; set; }
 
         /// <summary>
@@ -45,9 +56,19 @@ namespace EventMaker.DAL.Entities
         public DateTime Created { get; set; }
 
         /// <summary>
+        /// Start of the event.
+        /// </summary>
+        public DateTime Started { get; set; }
+
+        /// <summary>
+        /// End of the event.
+        /// </summary>
+        public DateTime? Closed { get; set; }
+
+        /// <summary>
         /// Format.
         /// </summary>
-        public bool Format { get; set; }
+        public EventFormat? Format { get; set; }
 
         /// <summary>
         /// Participants number
@@ -57,16 +78,17 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Remaining free seats of participants.
         /// </summary>
-        public int PFreeNumber { get; set; }
+        public int? PFreeNumber { get; set; }
 
         /// <summary>
         /// Navigation to Event participants.
         /// </summary>
-        public ICollection<EventParticipant> EventParticipants { get; set; }
+
+        public ICollection<EventParticipant>? EventParticipants { get; set; }
 
         /// <summary>
         /// Navigation to event tags.
         /// </summary>
-        public ICollection<EventTag> EventTags { get; set; }
+        public ICollection<EventTag>? EventTags { get; set; }
     }
 }

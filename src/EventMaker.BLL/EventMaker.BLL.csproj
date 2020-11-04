@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="MailKit" Version="2.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EventMaker.Common\EventMaker.Common.csproj" />
     <ProjectReference Include="..\EventMaker.DAL\EventMaker.DAL.csproj" />
   </ItemGroup>

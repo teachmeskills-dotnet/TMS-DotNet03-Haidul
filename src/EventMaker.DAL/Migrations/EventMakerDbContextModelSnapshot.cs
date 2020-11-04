@@ -91,31 +91,42 @@ namespace EventMaker.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AuthorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(63)")
+                        .HasMaxLength(63);
+
+                    b.Property<DateTime?>("Closed")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("date");
 
-                    b.Property<bool>("Format")
-                        .HasColumnType("bit");
+                    b.Property<int>("Format")
+                        .HasColumnType("int");
 
                     b.Property<string>("Info")
                         .IsRequired()
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("nvarchar(600)")
+                        .HasMaxLength(600);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(127)")
                         .HasMaxLength(127);
 
-                    b.Property<int>("PFreeNumber")
+                    b.Property<int?>("PFreeNumber")
                         .HasColumnType("int");
 
                     b.Property<int?>("PNumber")
                         .IsRequired()
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Started")
+                        .HasColumnType("date");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(127)")
@@ -197,9 +208,11 @@ namespace EventMaker.DAL.Migrations
                         .HasMaxLength(63);
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(63)")
                         .HasMaxLength(63);
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("Varbinary(Max)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(63)")

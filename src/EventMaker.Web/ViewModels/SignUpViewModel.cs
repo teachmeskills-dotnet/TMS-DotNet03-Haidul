@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace EventMaker.Web.ViewModels
 {
@@ -15,6 +11,7 @@ namespace EventMaker.Web.ViewModels
         /// UserName.
         /// </summary>
         [Required]
+        [MaxLength(15)]
         [Display(Name = nameof(Username))]
         public string Username { get; set; }
 
@@ -22,6 +19,8 @@ namespace EventMaker.Web.ViewModels
         /// Email.
         /// </summary>
         [Required]
+        [MaxLength(20)]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a email in format email@mail.com")]
         [Display(Name = nameof(Email))]
         public string Email { get; set; }
 
@@ -30,6 +29,7 @@ namespace EventMaker.Web.ViewModels
         /// </summary>
         [Required]
         [DataType(DataType.Password)]
+        [Compare("PasswordConfirm", ErrorMessage = "Passwords do not match")]
         [Display(Name = nameof(Password))]
         public string Password { get; set; }
 
@@ -37,8 +37,8 @@ namespace EventMaker.Web.ViewModels
         /// Password confirm.
         /// </summary>
         [Required]
-        [Compare("Password", ErrorMessage = "Passwords do not match")]
         [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
         [Display(Name = nameof(PasswordConfirm))]
         public string PasswordConfirm { get; set; }
     }

@@ -9,7 +9,7 @@ namespace EventMaker.DAL.Configurations
     /// <summary>
     /// EF configuration for Profile entity
     /// </summary>
-    class EventConfiguration : IEntityTypeConfiguration<Event>
+    internal class EventConfiguration : IEntityTypeConfiguration<Event>
     {
         /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<Event> builder)
@@ -23,6 +23,10 @@ namespace EventMaker.DAL.Configurations
                 .IsRequired()
                 .HasMaxLength(ConfigurationContants.SqlMaxLengthMedium);
 
+            builder.Property(events => events.AuthorName)
+               .IsRequired()
+               .HasMaxLength(ConfigurationContants.SqlMaxLengthShort);
+
             builder.Property(events => events.Title)
                 .HasMaxLength(ConfigurationContants.SqlMaxLengthMedium);
 
@@ -32,6 +36,13 @@ namespace EventMaker.DAL.Configurations
 
             builder.Property(events => events.Format)
                 .IsRequired();
+
+            builder.Property(events => events.Created)
+                .HasColumnType(ConfigurationContants.SqlDateFormat);
+
+            builder.Property(events => events.Started)
+                .IsRequired()
+                .HasColumnType(ConfigurationContants.SqlDateFormat);
 
             builder.Property(events => events.Created)
                 .HasColumnType(ConfigurationContants.SqlDateFormat);

@@ -30,8 +30,14 @@ namespace EventMaker.DAL.Entities
         public string Username { get; set; }
 
         /// <summary>
+        /// Avatar.
+        /// </summary>
+        public byte[] Image { get; set; }
+
+        /// <summary>
         /// FirstName..
         /// </summary>
+#nullable enable
         public string? FirstName { get; set; }
 
         /// <summary>
@@ -57,17 +63,18 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Telephone number.
         /// </summary>
+        /// 
         public string? Phone { get; set; }
 
         /// <summary>
         /// Telegram username.
         /// </summary>
+
         public string? Telegram { get; set; }
 
         /// <summary>
         /// Social network.
         /// </summary>
         public string? SocialNetwork { get; set; }
-
     }
 }

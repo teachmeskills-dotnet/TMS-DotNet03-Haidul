@@ -1,0 +1,41 @@
+﻿@model EventViewModel
+
+@{ ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.EventCreate, PageTitlesResource.SiteName); }
+
+<form class="create-form" method="post" asp-controller="Event" asp-action="CreateEvent">
+    <h1>Create event</h1>
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" required />
+    </div>
+    <div>
+        <label asp-for="Title"></label>
+        <input asp-for="Title" />
+    </div>
+    <div>
+        <label asp-for="Info"></label>
+        <textarea asp-for="Info"></textarea>
+    </div>
+    <div>
+        <label asp-for="Started" for="started">Started</label>
+        <input asp-for="Started" type="date" name="started" id="started" min=@DateTime.UtcNow.Date.ToString("yyyy-MM-dd") required>
+    </div>
+    <div>
+        <label asp-for="Format"></label>
+        <select asp-for="Format" asp-items="Html.GetEnumSelectList<EventFormat>()" required>
+            <option selected="selected" value="">Please select</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="PNumber"></label>
+        <input asp-for="PNumber" />
+    </div>
+    <div class="create-form__submit-input">
+        <input type="submit" value="Create Event" />
+    </div>
+</form>
+
+@section css {
+    <link href="~/css/createEvent.css" rel="stylesheet" asp-append-version="true" />
+}

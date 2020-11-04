@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace EventMaker.Web.ViewModels
 {
     /// <summary>
     /// Sign in model.
     /// </summary>
-    public class SignInViewModel
+    public class LogInViewModel
     {
         /// <summary>
         /// Email.
         /// </summary>
         [Required]
-        [Display(Name = nameof(Email))]
-        public string Email { get; set; }
+        [MaxLength(20)]
+        [Display(Name = nameof(Username))]
+        public string Username { get; set; }
 
         /// <summary>
         /// Password.

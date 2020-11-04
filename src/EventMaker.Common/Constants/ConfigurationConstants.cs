@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EventMaker.Common.Constants
+﻿namespace EventMaker.Common.Constants
 {
     /// <summary>
     /// Configuration contants.
@@ -13,6 +9,11 @@ namespace EventMaker.Common.Constants
         /// Custom date format.
         /// </summary>
         public const string SqlDateFormat = "date";
+
+        /// <summary>
+        /// Custom img type.
+        /// </summary>
+        public const string SqlAvatarFormat = "Varbinary(Max)";
 
         /// <summary>
         /// Min lenght for string field.
@@ -27,6 +28,6 @@ namespace EventMaker.Common.Constants
         /// <summary>
         /// Max lenght for string field.
         /// </summary>
-        public const int SqlMaxLengthLong = 255;
+        public const int SqlMaxLengthLong = 600;
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EventMaker.Common.Interfaces
+﻿namespace EventMaker.Common.Interfaces
 {
     /// <summary>
     /// Interface for implement identity.
