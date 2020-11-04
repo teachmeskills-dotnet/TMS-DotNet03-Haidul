@@ -15,13 +15,16 @@ namespace EventMaker.BLL.Managers
     public class EventManager : IEventManager
     {
         private readonly IRepository<Event> _repositoryEvent;
+        private readonly IRepository<EventParticipant> _repositoryEventParticipant;
         private readonly IMapper _mapper;
 
         public EventManager(IRepository<Event> repositoryEvent,
-            IMapper mapper)
+                            IMapper mapper,
+                            IRepository<EventParticipant> repositoryEventParticipant)
         {
             _repositoryEvent = repositoryEvent ?? throw new ArgumentNullException(nameof(repositoryEvent));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _repositoryEventParticipant = repositoryEventParticipant ?? throw new ArgumentNullException(nameof(repositoryEventParticipant));
         }
 
         public async Task<EventDto> GetEventByName(string eventName)
@@ -31,7 +34,11 @@ namespace EventMaker.BLL.Managers
             {
                 return _mapper.Map<EventDto>(result);
             }
-            throw new EventNotFoundException(ExceptionResource.EventNotFound);
+            else
+            {
+                throw new EventNotFoundException(ExceptionResource.EventNotFound);
+            }
+            
         }
 
         public async Task<EventDto> GetEventById(int eventId, string userId)
@@ -41,7 +48,11 @@ namespace EventMaker.BLL.Managers
             {
                 return _mapper.Map<EventDto>(result);
             }
-            throw new EventNotFoundException(ExceptionResource.EventNotFound);
+            else
+            {
+                throw new EventNotFoundException(ExceptionResource.EventNotFound);
+            }
+            
         }
 
         public async Task CreateEventAsync(EventDto eventDto)
@@ -52,7 +63,7 @@ namespace EventMaker.BLL.Managers
             await _repositoryEvent.SaveChangesAsync();
         }
 
-        public async Task EditEventAsync(EventDto dtoEvent)
+        public async Task UpdateEventAsync(EventDto dtoEvent)
         {
             if (dtoEvent != null)
             {
@@ -98,6 +109,12 @@ namespace EventMaker.BLL.Managers
                         updated = true;
                     }
 
+                    if (userEvent.PFreeNumber != dtoEvent.PFreeNumber)
+                    {
+                        userEvent.PFreeNumber = dtoEvent.PFreeNumber;
+                        updated = true;
+                    }
+
                     return updated;
                 }
 
@@ -133,10 +150,55 @@ namespace EventMaker.BLL.Managers
         public IEnumerable<EventDto> GetAllEvents()
         {
             {
-                var events = _repositoryEvent.GetAll().ToList();
+                var events = _repositoryEvent.GetAllWithoutTracking().ToList();
                 var userEvents = _mapper.Map<IEnumerable<EventDto>>(events);
                 return userEvents;
             }
+        }
+
+        public async Task AddParticipantAsync(int eventId, string userId, EventDto eventDto)
+        {
+            var isParticipant = await _repositoryEventParticipant.GetEntityWithoutTrackingAsync(evPar => evPar.UserId == userId && evPar.EventId == eventId);
+            if (eventDto.PFreeNumber != 0 && isParticipant == null)
+            {
+                var participant = new EventParticipant
+                {
+                    EventId = eventId,
+                    UserId = userId
+                };
+                await _repositoryEventParticipant.AddAsync(participant);
+                await _repositoryEventParticipant.SaveChangesAsync();
+                --eventDto.PFreeNumber;
+                await UpdateEventAsync(eventDto);
+            }
+            else
+            {
+                throw new AlreadyParticipantException(ExceptionResource.AlreadyParticipant);
+            }
+            
+        }
+
+        public async Task DeleteParticipantAsync(int eventId, string userId, EventDto eventDto)
+        {
+            var eventParticipant = await _repositoryEventParticipant.GetEntityWithoutTrackingAsync(evPar => evPar.UserId == userId && evPar.EventId == eventId);
+            if (eventParticipant != null)
+            {
+                _repositoryEventParticipant.Delete(eventParticipant);
+                await _repositoryEventParticipant.SaveChangesAsync();
+                ++eventDto.PFreeNumber;
+                if (eventDto.PFreeNumber <= eventDto.PNumber)
+                {
+                    await UpdateEventAsync(eventDto);
+                }
+                else
+                {
+                    throw new OtherException(ExceptionResource.NotDeleted);
+                }
+            }
+            else
+            {
+                throw new AlreadyParticipantException(ExceptionResource.AlreadyParticipant);
+            }  
         }
     }
 }

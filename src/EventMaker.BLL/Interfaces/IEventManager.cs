@@ -19,7 +19,7 @@ namespace EventMaker.BLL.Interfaces
         /// Edit event.
         /// </summary>
         /// <param name="eventDto">Event DTO</param>
-        Task EditEventAsync(EventDto eventDto);
+        Task UpdateEventAsync(EventDto eventDto);
 
         /// <summary>
         /// Delete event on index page.
@@ -40,12 +40,16 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="eventId"></param>
         /// <param name="userId"></param>
         /// <returns>Task<EventDto></returns>
-        Task<EventDto> GetEventById(int eventId, string userId);
+        Task<EventDto> GetEventById(int eventId , string userId);
 
         /// <summary>
         /// Get all events.
         /// </summary>
         /// <returns> IEnumerable<EventDto></returns>
         IEnumerable<EventDto> GetAllEvents();
+
+        Task AddParticipantAsync(int eventId, string userId , EventDto eventDto);
+
+        Task DeleteParticipantAsync(int eventId, string userId, EventDto eventDto);
     }
 }

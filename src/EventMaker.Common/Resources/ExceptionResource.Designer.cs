@@ -61,6 +61,15 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;You already participant or owner of this event&quot;.
+        /// </summary>
+        public static string AlreadyParticipant {
+            get {
+                return ResourceManager.GetString("AlreadyParticipant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;Event not found or you have no permissions to this action&quot;.
         /// </summary>
         public static string EventNotFound {
@@ -75,6 +84,15 @@ namespace EventMaker.Common.Resources {
         public static string NotCreated {
             get {
                 return ResourceManager.GetString("NotCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Cant delete or already deleted&quot;.
+        /// </summary>
+        public static string NotDeleted {
+            get {
+                return ResourceManager.GetString("NotDeleted", resourceCulture);
             }
         }
         

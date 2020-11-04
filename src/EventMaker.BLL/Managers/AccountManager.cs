@@ -37,7 +37,7 @@ namespace EventMaker.BLL.Managers
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 return (result, user, code);
             }
-            throw new CreationException(ExceptionResource.NotCreated);
+            throw new OtherException(ExceptionResource.NotCreated);
         }
 
         public async Task<string> GetUserIdByNameAsync(string name)

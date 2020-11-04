@@ -41,7 +41,7 @@ namespace EventMaker.BLL.Repository
             _dbSet.RemoveRange(entity);
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<T> GetAllWithoutTracking()
         {
             return _dbSet.AsNoTracking();
         }

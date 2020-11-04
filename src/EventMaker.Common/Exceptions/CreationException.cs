@@ -3,17 +3,17 @@ using System.Globalization;
 
 namespace EventMaker.Common.Exceptions
 {
-    public class CreationException : Exception
+    public class OtherException : Exception
     {
-        public CreationException() : base()
+        public OtherException() : base()
         {
         }
 
-        public CreationException(string message) : base(message)
+        public OtherException(string message) : base(message)
         {
         }
 
-        public CreationException(string message, params object[] args)
+        public OtherException(string message, params object[] args)
             : base(String.Format(CultureInfo.CurrentCulture, message, args))
         {
         }

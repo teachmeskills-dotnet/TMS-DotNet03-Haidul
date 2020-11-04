@@ -16,7 +16,7 @@ namespace EventMaker.BLL.Interfaces
         /// Get all queries.
         /// </summary>
         /// <returns>IQueryable queries.</returns>
-        IQueryable<T> GetAll();
+        IQueryable<T> GetAllWithoutTracking();
 
         /// <summary>
         /// Get entity async by predicate.

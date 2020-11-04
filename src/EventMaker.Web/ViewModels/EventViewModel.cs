@@ -91,6 +91,6 @@ namespace EventMaker.Web.ViewModels
         /// <summary>
         /// Remaining free seats of participants.
         /// </summary>
-        public int PFreeNumber { get; set; }
+        public int? PFreeNumber { get; set; }
     }
 }

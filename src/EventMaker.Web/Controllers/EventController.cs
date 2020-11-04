@@ -52,6 +52,7 @@ namespace EventMaker.Web.Controllers
             {
                 model.UserId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
                 model.AuthorName = User.Identity.Name;
+                model.PFreeNumber = model.PNumber; //TODO :Refactor it
                 var modelDto = _mapper.Map<EventDto>(model);
                 await _eventManager.CreateEventAsync(modelDto);
                 if (modelDto != null)
@@ -97,14 +98,46 @@ namespace EventMaker.Web.Controllers
             ////TODO:Refactor it
             if (ModelState.IsValid)
             {
-                var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
-                var userEvent = await _eventManager.GetEventById(model.Id, userId);
+                var userEvent = await _eventManager.GetEventById(model.Id, model.UserId);
                 _mapper.Map<EventViewModel, EventDto>(model, userEvent);
-                await _eventManager.EditEventAsync(userEvent);
+                await _eventManager.UpdateEventAsync(userEvent);
             }
             else
             {
                 return NotFound("Event not found"); /// TODO : rework this exceptions
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        ///TODO: Refactor if;
+        [HttpPost]
+        public async Task<IActionResult> AddParticipant(int eventId, string authorId)
+        {
+            if (eventId != 0)
+            {
+                var eventDto = await _eventManager.GetEventById(eventId, authorId);
+                var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
+                await _eventManager.AddParticipantAsync(eventId, userId, eventDto);
+            }
+            else
+            {
+                return NotFound("Event not found");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteParticipant(int eventId, string authorId)
+        {
+            if (eventId != 0)
+            {
+                var eventDto = await _eventManager.GetEventById(eventId, authorId);
+                var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
+                await _eventManager.DeleteParticipantAsync(eventId, userId, eventDto);
+            }
+            else
+            {
+                return NotFound("Event not found");
             }
             return RedirectToAction("Index", "Home");
         }
