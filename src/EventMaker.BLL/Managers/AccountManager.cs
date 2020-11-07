@@ -1,11 +1,11 @@
-﻿using EventMaker.BLL.Interfaces;
+﻿using System;
+using System.Threading.Tasks;
+using EventMaker.BLL.Interfaces;
 using EventMaker.Common.Exceptions;
 using EventMaker.Common.Resources;
 using EventMaker.DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Threading.Tasks;
 
 namespace EventMaker.BLL.Managers
 {
@@ -22,7 +22,7 @@ namespace EventMaker.BLL.Managers
             _profileManager = profileManager ?? throw new ArgumentNullException(nameof(profileManager));
         }
 
-        public async Task<(IdentityResult, ApplicationUser , string code)> SignUpAsync(string email, string userName, string password)
+        public async Task<(IdentityResult, ApplicationUser, string code)> SignUpAsync(string email, string userName, string password)
         {
             var user = new ApplicationUser
             {
@@ -33,7 +33,7 @@ namespace EventMaker.BLL.Managers
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
-                await _profileManager.CreateProfileAsync(email, userName, user.Id);  /// Стоит ли тут сделать вызов метода с помощю делегата?
+                await _profileManager.CreateProfileAsync(email, userName, user.Id);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 return (result, user, code);
             }
@@ -47,7 +47,7 @@ namespace EventMaker.BLL.Managers
             {
                 return user.Id;
             }
-            throw new UserNotFoundException(ExceptionResource.UserNotFound);
+            throw new NotFoundException(ExceptionResource.UserNotFound);
         }
 
         public async Task<string> GetUserNameByIdAsync(string id)
@@ -57,7 +57,7 @@ namespace EventMaker.BLL.Managers
             {
                 return user.UserName;
             }
-            throw new UserNotFoundException(ExceptionResource.UserNotFound);
+            throw new NotFoundException(ExceptionResource.UserNotFound);
         }
 
         public async Task<IdentityResult> ResetPasswordAsync(string email, string code, string password)
@@ -68,18 +68,19 @@ namespace EventMaker.BLL.Managers
                 var result = await _userManager.ResetPasswordAsync(user, code, password);
                 return result;
             }
-            throw new UserNotFoundException(ExceptionResource.UserNotFound);
+            throw new NotFoundException(ExceptionResource.UserNotFound);
         }
 
         public async Task<(IdentityResult, ApplicationUser)> ChangePasswordAsync(string id, string oldPassword, string newPassword)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(id);
+
             if (user != null)
             {
                 var result = await _userManager.ChangePasswordAsync(user, oldPassword, newPassword);
                 return (result, user);
             }
-            throw new UserNotFoundException(ExceptionResource.UserNotFound);
+            throw new NotFoundException(ExceptionResource.UserNotFound);
         }
 
         public async Task<(ApplicationUser, string, bool)> ForgotPasswordAsync(string email)
@@ -105,7 +106,7 @@ namespace EventMaker.BLL.Managers
                     return result;
                 }
             }
-            throw new UserNotFoundException(ExceptionResource.UserNotFound);
+            throw new NotFoundException(ExceptionResource.UserNotFound);
         }
     }
 }

@@ -117,25 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlreadyParticipant" xml:space="preserve">
-    <value>You already participant or owner of this event</value>
+  <data name="MessageConfirm" xml:space="preserve">
+    <value>Подтвердите регистрацию, перейдя по ссылке</value>
   </data>
-  <data name="EventNotFound" xml:space="preserve">
-    <value>Event not found or you have no permissions to this action</value>
+  <data name="MessageReset" xml:space="preserve">
+    <value>Для сброса пароля пройдите по ссылке</value>
   </data>
-  <data name="NotChanged" xml:space="preserve">
-    <value>Not Changed</value>
+  <data name="ReturnContent" xml:space="preserve">
+    <value>Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме</value>
   </data>
-  <data name="NotCreated" xml:space="preserve">
-    <value>Not Created</value>
+  <data name="SubjectConfirm" xml:space="preserve">
+    <value>"Confirm your account"</value>
   </data>
-  <data name="NotDeleted" xml:space="preserve">
-    <value>Cant delete or already deleted</value>
-  </data>
-  <data name="ProfileNotFound" xml:space="preserve">
-    <value>Profile not found</value>
-  </data>
-  <data name="UserNotFound" xml:space="preserve">
-    <value>User not found</value>
+  <data name="SubjectReset" xml:space="preserve">
+    <value>"Reset Password"</value>
   </data>
 </root>

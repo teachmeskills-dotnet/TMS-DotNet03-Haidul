@@ -47,7 +47,7 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Comment.
         /// </summary>
-
+   
         public string? Comment { get; set; }
 
         /// <summary>

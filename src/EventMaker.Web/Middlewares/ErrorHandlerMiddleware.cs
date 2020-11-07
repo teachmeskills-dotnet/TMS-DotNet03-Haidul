@@ -7,15 +7,27 @@ using System.Threading.Tasks;
 
 namespace EventMaker.Web.Middlewares
 {
+    /// <summary>
+    /// Global error handler.
+    /// </summary>
     public class ErrorHandlerMiddleware
     {
         private readonly RequestDelegate _next;
 
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="next">Request delegate.</param>
         public ErrorHandlerMiddleware(RequestDelegate next)
         {
             _next = next;
         }
 
+        /// <summary>
+        /// Error handler.
+        /// </summary>
+        /// <param name="context">Http context.</param>
         public async Task Invoke(HttpContext context)
         {
             try
@@ -27,26 +39,13 @@ namespace EventMaker.Web.Middlewares
                 var response = context.Response;
                 response.ContentType = "application/json";
 
-                switch (error)
+                response.StatusCode = error switch
                 {
-                    case UserNotFoundException e:
-                        // User not found error
-                        response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        break;
-
-                    case EventNotFoundException e:
-                        // Event not found error
-                        response.StatusCode = (int)HttpStatusCode.NotFound;
-                        break;
-
-                    default:
-                        // Unhandled error
-                        response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                        break;
-                }
-
-                var result = JsonSerializer.Serialize(new { message = error?.Message });
-                await response.WriteAsync(result);
+                    NotFoundException e => (int)HttpStatusCode.NotFound,// Event not found error
+                    OtherException e => (int)HttpStatusCode.NotFound,// Event not found error
+                    _ => (int)HttpStatusCode.InternalServerError,// Unhandled error
+                };
+                await response.WriteAsync($"Error: {response.StatusCode} - {error.Message}");
             }
          }
     }

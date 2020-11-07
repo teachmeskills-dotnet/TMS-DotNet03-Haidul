@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Managers;
 using EventMaker.BLL.Mappings;
@@ -33,7 +33,7 @@ namespace EventMaker.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Managers
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(RepositoryManager<>));
             services.AddScoped<IAccountManager, AccountManager>();
             services.AddScoped<IEventManager, EventManager>();
             services.AddScoped<IProfileManager, ProfileManager>();
@@ -72,9 +72,9 @@ namespace EventMaker.Web
 
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            app.UseDeveloperExceptionPage();
+            //app.UseDeveloperExceptionPage();
 
             app.UseSerilogRequestLogging();
 

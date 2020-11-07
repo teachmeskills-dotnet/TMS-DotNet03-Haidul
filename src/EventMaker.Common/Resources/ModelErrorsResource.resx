@@ -117,25 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlreadyParticipant" xml:space="preserve">
-    <value>You already participant or owner of this event</value>
-  </data>
   <data name="EventNotFound" xml:space="preserve">
-    <value>Event not found or you have no permissions to this action</value>
+    <value>"Event not found"</value>
   </data>
-  <data name="NotChanged" xml:space="preserve">
-    <value>Not Changed</value>
-  </data>
-  <data name="NotCreated" xml:space="preserve">
-    <value>Not Created</value>
-  </data>
-  <data name="NotDeleted" xml:space="preserve">
-    <value>Cant delete or already deleted</value>
-  </data>
-  <data name="ProfileNotFound" xml:space="preserve">
-    <value>Profile not found</value>
+  <data name="LogInError" xml:space="preserve">
+    <value>"Incorrect email or (and) password."</value>
   </data>
   <data name="UserNotFound" xml:space="preserve">
-    <value>User not found</value>
+    <value>"User didn't found"</value>
   </data>
 </root>

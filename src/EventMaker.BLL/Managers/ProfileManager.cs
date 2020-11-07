@@ -1,10 +1,10 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Threading.Tasks;
+using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Models;
 using EventMaker.Common.Exceptions;
 using EventMaker.Common.Resources;
-using System;
-using System.Threading.Tasks;
 using Profile = EventMaker.DAL.Entities.Profile;
 
 namespace EventMaker.BLL.Managers
@@ -43,7 +43,7 @@ namespace EventMaker.BLL.Managers
                 var profileDto = _mapper.Map<Profile, ProfileDto>(profile);
                 return profileDto;
             }
-            throw new ProfileNotFoundException(ExceptionResource.ProfileNotFound);
+            throw new NotFoundException(ExceptionResource.ProfileNotFound);
         }
 
         public async Task EditProfileAsync(ProfileDto profileDto)
@@ -109,13 +109,12 @@ namespace EventMaker.BLL.Managers
             }
             else
             {
-                throw new ProfileNotFoundException(ExceptionResource.ProfileNotFound);
+                throw new NotFoundException(ExceptionResource.ProfileNotFound);
             }
         }
     }
 }
-       
 
-       
 
-      
+
+

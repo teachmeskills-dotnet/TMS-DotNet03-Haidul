@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 namespace EventMaker.BLL.Repository
 {
     /// <inheritdoc cref="IRepository<T>"/>
-    public class Repository<T> : IRepository<T> where T : class
+    public class RepositoryManager<T> : IRepository<T> where T : class
     {
         private readonly DbSet<T> _dbSet;
         private readonly DbContext _context;
 
-        public Repository(EventMakerDbContext context)
+        public RepositoryManager(EventMakerDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _dbSet = context.Set<T>();

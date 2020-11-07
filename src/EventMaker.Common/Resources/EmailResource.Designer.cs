@@ -22,14 +22,14 @@ namespace EventMaker.Common.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ExceptionResource {
+    public class EmailResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ExceptionResource() {
+        internal EmailResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace EventMaker.Common.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EventMaker.Common.Resources.ExceptionResource", typeof(ExceptionResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EventMaker.Common.Resources.EmailResource", typeof(EmailResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,47 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You already participant or owner of this event.
+        ///   Looks up a localized string similar to Подтвердите регистрацию, перейдя по ссылке.
         /// </summary>
-        public static string AlreadyParticipant {
+        public static string MessageConfirm {
             get {
-                return ResourceManager.GetString("AlreadyParticipant", resourceCulture);
+                return ResourceManager.GetString("MessageConfirm", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event not found or you have no permissions to this action.
+        ///   Looks up a localized string similar to Для сброса пароля пройдите по ссылке.
         /// </summary>
-        public static string EventNotFound {
+        public static string MessageReset {
             get {
-                return ResourceManager.GetString("EventNotFound", resourceCulture);
+                return ResourceManager.GetString("MessageReset", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Changed.
+        ///   Looks up a localized string similar to Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме.
         /// </summary>
-        public static string NotChanged {
+        public static string ReturnContent {
             get {
-                return ResourceManager.GetString("NotChanged", resourceCulture);
+                return ResourceManager.GetString("ReturnContent", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Created.
+        ///   Looks up a localized string similar to &quot;Confirm your account&quot;.
         /// </summary>
-        public static string NotCreated {
+        public static string SubjectConfirm {
             get {
-                return ResourceManager.GetString("NotCreated", resourceCulture);
+                return ResourceManager.GetString("SubjectConfirm", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cant delete or already deleted.
+        ///   Looks up a localized string similar to &quot;Reset Password&quot;.
         /// </summary>
-        public static string NotDeleted {
+        public static string SubjectReset {
             get {
-                return ResourceManager.GetString("NotDeleted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Profile not found.
-        /// </summary>
-        public static string ProfileNotFound {
-            get {
-                return ResourceManager.GetString("ProfileNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User not found.
-        /// </summary>
-        public static string UserNotFound {
-            get {
-                return ResourceManager.GetString("UserNotFound", resourceCulture);
+                return ResourceManager.GetString("SubjectReset", resourceCulture);
             }
         }
     }

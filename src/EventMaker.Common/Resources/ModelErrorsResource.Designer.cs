@@ -22,14 +22,14 @@ namespace EventMaker.Common.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ExceptionResource {
+    public class ModelErrorsResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ExceptionResource() {
+        internal ModelErrorsResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace EventMaker.Common.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EventMaker.Common.Resources.ExceptionResource", typeof(ExceptionResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EventMaker.Common.Resources.ModelErrorsResource", typeof(ModelErrorsResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,16 +61,7 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You already participant or owner of this event.
-        /// </summary>
-        public static string AlreadyParticipant {
-            get {
-                return ResourceManager.GetString("AlreadyParticipant", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Event not found or you have no permissions to this action.
+        ///   Looks up a localized string similar to &quot;Event not found&quot;.
         /// </summary>
         public static string EventNotFound {
             get {
@@ -79,43 +70,16 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Changed.
+        ///   Looks up a localized string similar to &quot;Incorrect email or (and) password.&quot;.
         /// </summary>
-        public static string NotChanged {
+        public static string LogInError {
             get {
-                return ResourceManager.GetString("NotChanged", resourceCulture);
+                return ResourceManager.GetString("LogInError", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Created.
-        /// </summary>
-        public static string NotCreated {
-            get {
-                return ResourceManager.GetString("NotCreated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cant delete or already deleted.
-        /// </summary>
-        public static string NotDeleted {
-            get {
-                return ResourceManager.GetString("NotDeleted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Profile not found.
-        /// </summary>
-        public static string ProfileNotFound {
-            get {
-                return ResourceManager.GetString("ProfileNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User not found.
+        ///   Looks up a localized string similar to &quot;User didn&apos;t found&quot;.
         /// </summary>
         public static string UserNotFound {
             get {
