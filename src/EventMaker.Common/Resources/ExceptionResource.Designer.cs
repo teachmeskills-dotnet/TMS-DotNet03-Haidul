@@ -61,7 +61,7 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You already participant or owner of this event.
+        ///   Looks up a localized string similar to You already participant or owner of this event or Author of this event.
         /// </summary>
         public static string AlreadyParticipant {
             get {
@@ -102,6 +102,15 @@ namespace EventMaker.Common.Resources {
         public static string NotDeleted {
             get {
                 return ResourceManager.GetString("NotDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have less participant places than already participants in your event .
+        /// </summary>
+        public static string OwerflowException {
+            get {
+                return ResourceManager.GetString("OwerflowException", resourceCulture);
             }
         }
         

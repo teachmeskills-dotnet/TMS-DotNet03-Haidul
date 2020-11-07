@@ -42,11 +42,14 @@ namespace EventMaker.Web.Middlewares
                 response.StatusCode = error switch
                 {
                     NotFoundException e => (int)HttpStatusCode.NotFound,// Event not found error
-                    OtherException e => (int)HttpStatusCode.NotFound,// Event not found error
+                    EventOwerflowException e => (int)HttpStatusCode.Conflict,//Update conflict error
+                    OtherException e => (int)HttpStatusCode.NotFound,// Other error
                     _ => (int)HttpStatusCode.InternalServerError,// Unhandled error
                 };
-                await response.WriteAsync($"Error: {response.StatusCode} - {error.Message}");
+
+                var result = JsonSerializer.Serialize(new { message = error?.Message });
+                await response.WriteAsync(result);
             }
-         }
+        }
     }
 }

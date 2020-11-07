@@ -37,10 +37,10 @@ namespace EventMaker.BLL.Interfaces
         /// <summary>
         /// Get event by id.
         /// </summary>
-        /// <param name="eventId"></param>
-        /// <param name="userId"></param>
+        /// <param name="eventId">Event id</param>
+        /// <param name="userId">User id</param>
         /// <returns>Task<EventDto></returns>
-        Task<EventDto> GetEventById(int eventId , string userId);
+        Task<EventDto> GetEventById(int eventId , string userId = null);
 
         /// <summary>
         /// Get all events.

@@ -71,11 +71,18 @@ namespace EventMaker.Web.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
-                    return NotFound(ExceptionResource.NotCreated);
+                    else
+                    {
+                        return NotFound(ExceptionResource.NotCreated);
+                    }
+
                 }
                 return View(model);
             }
-            throw new OtherException(ExceptionResource.NotCreated);
+            else
+            {
+                throw new OtherException(ExceptionResource.NotCreated);
+            }
 
         }
 
@@ -95,18 +102,19 @@ namespace EventMaker.Web.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
-            throw new OtherException(ExceptionResource.NotDeleted);
-
+            else
+            {
+                throw new OtherException(ExceptionResource.NotDeleted);
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditEventIndex(string name, string authorName)
+        public async Task<IActionResult> EditEventIndex(int id, string authorName)
         {
             if (User.Identity.Name == authorName)
             {
-                var userEvent = await _eventManager.GetEventByName(name);
+                var userEvent = await _eventManager.GetEventById(id);
                 var eventViewModel = _mapper.Map<EventViewModel>(userEvent);
-                ViewBag.ModelName = eventViewModel.Name;
                 return View(eventViewModel);
             }
             return NotFound(ModelErrorsResource.EventNotFound);
@@ -119,24 +127,24 @@ namespace EventMaker.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var userEvent = await _eventManager.GetEventById(model.Id, model.UserId);
+                    var userEvent = await _eventManager.GetEventById(model.Id);
                     _mapper.Map<EventViewModel, EventDto>(model, userEvent);
                     await _eventManager.UpdateEventAsync(userEvent);
                 }
                 return RedirectToAction("Index", "Home");
             }
-            throw new NotFoundException(ExceptionResource.ProfileNotFound);
+            throw new NotFoundException(ExceptionResource.EventNotFound);
 
 
         }
 
         ///TODO: Refactor if;
         [HttpPost]
-        public async Task<IActionResult> AddParticipant(int eventId, string authorId)
+        public async Task<IActionResult> AddParticipant(int eventId)
         {
             if (eventId != 0)
             {
-                var eventDto = await _eventManager.GetEventById(eventId, authorId);
+                var eventDto = await _eventManager.GetEventById(eventId);
                 var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
                 await _eventManager.AddParticipantAsync(eventId, userId, eventDto);
             }
@@ -148,11 +156,11 @@ namespace EventMaker.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteParticipant(int eventId, string authorId)
+        public async Task<IActionResult> DeleteParticipant(int eventId)
         {
             if (eventId != 0)
             {
-                var eventDto = await _eventManager.GetEventById(eventId, authorId);
+                var eventDto = await _eventManager.GetEventById(eventId);
                 var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
                 await _eventManager.DeleteParticipantAsync(eventId, userId, eventDto);
             }
