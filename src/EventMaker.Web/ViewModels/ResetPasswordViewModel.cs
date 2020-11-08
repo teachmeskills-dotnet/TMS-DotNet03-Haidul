@@ -14,16 +14,19 @@ namespace EventMaker.Web.ViewModels
         /// <summary>
         /// Email.
         /// </summary>
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Please enter Email")]
+        [MaxLength(40, ErrorMessage = "Your email is too long")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a email in format email@mail.com")]
+        [Display(Name = nameof(Email))]
         public string Email { get; set; }
 
         /// <summary>
         /// Password.
         /// </summary>
-        [Required]
-        [StringLength(100, ErrorMessage = "Пароль должен содержать как минимум 6 символов", MinimumLength = 6)]
+        [Required(ErrorMessage = "Please enter password")]
+        [MinLength(8, ErrorMessage = "Your password is too short (Min lenght 8 symbols)")]
         [DataType(DataType.Password)]
+        [Compare("PasswordConfirm", ErrorMessage = "Passwords do not match")]
         public string Password { get; set; }
 
         /// <summary>
@@ -31,7 +34,7 @@ namespace EventMaker.Web.ViewModels
         /// </summary>
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
         public string ConfirmPassword { get; set; }
 
         /// <summary>

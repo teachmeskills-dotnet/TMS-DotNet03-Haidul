@@ -9,6 +9,7 @@ using Profile = EventMaker.DAL.Entities.Profile;
 
 namespace EventMaker.BLL.Managers
 {
+    /// <inheritdoc cref="IProfileManager"/>
     public class ProfileManager : IProfileManager
     {
         private readonly IRepository<Profile> _repositoryProfile;
@@ -46,7 +47,7 @@ namespace EventMaker.BLL.Managers
             throw new NotFoundException(ExceptionResource.ProfileNotFound);
         }
 
-        public async Task EditProfileAsync(ProfileDto profileDto)
+        public async Task UpdateProfileAsync(ProfileDto profileDto)
         {
             if (profileDto != null)
             {

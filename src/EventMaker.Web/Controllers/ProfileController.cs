@@ -47,13 +47,13 @@ namespace EventMaker.Web.Controllers
             {
                 var userProfile = await _profileManager.GetProfile(User.Identity.Name);
                 _mapper.Map<ProfileEditViewModel, ProfileDto>(model, userProfile);
-                await _profileManager.EditProfileAsync(userProfile);
+                await _profileManager.UpdateProfileAsync(userProfile);
             }
             else
             {
-                return NotFound("Profile not found"); /// TODO : rework this exceptions
+                return NotFound(ModelErrorsResource.ProfileNotFound); /// TODO : rework this exceptions
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Profile");
         }
 
         [HttpPost]
@@ -73,7 +73,7 @@ namespace EventMaker.Web.Controllers
 
                     _mapper.Map<ProfileViewModel, ProfileDto>(model, userProfile);
                     userProfile.Image = imageData;
-                    await _profileManager.EditProfileAsync(userProfile);
+                    await _profileManager.UpdateProfileAsync(userProfile);
                 }
                 return RedirectToAction("Index");
             }

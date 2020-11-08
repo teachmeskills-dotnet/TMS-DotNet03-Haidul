@@ -26,11 +26,12 @@
         </div>
         <div>
             <label asp-for="BirthDate" for="birthdate">BirthDate</label>
-            <time asp-for="BirthDate">:@if (Model.BirthDate != null) { Model.BirthDate.ToShortDateString(); }</time>
+            <time asp-for="BirthDate">: @Model.BirthDate.ToShortDateString()</time>
         </div>
         <div>
-            <label asp-for="Age" for="age">Age</label>
-            <span asp-for="Age">: @Model.Age</span>
+            <label asp-for="Age" for="age">Age:</label>
+           @if (Model.Age != 0)
+           { <span asp-for="Age">: @Model.Age</span>}
         </div>
         <div>
             <label asp-for="Created" for="created">Created</label>

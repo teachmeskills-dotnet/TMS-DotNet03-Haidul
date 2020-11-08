@@ -79,6 +79,15 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Profile not found&quot;.
+        /// </summary>
+        public static string ProfileNotFound {
+            get {
+                return ResourceManager.GetString("ProfileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;User didn&apos;t found&quot;.
         /// </summary>
         public static string UserNotFound {

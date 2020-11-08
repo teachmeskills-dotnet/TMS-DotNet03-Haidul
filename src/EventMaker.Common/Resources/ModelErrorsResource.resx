@@ -123,6 +123,9 @@
   <data name="LogInError" xml:space="preserve">
     <value>"Incorrect email or (and) password."</value>
   </data>
+  <data name="ProfileNotFound" xml:space="preserve">
+    <value>"Profile not found"</value>
+  </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>"User didn't found"</value>
   </data>
