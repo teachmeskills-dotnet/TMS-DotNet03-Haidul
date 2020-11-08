@@ -123,6 +123,9 @@
   <data name="EventNotFound" xml:space="preserve">
     <value>Event not found or you have no permissions to this action</value>
   </data>
+  <data name="NameAlreadyExist" xml:space="preserve">
+    <value>Name already exist</value>
+  </data>
   <data name="NotChanged" xml:space="preserve">
     <value>Not Changed</value>
   </data>

@@ -27,20 +27,6 @@ namespace EventMaker.BLL.Managers
             _repositoryEventParticipant = repositoryEventParticipant ?? throw new ArgumentNullException(nameof(repositoryEventParticipant));
         }
 
-        public async Task<EventDto> GetEventByName(string eventName)
-        {
-            var result = await _repositoryEvent.GetEntityAsync(e => e.Name == eventName);
-            if (result != null)
-            {
-                return _mapper.Map<EventDto>(result);
-            }
-            else
-            {
-                throw new NotFoundException(ExceptionResource.EventNotFound);
-            }
-
-        }
-
         public async Task<EventDto> GetEventById(int eventId, string userId = null)
         {
             var result = userId != null ? await _repositoryEvent.GetEntityAsync(e => e.Id == eventId && e.UserId == userId)
@@ -60,12 +46,25 @@ namespace EventMaker.BLL.Managers
         {
             if (eventDto != null)
             {
-                eventDto.Created = DateTime.UtcNow;
-                var userEvent = _mapper.Map<Event>(eventDto);
-                await _repositoryEvent.AddAsync(userEvent);
-                await _repositoryEvent.SaveChangesAsync();
+                var allEvents = _repositoryEvent.GetAllWithoutTracking();
+                if(allEvents.FirstOrDefault(ev => ev.Name == eventDto.Name) != null)
+                {
+                    throw new OtherException(ExceptionResource.NameAlreadyExist);
+                }
+                else
+                {
+                    eventDto.Created = DateTime.UtcNow;
+                    eventDto.PFreeNumber = eventDto.PNumber;
+                    var userEvent = _mapper.Map<Event>(eventDto);
+                    await _repositoryEvent.AddAsync(userEvent);
+                    await _repositoryEvent.SaveChangesAsync();
+                }
+                
             }
-            throw new OtherException(ExceptionResource.NotCreated);
+            else
+            {
+                throw new OtherException(ExceptionResource.NotCreated);
+            }
         }
 
         public async Task UpdateEventAsync(EventDto eventDto)

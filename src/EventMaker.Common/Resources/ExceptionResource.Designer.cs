@@ -79,6 +79,15 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name already exist.
+        /// </summary>
+        public static string NameAlreadyExist {
+            get {
+                return ResourceManager.GetString("NameAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not Changed.
         /// </summary>
         public static string NotChanged {

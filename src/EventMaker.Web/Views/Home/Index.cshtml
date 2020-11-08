@@ -16,9 +16,9 @@
     {
 <div class="event-list__event">
     <a class="event-list__title"
-       asp-controller="Event"
+       asp-controller="Event" 
        asp-action="Index"
-       asp-route-name="@usersEvent.Name">@usersEvent.Name</a>
+       asp-route-id="@usersEvent.Id">@usersEvent.Name</a>
     <h2 class="event-list__name">@usersEvent.Title</h2>
     <div class="event-list__dates">
         <span>Started: @usersEvent.Started.ToShortDateString()</span>
@@ -54,7 +54,7 @@ else
     <a class="event-list__title"
        asp-controller="Event"
        asp-action="Index"
-       asp-route-name="@usersEvent.Name">@usersEvent.Name</a>
+       asp-route-id="@usersEvent.Id">@usersEvent.Name</a>
     <h2 class="event-list__name">@usersEvent.Title</h2>
     <div class="event-list__dates">
         <span>Started: @usersEvent.Started</span>

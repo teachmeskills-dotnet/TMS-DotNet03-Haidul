@@ -29,9 +29,9 @@ namespace EventMaker.Web.Controllers
         }
 
         [HttpGet]////TODO : Refactor it;
-        public async Task<IActionResult> Index(string name)
+        public async Task<IActionResult> Index(int id)
         {
-            var userEvent = await _eventManager.GetEventByName(name);
+            var userEvent = await _eventManager.GetEventById(id);
 
             if (userEvent != null)
             {
@@ -64,7 +64,6 @@ namespace EventMaker.Web.Controllers
                 {
                     model.UserId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
                     model.AuthorName = User.Identity.Name;
-                    model.PFreeNumber = model.PNumber; //TODO :Refactor it
                     var modelDto = _mapper.Map<EventDto>(model);
                     await _eventManager.CreateEventAsync(modelDto);
                     if (modelDto != null)
