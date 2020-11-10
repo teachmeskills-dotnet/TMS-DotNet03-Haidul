@@ -7,8 +7,7 @@
         <div class="profile-top__left">
             <div class="profile-top__icon">
                 @if (Model.ByteImage != null)
-                {
-    <img class="profile-top__icon-image" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ByteImage))" />}
+                {<label for="change-input"><img class="profile-top__icon-image" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ByteImage))" /></label>}
             </div>
             <div class="profile-top__contacts">
                 <p class="profile-top__icon-username" asp-for="Username">@User.Identity.Name</p>
@@ -33,25 +32,26 @@
     </div>
 
     <div class="profile-about">
-        <div class="profile-info">
-            <p asp-for="Email">Email: @Model.Email</p>
-            <p asp-for="FirstName">FirstName: @Model.FirstName</p>
-            <p asp-for="LastName">LastName: @Model.LastName</p>
-            <time asp-for="BirthDate">BirthDate: @Model.BirthDate.ToShortDateString()</time>
+        <div class="profile-about-info">
+            <p asp-for="Email">Email : @Model.Email</p>
+            <p asp-for="FirstName">FirstName : @Model.FirstName</p>
+            <p asp-for="LastName">LastName : @Model.LastName</p>
+            <p asp-for="BirthDate">BirthDate : @Model.BirthDate.ToShortDateString()</p>
             @if (Model.Age != 0)
-            {<p asp-for="Age">Age: @Model.Age</p>}
-            <p asp-for="Phone">Phone: @Model.Phone</p>
+            {<p asp-for="Age">Age : @Model.Age</p>}
+            @if (Model.Phone != 0)
+            {<p asp-for="Phone">Phone : @Model.Phone</p> }          
         </div>
-        <form class="profile-form__buttons">
-            <button formmethod="get" class="buttons__changepass" asp-controller="Account" asp-action="ChangePassword">Change Password</button>
-            <p>
-                <label>Аватар</label>
-                <input asp-for="Image" type="file" />
-            </p>
-            <p>
-                <input formmethod="post" asp-controller="Profile" asp-action="SetAvatar" enctype="multipart/form-data" type="submit" value="Добавить"/>
-            </p>
-        </form>
+        <div class="profile-about-buttons">
+            <form class="profile-changepass-form">
+                <button formmethod="get" class="profile-changepass-form__button" asp-controller="Account" asp-action="ChangePassword"><i class="fas fa-unlock-alt"></i>Change Password</button>
+            </form>
+            <form  class="profile-avatar-form" enctype="multipart/form-data">
+                    <input id="change-input" asp-for="Image" type="file" hidden />
+                    <button class="profile-avatar-form__button" formmethod="post" type="submit" asp-controller="Profile" asp-action="SetAvatar"><i class="far fa-images"></i>Change image</button>
+            </form>
+            
+        </div>
     </div>
    
 </div>
