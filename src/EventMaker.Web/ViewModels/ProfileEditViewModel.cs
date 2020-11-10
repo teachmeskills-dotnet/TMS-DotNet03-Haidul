@@ -28,11 +28,6 @@ namespace EventMaker.Web.ViewModels
         public DateTime BirthDate { get; set; }
 
         /// <summary>
-        /// Created.
-        /// </summary>
-        public DateTime Created { get; set; }
-
-        /// <summary>
         /// Phone.
         /// </summary>
         public int Phone { get; set; }

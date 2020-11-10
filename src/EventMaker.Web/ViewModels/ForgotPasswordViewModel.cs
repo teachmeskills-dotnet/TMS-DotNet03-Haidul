@@ -14,8 +14,10 @@ namespace EventMaker.Web.ViewModels
         /// <summary>
         /// Email.
         /// </summary>
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Please enter Email")]
+        [MaxLength(40, ErrorMessage = "Your email is too long")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a email in format email@mail.com")]
+        [Display(Name = nameof(Email))]
         public string Email { get; set; }
     }
 }

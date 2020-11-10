@@ -26,6 +26,6 @@ namespace EventMaker.BLL.Interfaces
         /// Edit profile.
         /// </summary>
         /// <param name="profileDto">Profile DTO</param>
-        Task EditProfileAsync(ProfileDto profileDto);
+        Task UpdateProfileAsync(ProfileDto profileDto);
     }
 }

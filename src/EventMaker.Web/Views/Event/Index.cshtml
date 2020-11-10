@@ -6,12 +6,10 @@
 {
     <div class="create-form">
         <form method="post">
-            <button asp-controller="Event" asp-action="AddParticipant" asp-route-eventId="@Model.Id"
-                    asp-route-authorId="@Model.UserId">
+            <button asp-controller="Event" asp-action="AddParticipant" asp-route-eventId="@Model.Id">
                 Participate
             </button>
-            <button asp-controller="Event" asp-action="DeleteParticipant" asp-route-eventId="@Model.Id"
-                    asp-route-authorId="@Model.UserId">
+            <button asp-controller="Event" asp-action="DeleteParticipant" asp-route-eventId="@Model.Id">
                 Delete participant
             </button>
             <div class="participants-list">
@@ -60,7 +58,7 @@
             <button formmethod="post" class="event-buttons__edit"
                     asp-controller="Event"
                     asp-action="EditEventIndex"
-                    asp-route-name="@Model.Name"
+                    asp-route-id="@Model.Id"
                     asp-route-authorName="@Model.AuthorName">
 
                 Edit Event
@@ -68,9 +66,8 @@
             <button formmethod="post" class="event-buttons__delete"
                     asp-controller="Event"
                     asp-action="DeleteEvent"
-                    asp-route-Name=@Model.Name
-                    asp-route-Title=@Model.Title
-                    asp-route-AuthorName=@Model.AuthorName>
+                    asp-route-id=@Model.Id
+                    asp-route-authorName=@Model.AuthorName>
                 Delete Event
             </button>
         </form>
@@ -79,12 +76,10 @@ else
 {
 <div class="create-form">
     <form method="post">
-        <button asp-controller="Event" asp-action="AddParticipant" asp-route-eventId="@Model.Id"
-                asp-route-authorId="@Model.UserId">
+        <button asp-controller="Event" asp-action="AddParticipant" asp-route-eventId="@Model.Id">
             Participate
         </button>
-        <button asp-controller="Event" asp-action="DeleteParticipant" asp-route-eventId="@Model.Id"
-                asp-route-authorId="@Model.UserId">
+        <button asp-controller="Event" asp-action="DeleteParticipant" asp-route-eventId="@Model.Id">
             Delete participant
         </button>
         <div class="participants-list">
@@ -140,4 +135,5 @@ else
 {
 @section css {
     <link href="~/css/eventOwn.css" rel="stylesheet" asp-append-version="true" />
-}            }
+}  
+}

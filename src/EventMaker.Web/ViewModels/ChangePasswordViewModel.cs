@@ -20,24 +20,28 @@ namespace EventMaker.Web.ViewModels
         /// <summary>
         /// Old password.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "Please enter password")]
+        [MinLength(8, ErrorMessage = "Your password is too short (Min lenght 8 symbols)")]
+        [DataType(DataType.Password)]
         [Display(Name = nameof(OldPassword))]
         public string OldPassword { get; set; }
 
         /// <summary>
         /// New password.
         /// </summary>
-        [Required]
+        [Required(ErrorMessage = "Please enter password")]
+        [MinLength(8, ErrorMessage = "Your password is too short (Min lenght 8 symbols)")]
         [DataType(DataType.Password)]
+        [Compare("NewPasswordConfirm", ErrorMessage = "Passwords do not match")]
         [Display(Name = nameof(NewPassword))]
         public string NewPassword { get; set; }
 
         /// <summary>
         /// Old password.
         /// </summary>
-        [Required]
-        [Compare("NewPassword", ErrorMessage = "Passwords do not match")]
+        [Required(ErrorMessage = "Please confirm password")]
         [DataType(DataType.Password)]
+        [Compare("NewPassword", ErrorMessage = "Passwords do not match")]
         [Display(Name = nameof(NewPassword))]
         public string NewPasswordConfirm { get; set; }
     }

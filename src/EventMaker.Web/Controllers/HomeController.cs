@@ -1,9 +1,9 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 
 namespace EventMaker.Web.Controllers
 {

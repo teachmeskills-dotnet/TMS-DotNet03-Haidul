@@ -17,5 +17,9 @@ namespace EventMaker.Common.Exceptions
             : base(String.Format(CultureInfo.CurrentCulture, message, args))
         {
         }
+
+        public OtherException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

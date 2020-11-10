@@ -1,11 +1,13 @@
-﻿using AutoMapper;
-using EventMaker.BLL.Interfaces;
-using EventMaker.BLL.Models;
-using EventMaker.Web.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using AutoMapper;
+using EventMaker.BLL.Interfaces;
+using EventMaker.BLL.Models;
+using EventMaker.Common.Exceptions;
+using EventMaker.Common.Resources;
+using EventMaker.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EventMaker.Web.Controllers
 {
@@ -14,8 +16,8 @@ namespace EventMaker.Web.Controllers
         private readonly IProfileManager _profileManager;
         private readonly IMapper _mapper;
 
-            public ProfileController(IProfileManager profileManager,
-                                 IMapper mapper)
+        public ProfileController(IProfileManager profileManager,
+                             IMapper mapper)
         {
             _profileManager = profileManager ?? throw new ArgumentNullException(nameof(profileManager));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -32,7 +34,7 @@ namespace EventMaker.Web.Controllers
 
         [HttpGet]
         public async Task<IActionResult> EditProfileIndex()
-       {
+        {
             var userProfile = await _profileManager.GetProfile(User.Identity.Name);
             var profileViewModel = _mapper.Map<ProfileEditViewModel>(userProfile);
             return View(profileViewModel);
@@ -45,33 +47,37 @@ namespace EventMaker.Web.Controllers
             {
                 var userProfile = await _profileManager.GetProfile(User.Identity.Name);
                 _mapper.Map<ProfileEditViewModel, ProfileDto>(model, userProfile);
-                await _profileManager.EditProfileAsync(userProfile);
+                await _profileManager.UpdateProfileAsync(userProfile);
             }
             else
             {
-                return NotFound("Profile not found"); /// TODO : rework this exceptions
+                return NotFound(ModelErrorsResource.ProfileNotFound); /// TODO : rework this exceptions
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Profile");
         }
 
         [HttpPost]
         public async Task<IActionResult> SetAvatar(ProfileViewModel model)
         {
-            if (model.Image != null)
+            if (model != null)
             {
-                byte[] imageData = null;
-                using (var binaryReader = new BinaryReader(model.Image.OpenReadStream()))
+                if (model.Image != null)
                 {
-                    imageData = binaryReader.ReadBytes((int)model.Image.Length);
+                    byte[] imageData = null;
+                    using (var binaryReader = new BinaryReader(model.Image.OpenReadStream()))
+                    {
+                        imageData = binaryReader.ReadBytes((int)model.Image.Length);
+                    }
+
+                    var userProfile = await _profileManager.GetProfile(User.Identity.Name);
+
+                    _mapper.Map<ProfileViewModel, ProfileDto>(model, userProfile);
+                    userProfile.Image = imageData;
+                    await _profileManager.UpdateProfileAsync(userProfile);
                 }
-
-                var userProfile = await _profileManager.GetProfile(User.Identity.Name);
-
-                 _mapper.Map<ProfileViewModel, ProfileDto>(model , userProfile);
-                userProfile.Image = imageData;
-                await _profileManager.EditProfileAsync(userProfile);
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            throw new NotFoundException(ExceptionResource.ProfileNotFound);
         }
     }
 }

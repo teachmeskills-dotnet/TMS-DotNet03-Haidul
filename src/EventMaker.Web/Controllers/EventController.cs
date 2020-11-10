@@ -1,12 +1,14 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Models;
+using EventMaker.Common.Exceptions;
+using EventMaker.Common.Resources;
 using EventMaker.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace EventMaker.Web.Controllers
 {
@@ -27,16 +29,16 @@ namespace EventMaker.Web.Controllers
         }
 
         [HttpGet]////TODO : Refactor it;
-        public async Task<IActionResult> Index(string name)
+        public async Task<IActionResult> Index(int id)
         {
-            var userEvent = await _eventManager.GetEventByName(name);
+            var userEvent = await _eventManager.GetEventById(id);
 
             if (userEvent != null)
             {
                 ViewBag.UserId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
                 var eventParticipantsDto = _eventManager.GetAllParticipants(userEvent.Id);
                 var userNames = new List<string>();
-                foreach(var userId in eventParticipantsDto)
+                foreach (var userId in eventParticipantsDto)
                 {
                     userNames.Add(await _accountManager.GetUserNameByIdAsync(userId.UserId));
                 }
@@ -56,96 +58,114 @@ namespace EventMaker.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEvent(EventViewModel model)
         {
-            if (ModelState.IsValid)
+            if (model != null)
             {
-                model.UserId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
-                model.AuthorName = User.Identity.Name;
-                model.PFreeNumber = model.PNumber; //TODO :Refactor it
-                var modelDto = _mapper.Map<EventDto>(model);
-                await _eventManager.CreateEventAsync(modelDto);
-                if (modelDto != null)
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Index", "Home");
+                    model.UserId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
+                    model.AuthorName = User.Identity.Name;
+                    var modelDto = _mapper.Map<EventDto>(model);
+                    await _eventManager.CreateEventAsync(modelDto);
+                    if (modelDto != null)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return NotFound(ExceptionResource.NotCreated);
+                    }
+
                 }
-                return NotFound("Event not created");/// TODO : rework this exceptions
+                return View(model);
             }
-            return View(model);
+            else
+            {
+                throw new OtherException(ExceptionResource.NotCreated);
+            }
+
         }
 
         [HttpPost]
         public async Task<IActionResult> DeleteEvent(EventViewModel model)
         {
-            if (User.Identity.Name == model.AuthorName)
+            if (model != null)
             {
-                var modelDto = _mapper.Map<EventDto>(model);
-                await _eventManager.DeleteEventAsync(modelDto);
+                if (User.Identity.Name == model.AuthorName)
+                {
+                    var modelDto = _mapper.Map<EventDto>(model);
+                    await _eventManager.DeleteEventAsync(modelDto);
+                }
+                else
+                {
+                    return NotFound(ModelErrorsResource.EventNotFound);
+                }
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                return NotFound("Event not found"); /// TODO : rework this exceptions
+                throw new OtherException(ExceptionResource.NotDeleted);
             }
-            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditEventIndex(string name, string authorName)
+        public async Task<IActionResult> EditEventIndex(int id, string authorName)
         {
             if (User.Identity.Name == authorName)
             {
-                var userEvent = await _eventManager.GetEventByName(name);
+                var userEvent = await _eventManager.GetEventById(id);
                 var eventViewModel = _mapper.Map<EventViewModel>(userEvent);
-                ViewBag.ModelName = eventViewModel.Name;
                 return View(eventViewModel);
             }
-            return NotFound("Event not found"); /// TODO : rework this exceptions
+            return NotFound(ModelErrorsResource.EventNotFound);
         }
 
         [HttpPost]
         public async Task<IActionResult> EditEvent(EventViewModel model)
         {
-            ////TODO:Refactor it
-            if (ModelState.IsValid)
+            if (model != null)
             {
-                var userEvent = await _eventManager.GetEventById(model.Id, model.UserId);
-                _mapper.Map<EventViewModel, EventDto>(model, userEvent);
-                await _eventManager.UpdateEventAsync(userEvent);
+                if (ModelState.IsValid)
+                {
+                    var userEvent = await _eventManager.GetEventById(model.Id);
+                    _mapper.Map<EventViewModel, EventDto>(model, userEvent);
+                    await _eventManager.UpdateEventAsync(userEvent);
+                }
+                return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                return NotFound("Event not found"); /// TODO : rework this exceptions
-            }
-            return RedirectToAction("Index", "Home");
+            throw new NotFoundException(ExceptionResource.EventNotFound);
+
+
         }
 
         ///TODO: Refactor if;
         [HttpPost]
-        public async Task<IActionResult> AddParticipant(int eventId, string authorId)
+        public async Task<IActionResult> AddParticipant(int eventId)
         {
             if (eventId != 0)
             {
-                var eventDto = await _eventManager.GetEventById(eventId, authorId);
+                var eventDto = await _eventManager.GetEventById(eventId);
                 var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
                 await _eventManager.AddParticipantAsync(eventId, userId, eventDto);
             }
             else
             {
-                return NotFound("Event not found");
+                return NotFound(ModelErrorsResource.EventNotFound);
             }
             return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteParticipant(int eventId, string authorId)
+        public async Task<IActionResult> DeleteParticipant(int eventId)
         {
             if (eventId != 0)
             {
-                var eventDto = await _eventManager.GetEventById(eventId, authorId);
+                var eventDto = await _eventManager.GetEventById(eventId);
                 var userId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
                 await _eventManager.DeleteParticipantAsync(eventId, userId, eventDto);
             }
             else
             {
-                return NotFound("Event not found");
+                return NotFound(ModelErrorsResource.EventNotFound);
             }
             return RedirectToAction("Index", "Home");
         }

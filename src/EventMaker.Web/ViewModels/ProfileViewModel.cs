@@ -13,7 +13,7 @@ namespace EventMaker.Web.ViewModels
         /// Email.
         /// </summary>
         [Required]
-        [MaxLength(20)]
+        [MaxLength(40)]
         public string Email { get; set; }
 
         /// <summary>
