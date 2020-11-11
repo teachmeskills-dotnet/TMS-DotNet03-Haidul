@@ -51,7 +51,7 @@ namespace EventMaker.Web.Controllers
             }
             else
             {
-                return NotFound(ModelErrorsResource.ProfileNotFound); /// TODO : rework this exceptions
+                return NotFound(ModelErrorsResource.ProfileNotFound);
             }
             return RedirectToAction("Index", "Profile");
         }

@@ -25,7 +25,7 @@ namespace EventMaker.Web.ViewModels
         /// <summary>
         /// BirthDate.
         /// </summary>
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         /// <summary>
         /// Phone.
