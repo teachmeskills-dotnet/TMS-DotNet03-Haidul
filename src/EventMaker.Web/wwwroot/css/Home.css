@@ -162,3 +162,14 @@
     text-transform: uppercase;
     color: #FFFFFF;
 }
+
+.page-navigation {
+    text-align: center;
+    font-size: 24px;
+    list-style-type: none;
+}
+
+.page-navigation li {
+    display: inline;
+    margin-right: 10px;
+}

@@ -88,7 +88,7 @@ namespace EventMaker.BLL.Managers
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
             {
-                return (null, "", false);
+                return (null, "", false); //TODO : rework this to exception;
             }
 
             var code = await _userManager.GeneratePasswordResetTokenAsync(user);
