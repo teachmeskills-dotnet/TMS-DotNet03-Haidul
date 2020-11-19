@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Threading.Tasks;
 using EventMaker.BLL.Interfaces;
 using EventMaker.Common.Exceptions;
@@ -37,7 +38,11 @@ namespace EventMaker.BLL.Managers
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 return (result, user, code);
             }
-            throw new OtherException(ExceptionResource.NotCreated);
+            else
+            {
+                throw new OtherException<IdentityError>(result.Errors);
+            }
+
         }
 
         public async Task<string> GetUserIdByNameAsync(string name)

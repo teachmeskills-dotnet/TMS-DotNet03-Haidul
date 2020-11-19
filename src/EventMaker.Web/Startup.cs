@@ -46,6 +46,7 @@ namespace EventMaker.Web
             // ASP.NET Core Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
+                options.User.RequireUniqueEmail = true;
                 options.Password.RequiredLength = 8;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireLowercase = true;

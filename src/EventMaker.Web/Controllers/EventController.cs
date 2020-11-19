@@ -80,7 +80,7 @@ namespace EventMaker.Web.Controllers
             }
             else
             {
-                throw new OtherException(ExceptionResource.NotCreated);
+                throw new OtherException<string>(ExceptionResource.NotCreated);
             }
 
         }
@@ -103,7 +103,7 @@ namespace EventMaker.Web.Controllers
             }
             else
             {
-                throw new OtherException(ExceptionResource.NotDeleted);
+                throw new OtherException<string>(ExceptionResource.NotDeleted);
             }
         }
 

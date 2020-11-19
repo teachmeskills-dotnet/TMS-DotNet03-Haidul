@@ -17,24 +17,19 @@
                 <span class="wrapper-form__label-content">Password</span>
             </label>
         </div>
+        <div class="wrapper-form__submit">
+            <button formmethod="post" class="wrapper-form__input-submit" type="submit" required>Log in</button>
+        </div>
         <div class="wrapper-form__remember-me">
             <p class="wrapper-form__remember-me" asp-for="RememberMe">
                 Remember me?
                 <input class="wrapper-form__input-remember-me" type="checkbox" asp-for="RememberMe" />
             </p>
         </div>
-        <div class="wrapper-form__submit">
-            <input class="wrapper-form__input-submit" type="submit" value="Log in" required />
-        </div>
     </form>
-    <form>
-        <div class="wrapper-form__remember-me">
-            <p class="wrapper-form__remember-me">
-                Forgot Password?
-                <button type="submit" formmethod="get" class="wrapper-form__input-remember-me" asp-for="RememberMe" asp-controller="Account" asp-action="ForgotPassword"></button>
-            </p>
-        </div>
-    </form>
+    <div class="forgot-password">
+                <a formmethod="get" class="forgot-password__ref" asp-controller="Account" asp-action="ForgotPassword">Forgot Password?</a>
+    </div>
 
 </div>
 

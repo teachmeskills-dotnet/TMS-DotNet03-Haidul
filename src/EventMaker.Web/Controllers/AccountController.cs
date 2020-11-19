@@ -51,12 +51,16 @@ namespace EventMaker.Web.Controllers
                     }
                     foreach (var error in result.result.Errors)
                     {
-                        ModelState.AddModelError(string.Empty, error.Description);
+                         ModelState.AddModelError(string.Empty, error.Description);
                     }
                 }
                 return View(model);
             }
-            throw new OtherException(ExceptionResource.NotCreated);       
+            else
+            {
+                throw new OtherException<string>(ExceptionResource.NotCreated);
+            }
+   
         }
 
         [HttpGet]
@@ -107,7 +111,7 @@ namespace EventMaker.Web.Controllers
                 }
                 return View(model);
             }
-            throw new OtherException(ExceptionResource.UserNotFound);
+            throw new OtherException<string>(ExceptionResource.UserNotFound);
         }
 
         [HttpPost]
@@ -154,7 +158,7 @@ namespace EventMaker.Web.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
-            throw new OtherException(ExceptionResource.NotChanged);
+            throw new OtherException<string>(ExceptionResource.NotChanged);
            
         }
 
@@ -190,7 +194,7 @@ namespace EventMaker.Web.Controllers
                     return View(model);
                 }
             }
-            throw new OtherException(ExceptionResource.NotChanged);
+            throw new OtherException<string>(ExceptionResource.NotChanged);
         }
 
         [HttpGet]
@@ -222,7 +226,7 @@ namespace EventMaker.Web.Controllers
                 }
                 return View(model);
             }
-            throw new OtherException(ExceptionResource.NotChanged);    
+            throw new OtherException<string>(ExceptionResource.NotChanged);    
         }
     }
 }

@@ -97,7 +97,7 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Created.
+        ///   Looks up a localized string similar to Not Created (data already exist or not valid).
         /// </summary>
         public static string NotCreated {
             get {

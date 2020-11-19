@@ -49,7 +49,7 @@ namespace EventMaker.BLL.Managers
                 var allEvents = _repositoryEvent.GetAllWithoutTracking();
                 if(allEvents.FirstOrDefault(ev => ev.Name == eventDto.Name) != null)
                 {
-                    throw new OtherException(ExceptionResource.NameAlreadyExist);
+                    throw new OtherException<string>(ExceptionResource.NameAlreadyExist);
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace EventMaker.BLL.Managers
             }
             else
             {
-                throw new OtherException(ExceptionResource.NotCreated);
+                throw new OtherException<string>(ExceptionResource.NotCreated);
             }
         }
 
@@ -207,7 +207,7 @@ namespace EventMaker.BLL.Managers
                 }
                 else
                 {
-                    throw new OtherException(ExceptionResource.AlreadyParticipant);
+                    throw new OtherException<string>(ExceptionResource.AlreadyParticipant);
                 }
             }
         }
@@ -229,12 +229,12 @@ namespace EventMaker.BLL.Managers
                     }
                     else
                     {
-                        throw new OtherException(ExceptionResource.NotDeleted);
+                        throw new OtherException<string>(ExceptionResource.NotDeleted);
                     }
                 }
                 else
                 {
-                    throw new OtherException(ExceptionResource.AlreadyParticipant);
+                    throw new OtherException<string>(ExceptionResource.AlreadyParticipant);
                 }
             }
         }
