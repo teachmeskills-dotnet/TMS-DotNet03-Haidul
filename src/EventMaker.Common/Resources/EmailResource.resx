@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="MessageConfirm" xml:space="preserve">
-    <value>Подтвердите регистрацию, перейдя по ссылке</value>
+    <value>Confirm email by following the link</value>
   </data>
   <data name="MessageReset" xml:space="preserve">
-    <value>Для сброса пароля пройдите по ссылке</value>
+    <value>To reset your password follow the link</value>
   </data>
   <data name="ReturnContent" xml:space="preserve">
-    <value>Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме</value>
+    <value>To complete the confirmation, check your email and follow the link provided in the letter</value>
   </data>
   <data name="SubjectConfirm" xml:space="preserve">
-    <value>"Confirm your account"</value>
+    <value>"Confirm your email"</value>
   </data>
   <data name="SubjectReset" xml:space="preserve">
     <value>"Reset Password"</value>

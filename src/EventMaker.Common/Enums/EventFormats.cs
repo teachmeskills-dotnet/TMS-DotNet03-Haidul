@@ -3,7 +3,7 @@
     /// <summary>
     /// Format of event.
     /// </summary>
-    public enum EventFormat
+    public enum EventFormats
     {
         /// <summary>
         /// Indoor.

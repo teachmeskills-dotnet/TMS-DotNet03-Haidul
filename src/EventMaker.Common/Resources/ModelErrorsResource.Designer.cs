@@ -61,6 +61,15 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Email not confirmed&quot;.
+        /// </summary>
+        public static string EmailNotConfirmed {
+            get {
+                return ResourceManager.GetString("EmailNotConfirmed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;Event not found&quot;.
         /// </summary>
         public static string EventNotFound {
@@ -75,6 +84,15 @@ namespace EventMaker.Common.Resources {
         public static string LogInError {
             get {
                 return ResourceManager.GetString("LogInError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Error&quot;.
+        /// </summary>
+        public static string OtherError {
+            get {
+                return ResourceManager.GetString("OtherError", resourceCulture);
             }
         }
         

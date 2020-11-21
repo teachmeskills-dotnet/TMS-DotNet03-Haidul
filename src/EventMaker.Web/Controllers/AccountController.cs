@@ -69,13 +69,13 @@ namespace EventMaker.Web.Controllers
         {
             if (userId == null || code == null)
             {
-                return View("Error");
+                return View(ModelErrorsResource.UserNotFound);
             }
             var result = await _accountManager.ConfirmEmailAsync(userId, code);
             if (result.Succeeded)
                 return RedirectToAction("Index", "Home");
             else
-                return View("Error");
+                return View(ModelErrorsResource.EmailNotConfirmed);
         }
 
         [HttpGet]
@@ -166,7 +166,7 @@ namespace EventMaker.Web.Controllers
         [AllowAnonymous]
         public IActionResult ResetPassword(string code = null)
         {
-            return code == null ? View("Error") : View();
+            return code == null ? View(ModelErrorsResource.OtherError) : View();
         }
 
         [HttpPost]

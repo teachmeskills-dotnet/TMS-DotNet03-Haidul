@@ -15,11 +15,21 @@
         <div class="homepage-eventowner">
             <p class="homepage-eventowner__allevents">Events</p>
         </div>
-        <form class="homepage-quicksearch">
+        <div class="homepage-quicksearch" >
             <button class="homepage-quicksearch__alleventsbutton">All events</button>
             @if (User.Identity.IsAuthenticated)
             {<button class="homepage-quicksearch__myeventsbutton">My events</button>}
+        <form method="get" asp-controller="Home" asp-action="Index" class="homepage-quicksearch__filter">
+            <label>Имя: </label>
+            <input name="name" class="" />
+            <select asp-items="Html.GetEnumSelectList<FilterOptions>()" asp-for="FilterViewModel.FilterOptions" class=""></select>
+
+            <label>Компания: </label>
+            <select asp-items="Html.GetEnumSelectList<EventFormats>()" asp-for="FilterViewModel.EventFormats" class=""></select>
+
+            <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
         </form>
+        </div>
         <div class="event-container">
             @if (Model.EventDtos.Any())
             {

@@ -68,7 +68,7 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Format.
         /// </summary>
-        public EventFormat? Format { get; set; }
+        public EventFormats? Format { get; set; }
 
         /// <summary>
         /// Participants number

@@ -38,6 +38,7 @@ namespace EventMaker.Web
             services.AddScoped<IEventManager, EventManager>();
             services.AddScoped<IProfileManager, ProfileManager>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IFiltrationService, FiltrationService>();
 
             // Database context
             services.AddDbContext<EventMakerDbContext>(options =>
