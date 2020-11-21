@@ -27,7 +27,7 @@ namespace EventMaker.Web.Controllers
 
         [HttpGet]
         public IActionResult Index(FilterOptions filterOptions , EventFormats eventFormats , int page = 1 , string name = null)
-        {
+         {
             int pageSize = 4;
 
             var events = _eventManager.GetAllEvents();

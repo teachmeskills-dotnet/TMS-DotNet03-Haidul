@@ -19,15 +19,13 @@
             <button class="homepage-quicksearch__alleventsbutton">All events</button>
             @if (User.Identity.IsAuthenticated)
             {<button class="homepage-quicksearch__myeventsbutton">My events</button>}
-        <form method="get" asp-controller="Home" asp-action="Index" class="homepage-quicksearch__filter">
-            <label>Имя: </label>
-            <input name="name" class="" />
-            <select asp-items="Html.GetEnumSelectList<FilterOptions>()" asp-for="FilterViewModel.FilterOptions" class=""></select>
+        <form method="get" asp-controller="Home" asp-action="Index" class="homepage-filter">
+            <input type="text" placeholder="Type to search" name="name" class="homepage-filter__name" />
+            <select asp-items="Html.GetEnumSelectList<FilterOptions>()" asp-for="FilterViewModel.FilterOptions" class="homepage-filter__nameoption"></select>
 
-            <label>Компания: </label>
-            <select asp-items="Html.GetEnumSelectList<EventFormats>()" asp-for="FilterViewModel.EventFormats" class=""></select>
+            <select asp-items="Html.GetEnumSelectList<EventFormats>()" asp-for="FilterViewModel.EventFormats" class="homepage-filter__format"></select>
 
-            <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
+            <button type="submit" value="Фильтр" class="homepage-quicksearch__filterbutton"><i class="fas fa-search"></i></button>
         </form>
         </div>
         <div class="event-container">
