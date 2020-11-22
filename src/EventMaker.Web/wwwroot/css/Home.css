@@ -13,6 +13,13 @@
     margin-left: 70.07px;
 }
 
+.page-number {
+    position: absolute;
+    bottom: 0px;
+    width:100%;
+    text-align:center;
+}
+
 .event-container-event {
     display: flex;
     flex-direction: column;
@@ -211,14 +218,19 @@
     background: #FFFFFF;
 }
 
-.homepage-quicksearch__myeventsbutton:hover {
+.homepage-quicksearch__myevents:hover {
     border: solid 2px;
     transition: all 0.6s ease;
     color: #2E2E2E;
     background: #FFFFFF;
 }
 
-.homepage-quicksearch__myeventsbutton {
+.homepage-quicksearch__myevents {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    vertical-align:central;
+    text-decoration:none;
     width: 100.39px;
     height: 45.39px;
     border: none;
@@ -231,6 +243,11 @@
     line-height: 18px;
     text-transform: uppercase;
     color: #FFFFFF;
+}
+
+.homepage-quicksearch__all-my-form{
+    display:flex;
+    flex-direction:row;
 }
 
 .page-navigation {

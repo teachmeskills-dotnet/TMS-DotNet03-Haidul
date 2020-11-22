@@ -2,24 +2,10 @@
 
 @{ ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.EventIndex, PageTitlesResource.SiteName); }
 
-@if (ViewBag.UserId == Model.UserId)
-{
-    <div class="create-form">
-        <form method="post">
-            <button asp-controller="Event" asp-action="AddParticipant" asp-route-eventId="@Model.Id">
-                Participate
-            </button>
-            <button asp-controller="Event" asp-action="DeleteParticipant" asp-route-eventId="@Model.Id">
-                Delete participant
-            </button>
-            <div class="participants-list">
-                @foreach(var participant in ViewBag.ParticipantsNames)
-                {
-                    @participant;
-                }
-            </div>
-        </form>
-        <div class="create-form__content">
+
+<div class="container">
+    <div class="left-event-side">
+        <div class="form__content">
             <div asp-validation-summary="ModelOnly"></div>
             <div>
                 <label asp-for="Name"></label>
@@ -54,86 +40,60 @@
                 <span asp-for="AuthorName">: @Model.AuthorName</span>
             </div>
         </div>
-        <form class="create-form__event-buttons">
-            <button formmethod="post" class="event-buttons__edit"
-                    asp-controller="Event"
-                    asp-action="EditEventIndex"
-                    asp-route-id="@Model.Id"
-                    asp-route-authorName="@Model.AuthorName">
+    </div>
+    <div class="right-event-side">
+                @if (ViewBag.UserId == Model.UserId)
+        {
+    <form class="create-form__event-buttons">
+        <button formmethod="post" class="event-buttons__edit"
+                asp-controller="Event"
+                asp-action="EditEventIndex"
+                asp-route-id="@Model.Id"
+                asp-route-authorName="@Model.AuthorName">
 
-                Edit Event
+            Edit Event
+        </button>
+        <button formmethod="post" class="event-buttons__delete"
+                asp-controller="Event"
+                asp-action="DeleteEvent"
+                asp-route-id=@Model.Id
+                asp-route-authorName=@Model.AuthorName>
+            Delete Event
+        </button>
+    </form>}
+        <form class="create-form" method="post">
+            <button class="create-form__addparticipant" asp-controller="Event" asp-action="AddParticipant" asp-route-eventId="@Model.Id">
+                Participate
             </button>
-            <button formmethod="post" class="event-buttons__delete"
-                    asp-controller="Event"
-                    asp-action="DeleteEvent"
-                    asp-route-id=@Model.Id
-                    asp-route-authorName=@Model.AuthorName>
-                Delete Event
+            <button class="create-form__deleteparticipant" asp-controller="Event" asp-action="DeleteParticipant" asp-route-eventId="@Model.Id">
+                Delete participant
             </button>
         </form>
-    </div> }
-else
-{
-<div class="create-form">
-    <form method="post">
-        <button asp-controller="Event" asp-action="AddParticipant" asp-route-eventId="@Model.Id">
-            Participate
-        </button>
-        <button asp-controller="Event" asp-action="DeleteParticipant" asp-route-eventId="@Model.Id">
-            Delete participant
-        </button>
         <div class="participants-list">
+            <h2>Participant list</h2>
+        <ul>   
             @foreach (var participant in ViewBag.ParticipantsNames)
             {
-                @participant;
+            <li>@participant</li> 
             }
-        </div>
-    </form>
-    <div class="create-form__content">
-        <div asp-validation-summary="ModelOnly"></div>
-        <div>
-            <label asp-for="Name"></label>
-            <h1 asp-for="Name">@Model.Name</h1>
-        </div>
-        <div>
-            <label asp-for="Title"></label>
-            <h2 asp-for="Title">@Model.Title</h2>
-        </div>
-        <div>
-            <label asp-for="Info"></label>
-            <p asp-for="Info">@Model.Info</p>
-        </div>
-        <div>
-            <label asp-for="Started" for="started">Started</label>
-            <time asp-for="Started">: @Model.Started.ToShortDateString()</time>
-        </div>
-        <div>
-            <label asp-for="Format"></label>
-            <span asp-for="Format">: @Model.Format</span>
-        </div>
-        <div>
-            <label asp-for="PNumber"></label>
-            <span asp-for="PNumber">: @Model.PNumber</span>
-        </div>
-        <div>
-            <label asp-for="PFreeNumber"></label>
-            <span asp-for="PNumber">: @Model.PFreeNumber</span>
-        </div>
-        <div>
-            <label asp-for="AuthorName"></label>
-            <span asp-for="PNumber">: @Model.AuthorName</span>
-        </div>
+        </ul>
+        </div>  
     </div>
-</div>}
+</div>
 
+
+    
+
+  
+  
 @if (ViewBag.UserId == Model.UserId)
 {
 @section css {
-    <link href="~/css/eventOwn.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/eventMain.css" rel="stylesheet" asp-append-version="true" />
 } }
 else
 {
 @section css {
-    <link href="~/css/eventOwn.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/eventMain.css" rel="stylesheet" asp-append-version="true" />
 }  
 }

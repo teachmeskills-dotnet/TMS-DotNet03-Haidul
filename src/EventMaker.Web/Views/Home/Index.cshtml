@@ -15,17 +15,19 @@
         <div class="homepage-eventowner">
             <p class="homepage-eventowner__allevents">Events</p>
         </div>
-        <div class="homepage-quicksearch" >
-            <button class="homepage-quicksearch__alleventsbutton">All events</button>
-            @if (User.Identity.IsAuthenticated)
-            {<button class="homepage-quicksearch__myeventsbutton">My events</button>}
+        <div class="homepage-quicksearch">
+            <form class="homepage-quicksearch__all-my-form" method="get" asp-controller="Home" asp-action="Index">
+                <button class="homepage-quicksearch__alleventsbutton">All events</button>
+                @if (User.Identity.IsAuthenticated)
+                {<a class="homepage-quicksearch__myevents" asp-route-name="@User.Identity.Name">My events</a>}
+            </form>        
         <form method="get" asp-controller="Home" asp-action="Index" class="homepage-filter">
             <input type="text" placeholder="Type to search" name="name" class="homepage-filter__name" />
             <select asp-items="Html.GetEnumSelectList<FilterOptions>()" asp-for="FilterViewModel.FilterOptions" class="homepage-filter__nameoption"></select>
 
             <select asp-items="Html.GetEnumSelectList<EventFormats>()" asp-for="FilterViewModel.EventFormats" class="homepage-filter__format"></select>
 
-            <button type="submit" value="Фильтр" class="homepage-quicksearch__filterbutton"><i class="fas fa-search"></i></button>
+            <button class="homepage-quicksearch__filterbutton"><i class="fas fa-search"></i></button>
         </form>
         </div>
         <div class="event-container">
@@ -75,5 +77,5 @@ else
 }
 
 @section pageNavigation{
-    <page-link  page-model="@Model.PageViewModel" page-action="Index"></page-link>
+    <page-link class="page-number" page-model="@Model.PageViewModel" page-action="Index"></page-link>
 }

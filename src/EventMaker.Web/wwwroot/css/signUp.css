@@ -2,6 +2,10 @@
     box-shadow: none;
 }
 
+input {
+    background: transparent;
+}
+
 input, label {
     font-family: "Mulish", sans-serif;
     font-size: 18px;
