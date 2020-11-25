@@ -43,21 +43,19 @@ namespace EventMaker.Web.Middlewares
             catch (OtherException<IdentityError> error)
             {
                 var response = context.Response;
-                var writelist = new StringBuilder();
-                response.ContentType = "application/json";
+                var errorList = new StringBuilder();
+                response.ContentType = "text/HTML";
 
                 foreach (var err in error.ErrorCollection)
                 {
-                    writelist.Append($"{err.Description} ");   
+                    errorList.Append($"{err.Description} ");   
                 }
-
-                var result = JsonSerializer.Serialize(new { message = writelist.ToString() });
-                await response.WriteAsync(result.ToString());
+                await response.WriteAsync(errorList.ToString());
             }
             catch (Exception error)
             {
                 var response = context.Response;
-                response.ContentType = "application/json";
+                response.ContentType = "text/HTML";
 
                 response.StatusCode = error switch
                 {
@@ -69,10 +67,9 @@ namespace EventMaker.Web.Middlewares
                 };
 
                 var result = JsonSerializer.Serialize(new { message = error?.Message });
-                await response.WriteAsync(result);
+                await response.WriteAsync($"Error : {response.StatusCode} - {error.Message}");
 
             }
-
             
         }
     }

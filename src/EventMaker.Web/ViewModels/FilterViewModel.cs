@@ -7,9 +7,9 @@ namespace EventMaker.Web.ViewModels
 {
     public class FilterViewModel
     {
-        public FilterOptions FilterOptions { get; }
+        public FilterOptions? FilterOptions { get; }
 
-        public EventFormats EventFormats { get; }
+        public EventFormats? EventFormats { get; }
 
         public string SelectedName { get; private set; }
 

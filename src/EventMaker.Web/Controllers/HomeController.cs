@@ -23,18 +23,17 @@ namespace EventMaker.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(FilterOptions filterOptions, EventFormats eventFormats, int page = 1, string name = null)
+        public IActionResult Index(HomeViewModel homeModel, int page = 1, string name = null)
         {
             int pageSize = 4;
 
             var events = _eventManager.GetAllEvents();
             if (!string.IsNullOrEmpty(name))
             {
-                events = _filtrationService.FilterEvents(filterOptions, eventFormats, events, name);
-            }
-            if (name == User.Identity.Name && User.Identity.Name != null)
-            {
-                events = _filtrationService.FilterEvents(filterOptions, eventFormats, events, name);
+                events = _filtrationService.FilterEvents(homeModel.FilterOptions,
+                                                         homeModel.EventFormats,
+                                                         events,
+                                                         name);
             }
             var count = events.Count();
             var takedEventDtos = events.Skip((page - 1) * pageSize).Take(pageSize).ToList();
@@ -44,7 +43,8 @@ namespace EventMaker.Web.Controllers
             {
                 EventDtos = takedEventDtos,
                 PageViewModel = new PageViewModel(count, page, pageSize),
-                FilterViewModel = new FilterViewModel(filterOptions, eventFormats, name),
+                FilterOptions = homeModel.FilterOptions,
+                EventFormats = homeModel.EventFormats,
             };
 
             return View(model);

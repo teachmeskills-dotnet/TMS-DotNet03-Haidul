@@ -23,9 +23,13 @@
             </form>        
         <form method="get" asp-controller="Home" asp-action="Index" class="homepage-filter">
             <input type="text" placeholder="Type to search" name="name" class="homepage-filter__name" />
-            <select asp-items="Html.GetEnumSelectList<FilterOptions>()" asp-for="FilterViewModel.FilterOptions" class="homepage-filter__nameoption"></select>
+            <select asp-items="Html.GetEnumSelectList<FilterOptions>()" asp-for="FilterOptions" class="homepage-filter__nameoption">
+                <option disabled selected value=""> -- select an option -- </option>
+            </select>
 
-            <select asp-items="Html.GetEnumSelectList<EventFormats>()" asp-for="FilterViewModel.EventFormats" class="homepage-filter__format"></select>
+            <select asp-items="Html.GetEnumSelectList<EventFormats>()" asp-for="EventFormats" class="homepage-filter__format">
+                <option disabled selected value=""> -- select an option -- </option>
+            </select>
 
             <button class="homepage-quicksearch__filterbutton"><i class="fas fa-search"></i></button>
         </form>

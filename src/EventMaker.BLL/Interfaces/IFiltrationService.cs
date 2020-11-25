@@ -17,6 +17,6 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="eventDtos">Collection of events.</param>
         /// <param name="name">Name.</param>
         /// <returns>IEnumerable<EventDto> </returns>
-        IEnumerable<EventDto> FilterEvents(FilterOptions filterOptions, EventFormats eventFormat, IEnumerable<EventDto> eventDtos, string name = null);
+        IEnumerable<EventDto> FilterEvents(FilterOptions? filterOptions, EventFormats? eventFormat, IEnumerable<EventDto> eventDtos, string name = null);
     }
 }
