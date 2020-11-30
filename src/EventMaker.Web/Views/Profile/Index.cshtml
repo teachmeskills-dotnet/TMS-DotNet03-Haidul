@@ -36,7 +36,7 @@
             <p asp-for="Email">Email : @Model.Email</p>
             <p asp-for="FirstName">FirstName : @Model.FirstName</p>
             <p asp-for="LastName">LastName : @Model.LastName</p>
-            <p asp-for="BirthDate">BirthDate : @if (@Model.BirthDate.HasValue){@Model.BirthDate.Value.ToShortDateString()}</p>
+            <p asp-for="BirthDate">BirthDate : @if (@Model.BirthDate != null){@Model.BirthDate.Value.ToShortDateString()}</p>
             @if (Model.Age != 0)
             {<p asp-for="Age">Age : @Model.Age</p>}
             @if (Model.Phone != 0)

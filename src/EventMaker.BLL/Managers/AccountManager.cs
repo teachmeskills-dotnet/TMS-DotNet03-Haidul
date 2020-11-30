@@ -23,18 +23,18 @@ namespace EventMaker.BLL.Managers
             _profileManager = profileManager ?? throw new ArgumentNullException(nameof(profileManager));
         }
 
-        public async Task<(IdentityResult, ApplicationUser, string code)> SignUpAsync(string email, string userName, string password)
+        public async Task<(IdentityResult, ApplicationUser, string code)> SignUpAsync(string email, string username, string password)
         {
             var user = new ApplicationUser
             {
                 Email = email,
-                UserName = userName
+                UserName = username
             };
 
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
-                await _profileManager.CreateProfileAsync(email, userName, user.Id);
+                await _profileManager.CreateProfileAsync(email, username, user.Id);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 return (result, user, code);
             }

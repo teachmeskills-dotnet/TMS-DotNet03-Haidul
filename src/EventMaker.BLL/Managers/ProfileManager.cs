@@ -29,7 +29,8 @@ namespace EventMaker.BLL.Managers
                 Email = email,
                 Username = userName,
                 Created = DateTime.Now,
-                UserId = userId,
+                BirthDate = null,
+                UserId = userId
             };
             await _repositoryProfile.AddAsync(profile);
 
