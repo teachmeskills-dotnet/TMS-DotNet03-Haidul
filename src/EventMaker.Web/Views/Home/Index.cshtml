@@ -20,19 +20,19 @@
                 <button class="homepage-quicksearch__alleventsbutton">All events</button>
                 @if (User.Identity.IsAuthenticated)
                 {<a class="homepage-quicksearch__myevents" asp-route-name="@User.Identity.Name">My events</a>}
-            </form>        
-        <form method="get" asp-controller="Home" asp-action="Index" class="homepage-filter">
-            <input type="text" placeholder="Type to search" name="name" class="homepage-filter__name" />
-            <select asp-items="Html.GetEnumSelectList<FilterOptions>()" asp-for="FilterOptions" class="homepage-filter__nameoption">
-                <option disabled selected value=""> -- select an option -- </option>
-            </select>
+            </form>
+            <form method="get" asp-controller="Home" asp-action="Index" class="homepage-filter">
+                <input type="text" placeholder="Type to search" name="name" class="homepage-filter__name" />
+                <select asp-items="Html.GetEnumSelectList<FilterOptions>()" asp-for="FilterOptions" class="homepage-filter__nameoption">
+                    <option disabled selected value="">select an option</option>
+                </select>
 
-            <select asp-items="Html.GetEnumSelectList<EventFormats>()" asp-for="EventFormats" class="homepage-filter__format">
-                <option disabled selected value=""> -- select an option -- </option>
-            </select>
+                <select asp-items="Html.GetEnumSelectList<EventFormats>()" asp-for="EventFormats" class="homepage-filter__format">
+                    <option disabled selected value="">select an option</option>
+                </select>
 
-            <button class="homepage-quicksearch__filterbutton"><i class="fas fa-search"></i></button>
-        </form>
+                <button class="homepage-quicksearch__filterbutton"><i class="fas fa-search"></i></button>
+            </form>
         </div>
         <div class="event-container">
             @if (Model.EventDtos.Any())
@@ -82,4 +82,8 @@ else
 
 @section pageNavigation{
     <page-link class="page-number" page-model="@Model.PageViewModel" page-action="Index"></page-link>
+}
+
+@section js{
+    <link href="~/js/app.js" rel="stylesheet"/>
 }

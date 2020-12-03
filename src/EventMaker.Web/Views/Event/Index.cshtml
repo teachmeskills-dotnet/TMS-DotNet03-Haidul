@@ -42,25 +42,25 @@
         </div>
     </div>
     <div class="right-event-side">
-                @if (ViewBag.UserId == Model.UserId)
+        @if (ViewBag.UserId == Model.UserId)
         {
-    <form class="create-form__event-buttons">
-        <button formmethod="post" class="event-buttons__edit"
-                asp-controller="Event"
-                asp-action="EditEventIndex"
-                asp-route-id="@Model.Id"
-                asp-route-authorName="@Model.AuthorName">
+<form class="create-form__event-buttons">
+    <button formmethod="post" class="event-buttons__edit"
+            asp-controller="Event"
+            asp-action="EditEventIndex"
+            asp-route-id="@Model.Id"
+            asp-route-authorName="@Model.AuthorName">
 
-            Edit Event
-        </button>
-        <button formmethod="post" class="event-buttons__delete"
-                asp-controller="Event"
-                asp-action="DeleteEvent"
-                asp-route-id=@Model.Id
-                asp-route-authorName=@Model.AuthorName>
-            Delete Event
-        </button>
-    </form>}
+        Edit Event
+    </button>
+    <button formmethod="post" class="event-buttons__delete"
+            asp-controller="Event"
+            asp-action="DeleteEvent"
+            asp-route-id=@Model.Id
+            asp-route-authorName=@Model.AuthorName>
+        Delete Event
+    </button>
+</form>}
         <form class="create-form" method="post">
             <button class="create-form__addparticipant" asp-controller="Event" asp-action="AddParticipant" asp-route-eventId="@Model.Id">
                 Participate
@@ -71,21 +71,45 @@
         </form>
         <div class="participants-list">
             <h2>Participant list</h2>
-        <ul>   
-            @foreach (var participant in ViewBag.ParticipantsNames)
-            {
-            <li>@participant</li> 
-            }
-        </ul>
-        </div>  
+            <ul>
+                @foreach (var participant in ViewBag.ParticipantsNames)
+                {
+    <li>@participant</li>
+}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-2">User</div>
+        <div class="col-4"><input type="text" id="userInput" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Message</div>
+        <div class="col-4"><input type="text" id="messageInput" /></div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">
+            <input type="button" id="sendButton" value="Send Message" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <ul id="messagesList"></ul>
     </div>
 </div>
 
 
-    
 
-  
-  
 @if (ViewBag.UserId == Model.UserId)
 {
 @section css {
@@ -95,5 +119,9 @@ else
 {
 @section css {
     <link href="~/css/eventMain.css" rel="stylesheet" asp-append-version="true" />
-}  
+}}
+
+@section js {
+    <script src="~/js/signalr/dist/browser/signalr.js" asp-append-version="true"></script>
+    <script src="~/js/eventChat.js" asp-append-version="true"></script>
 }

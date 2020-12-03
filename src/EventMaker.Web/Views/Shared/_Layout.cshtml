@@ -15,30 +15,31 @@
     <div class="main-wrapper">
         @if (User.Identity.IsAuthenticated)
         {
-    <header class="navigation">
-        <div class="logo">
-            <a asp-controller="Home" asp-action="Index"><img class="logo__image" src="~/images/logo.svg" alt="logo" /></a>
-        </div>
-        <form class="navigation__account-form" asp-controller="Account">
-            <button formmethod="get" class="navigation__profile-button" asp-controller="Profile" asp-action="Index">@User.Identity.Name</button>
-            <button formmethod="post" class="navigation__sign-out-button" asp-controller="Account" asp-action="SignOut">Sign Out</button>
-        </form>
-    </header> }
-                else
-                {
-    <header class="navigation">
-        <div class="logo">
-            <a asp-controller="Home" asp-action="Index"><img class="logo__image" src="~/images/logo.svg" alt="logo" /></a>
-        </div>
-        <form class="navigation__account-form" asp-controller="Account">
-            <button formmethod="get" class="navigation__log-in-button" asp-controller="Account" asp-action="LogIn">Log In</button>
-            <button formmethod="get" class="navigation__sign-up-button" asp-controller="Account" asp-action="SignUp">Sign Up</button>
-        </form>
-    </header>}
+<header class="navigation">
+    <div class="logo">
+        <a asp-controller="Home" asp-action="Index"><img class="logo__image" src="~/images/logo.svg" alt="logo" /></a>
     </div>
-<div class="main-wrapper">
-    @RenderBody()
-</div>
+    <form class="navigation__account-form" asp-controller="Account">
+        <button formmethod="get" class="navigation__profile-button" asp-controller="Profile" asp-action="Index">@User.Identity.Name</button>
+        <button formmethod="post" class="navigation__sign-out-button" asp-controller="Account" asp-action="SignOut">Sign Out</button>
+    </form>
+</header> }
+else
+{
+<header class="navigation">
+    <div class="logo">
+        <a asp-controller="Home" asp-action="Index"><img class="logo__image" src="~/images/logo.svg" alt="logo" /></a>
+    </div>
+    <form class="navigation__account-form" asp-controller="Account">
+        <button formmethod="get" class="navigation__log-in-button" asp-controller="Account" asp-action="LogIn">Log In</button>
+        <button formmethod="get" class="navigation__sign-up-button" asp-controller="Account" asp-action="SignUp">Sign Up</button>
+    </form>
+</header>}
+    </div>
+    <div class="main-wrapper">
+        @RenderBody()
+    </div>
     @RenderSection("pageNavigation", false)
+    @RenderSection("js", false)
 </body>
 </html>
