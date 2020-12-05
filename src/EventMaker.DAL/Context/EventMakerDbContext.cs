@@ -29,6 +29,11 @@ namespace EventMaker.DAL.Context
         public DbSet<Event> Events { get; set; }
 
         /// <summary>
+        /// Comments.
+        /// </summary>
+        public DbSet<Comment> Comments { get; set; }
+
+        /// <summary>
         /// Event participants.
         /// </summary>
         public DbSet<EventParticipant> EventParticipants { get; set; }
@@ -56,6 +61,7 @@ namespace EventMaker.DAL.Context
             modelBuilder.ApplyConfiguration(new EventParticipantConfiguration());
             modelBuilder.ApplyConfiguration(new EventTagConfiguration());
             modelBuilder.ApplyConfiguration(new TagConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

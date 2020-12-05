@@ -48,7 +48,7 @@ namespace EventMaker.DAL.Entities
         /// Comment.
         /// </summary>
    
-        public string? Comment { get; set; }
+        public IEnumerable<Comment>? Comments { get; set; }
 
         /// <summary>
         /// Day of creation
