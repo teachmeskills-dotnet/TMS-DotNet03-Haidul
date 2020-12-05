@@ -1,49 +1,52 @@
-﻿.container {
-    display: flex;
-    justify-content: center;
-    margin-top: 70px;
-    height: 100%;
+﻿.homepage-events span {
+    margin: 0px 6.13px 0px 5.84px;
 }
 
-#empty {
-    margin: 0 auto;
+.homepage-quicksearch {
+    white-space: nowrap;
+    margin-top: 31.3px;
 }
 
-.event-list {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.event-list__event {
-    margin: 20px 20px;
-    box-shadow: 0 14px 8px rgba(0,0,0,.2);
-    padding: 10px;
-    min-width: 586px;
-}
-
-.event-list__dates span {
-    display: block;
-    color: rgba(0,0,0,.5);
+.homepage-quicksearch__alleventsbutton {
+    width:100.39px;
+    height:45.39px;
+    border: none;
+    margin-right: 21.02px;
+    background: #2E2E2E;
+    box-shadow: 0px 2px 12px -4px rgba(46, 46, 46, 0.507785);
+    border-radius: 3px;
     font-weight: 600;
-    margin: 5px 0;
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #FFFFFF;
 }
 
-.event-list__participants {
-    display: block;
-    font-size: 20px;
-    margin: 5px 0;
+.homepage-quicksearch__alleventsbutton:hover {
+    border: solid 2px;
+    transition: all 0.6s ease;
+    color: #2E2E2E;
+    background: #FFFFFF;
 }
 
-.event-list__title {
-    word-break: break-all;
-    color: #4facfe;
-    font-size: 30px;
+.homepage-quicksearch__myeventsbutton {
+    border: solid 2px;
+    transition: all 0.6s ease;
+    color: #2E2E2E;
+    background: #FFFFFF;
 }
 
-.event-list__name {
-    word-break: break-all;
-    font-size: 25px;
+.homepage-quicksearch__myeventsbutton {
+    width: 100.39px;
+    height: 45.39px;
+    border: none;
+    margin-right: 21.02px;
+    background: #2E2E2E;
+    box-shadow: 0px 2px 12px -4px rgba(46, 46, 46, 0.507785);
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #FFFFFF;
 }

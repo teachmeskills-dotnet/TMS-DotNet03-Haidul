@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailNotConfirmed" xml:space="preserve">
+    <value>"Email not confirmed"</value>
+  </data>
   <data name="EventNotFound" xml:space="preserve">
     <value>"Event not found"</value>
   </data>
   <data name="LogInError" xml:space="preserve">
     <value>"Incorrect email or (and) password."</value>
+  </data>
+  <data name="OtherError" xml:space="preserve">
+    <value>"Error"</value>
   </data>
   <data name="ProfileNotFound" xml:space="preserve">
     <value>"Profile not found"</value>

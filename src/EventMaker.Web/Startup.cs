@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Managers;
 using EventMaker.BLL.Mappings;
@@ -9,15 +10,11 @@ using EventMaker.DAL.Entities;
 using EventMaker.Web.Mappings;
 using EventMaker.Web.Middlewares;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NETCore.MailKit.Extensions;
-using NETCore.MailKit.Infrastructure.Internal;
 using Serilog;
-using System;
 
 namespace EventMaker.Web
 {
@@ -38,6 +35,12 @@ namespace EventMaker.Web
             services.AddScoped<IEventManager, EventManager>();
             services.AddScoped<IProfileManager, ProfileManager>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IFiltrationService, FiltrationService>();
+            services.AddSignalR(hubOptions =>
+            {
+                hubOptions.EnableDetailedErrors = true;
+                hubOptions.KeepAliveInterval = System.TimeSpan.FromMinutes(1);
+            });
 
             // Database context
             services.AddDbContext<EventMakerDbContext>(options =>
@@ -46,6 +49,7 @@ namespace EventMaker.Web
             // ASP.NET Core Identity
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
+                options.User.RequireUniqueEmail = true;
                 options.Password.RequiredLength = 8;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireLowercase = true;
@@ -94,6 +98,8 @@ namespace EventMaker.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

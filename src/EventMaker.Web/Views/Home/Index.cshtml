@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EventViewModel>
+﻿@model HomeViewModel
 
 @{ ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.HomeIndex, PageTitlesResource.SiteName); }
 
@@ -6,81 +6,84 @@
     <title>Home page</title>
 </head>
 <body>
-    @if (User.Identity.IsAuthenticated)
-    {
-<div class="container">
-    @if (Model.Any())
-    {
+    <div class="homepage-left">
+        <div class="homepage-events">
+            <p>Home</p>
+            <span>/</span>
+            <p>Events</p>
+        </div>
+        <div class="homepage-eventowner">
+            <p class="homepage-eventowner__allevents">Events</p>
+        </div>
+        <div class="homepage-quicksearch">
+            <form class="homepage-quicksearch__all-my-form" method="get" asp-controller="Home" asp-action="Index">
+                <button class="homepage-quicksearch__alleventsbutton">All events</button>
+                @if (User.Identity.IsAuthenticated)
+                {<a class="homepage-quicksearch__myevents" asp-route-name="@User.Identity.Name">My events</a>}
+            </form>
+            <form method="get" asp-controller="Home" asp-action="Index" class="homepage-filter">
+                <input type="text" placeholder="Type to search" name="name" class="homepage-filter__name" />
+                <select asp-items="Html.GetEnumSelectList<FilterOptions>()" asp-for="FilterOptions" class="homepage-filter__nameoption">
+                    <option disabled selected value="">select an option</option>
+                </select>
+
+                <select asp-items="Html.GetEnumSelectList<EventFormats>()" asp-for="EventFormats" class="homepage-filter__format">
+                    <option disabled selected value="">select an option</option>
+                </select>
+
+                <button class="homepage-quicksearch__filterbutton"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        <div class="event-container">
+            @if (Model.EventDtos.Any())
+            {
 <div class="event-list">
-    @foreach (var usersEvent in Model)
+    @foreach (var usersEvent in Model.EventDtos)
     {
-<div class="event-list__event">
-    <a class="event-list__title"
-       asp-controller="Event" 
-       asp-action="Index"
-       asp-route-id="@usersEvent.Id">@usersEvent.Name</a>
-    <h2 class="event-list__name">@usersEvent.Title</h2>
-    <div class="event-list__dates">
+<div class="event-container-event">
+    <div class="event-list__info">
         <span>Started: @usersEvent.Started.ToShortDateString()</span>
         <span>Created: @usersEvent.Created.ToShortDateString()</span>
-    </div>
-    <div class="event-list__participants">
         <span>Participants number: @usersEvent.PNumber</span>
         <span>Free places: @usersEvent.PFreeNumber</span>
     </div>
-</div>              }
+    <a class="event-list__name"
+       asp-controller="Event"
+       asp-action="Index"
+       asp-route-id="@usersEvent.Id">@usersEvent.Name</a>
+</div>          }
 </div> }
 else
 {
 <h1 id="empty">Event list is empty</h1>}
+        </div>
+    </div>
 
+    @if (User.Identity.IsAuthenticated)
+    {
+<div class="homepage-right">
     <form method="get" class="event-buttons">
         <button class="event-buttons__create"
                 asp-controller="Event"
                 asp-action="CreateEvent">
-            Create Event
+            <i class="far fa-plus-square"></i>
+            <span>Create Event</span>
+            <p>Describe your event and create it</p>
         </button>
     </form>
-</div> }
-else
-{
-<div class="container">
-    @if (Model.Any())
-    {
-<div class="event-list">
-    @foreach (var usersEvent in Model)
-    {
-<div class="event-list__event">
-    <a class="event-list__title"
-       asp-controller="Event"
-       asp-action="Index"
-       asp-route-id="@usersEvent.Id">@usersEvent.Name</a>
-    <h2 class="event-list__name">@usersEvent.Title</h2>
-    <div class="event-list__dates">
-        <span>Started: @usersEvent.Started</span>
-        <span>Created: @usersEvent.Created</span>
-    </div>
-    <div class="event-list__participants">
-        <span>Participants number: @usersEvent.PNumber</span>
-        <span>Free places: @usersEvent.PFreeNumber</span>
-    </div>
-</div>              }
-</div> }
-else
-{
-<h1 id="empty">Event list is empty</h1>}
 </div>}
+
+
 </body>
 
-@if (User.Identity.IsAuthenticated)
-{
 @section css{
-    <link href="~/css/authHome.css" rel="stylesheet" asp-append-version="true" />
-} }
-else
-{
-@section css{
-    <link href="~/css/nonAuthHome.css"
-          rel="stylesheet"
-          asp-append-version="true" />
-}           }
+    <link href="~/css/Home.css" rel="stylesheet" asp-append-version="true" />
+}
+
+@section pageNavigation{
+    <page-link class="page-number" page-model="@Model.PageViewModel" page-action="Index"></page-link>
+}
+
+@section js{
+    <link href="~/js/app.js" rel="stylesheet"/>
+}

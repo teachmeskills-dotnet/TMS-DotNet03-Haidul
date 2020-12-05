@@ -2,7 +2,9 @@
     box-shadow: none;
 }
 
-input::a
+input{
+    background:transparent;
+}
 
 input, label {
     font-size: 18px;
@@ -51,7 +53,7 @@ input, label {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    padding-left:10px;
 }
 
 .wrapper-form__input-username,
@@ -108,10 +110,28 @@ input, label {
 .wrapper-form__input-submit {
     margin: 0 auto;
     background-color: #FFFF;
-    color: #595f6e;
     outline: none;
     border: none;
     cursor: pointer;
+    color: #2E2E2E;
+    font-size: 24px;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 20px;
+    color: #FFFFFF;
+    background-color: #2E2E2E;
+    padding:10px;
+}
+
+.wrapper-form__input-submit:hover {
+    border:solid;
+    border-color:#2E2E2E;
+    border-width:2px;
+    background-color:#FFFFFF;
+    transition: 0.6s all;
+    color: #2E2E2E;
 }
 
 .wrapper-form__input-remember-me {
@@ -126,4 +146,9 @@ input, label {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.forgot-password__ref {
+    text-decoration: none;
+    color: #000044;
 }

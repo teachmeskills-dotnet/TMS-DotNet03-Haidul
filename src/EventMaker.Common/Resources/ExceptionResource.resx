@@ -130,7 +130,7 @@
     <value>Not Changed</value>
   </data>
   <data name="NotCreated" xml:space="preserve">
-    <value>Not Created</value>
+    <value>Not Created (data already exist or not valid)</value>
   </data>
   <data name="NotDeleted" xml:space="preserve">
     <value>Cant delete or already deleted</value>

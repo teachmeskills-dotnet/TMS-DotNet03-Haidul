@@ -4,12 +4,13 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Mulish", sans-serif;
-    font-size: 18px;
+    font-family: "Mulish", sans-serif; 
 }
 
+
 .main-wrapper {
-    width: 1100px;
+    width: 1399px;
+    height: 100%;
     margin: 0 auto;
 }
 
@@ -21,7 +22,7 @@ header {
     align-items: center;
     border-bottom-style: solid;
     border-bottom-color: #E2E6ED;
-    border-bottom-width: 1px;
+    border-bottom-width: 2px;
 }
 
 .logo {
@@ -74,3 +75,4 @@ header {
         transition: 0.6s all ease;
         color: #FFFFFF;
     }
+

@@ -1,14 +1,16 @@
-﻿.fa-edit{
-    margin-right:5px;
+﻿.fa-edit {
+    margin-right: 10px;
+    margin-left: 5px;
 }
 
-.fa-unlock-alt{
-    margin-left:15px;
+.fa-unlock-alt {
+    margin-right: 10px;
+    margin-left: 5px;
 }
 
 .fa-images {
-    margin-left:15px;
-    margin-right: 5px;
+    margin-right: 15px;
+    margin-left: 5px;
 }
 
 .profile-top__icon > input {
@@ -148,7 +150,7 @@
     border-color:#2E2E2E;
     border-width:2px;
     background-color:#FFFFFF;
-    transition: 0.3s all;
+    transition: 0.6s all;
     color: #2E2E2E;
 }
 
@@ -187,12 +189,13 @@
 
 
 .profile-changepass-form {
-    width: 150px;
+    width: 175px;
     height: 64px;
 }
 
 .profile-changepass-form__button {
     display: flex;
+    white-space:nowrap;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -206,6 +209,7 @@
     color: #FFFFFF;
     background-color: #2E2E2E;
     cursor: pointer;
+    padding-right:5px;
 }
 
 .profile-changepass-form__button:hover{
@@ -213,7 +217,7 @@
     border-color:#2E2E2E;
     border-width:2px;
     background-color:#FFFFFF;
-    transition: 0.3s all;
+    transition: 0.6s all;
     color: #2E2E2E;
 }
 
@@ -233,6 +237,7 @@
     color: #FFFFFF;
     background-color: #2E2E2E;
     cursor: pointer;
+    padding-right:20px;
 }
 
 .profile-avatar-form__button:hover {
@@ -240,12 +245,12 @@
     border-color: #2E2E2E;
     border-width: 2px;
     background-color: #FFFFFF;
-    transition: 0.3s all;
+    transition: 0.6s all;
     color: #2E2E2E;
 }
 
 .profile-avatar-form {
     margin-top: 40px;
-    width: 150px;
+    width: 175px;
     height: 64px;
 }

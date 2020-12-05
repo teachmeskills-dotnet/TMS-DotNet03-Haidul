@@ -61,7 +61,7 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Подтвердите регистрацию, перейдя по ссылке.
+        ///   Looks up a localized string similar to Confirm email by following the link.
         /// </summary>
         public static string MessageConfirm {
             get {
@@ -70,7 +70,7 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Для сброса пароля пройдите по ссылке.
+        ///   Looks up a localized string similar to To reset your password follow the link.
         /// </summary>
         public static string MessageReset {
             get {
@@ -79,7 +79,7 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме.
+        ///   Looks up a localized string similar to To complete the confirmation, check your email and follow the link provided in the letter.
         /// </summary>
         public static string ReturnContent {
             get {
@@ -88,7 +88,7 @@ namespace EventMaker.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Confirm your account&quot;.
+        ///   Looks up a localized string similar to &quot;Confirm your email&quot;.
         /// </summary>
         public static string SubjectConfirm {
             get {

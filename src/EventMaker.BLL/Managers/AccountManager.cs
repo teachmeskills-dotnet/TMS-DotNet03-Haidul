@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Threading.Tasks;
 using EventMaker.BLL.Interfaces;
 using EventMaker.Common.Exceptions;
@@ -22,22 +23,26 @@ namespace EventMaker.BLL.Managers
             _profileManager = profileManager ?? throw new ArgumentNullException(nameof(profileManager));
         }
 
-        public async Task<(IdentityResult, ApplicationUser, string code)> SignUpAsync(string email, string userName, string password)
+        public async Task<(IdentityResult, ApplicationUser, string code)> SignUpAsync(string email, string username, string password)
         {
             var user = new ApplicationUser
             {
                 Email = email,
-                UserName = userName
+                UserName = username
             };
 
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
-                await _profileManager.CreateProfileAsync(email, userName, user.Id);
+                await _profileManager.CreateProfileAsync(email, username, user.Id);
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 return (result, user, code);
             }
-            throw new OtherException(ExceptionResource.NotCreated);
+            else
+            {
+                throw new OtherException<IdentityError>(result.Errors);
+            }
+
         }
 
         public async Task<string> GetUserIdByNameAsync(string name)
@@ -88,7 +93,7 @@ namespace EventMaker.BLL.Managers
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
             {
-                return (null, "", false);
+                return (null, "", false); //TODO : rework this to exception;
             }
 
             var code = await _userManager.GeneratePasswordResetTokenAsync(user);

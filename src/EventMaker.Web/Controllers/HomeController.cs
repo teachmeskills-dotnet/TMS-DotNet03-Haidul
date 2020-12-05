@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using EventMaker.BLL.Interfaces;
+using EventMaker.Common.Enums;
 using EventMaker.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,20 +12,42 @@ namespace EventMaker.Web.Controllers
     {
         private readonly IEventManager _eventManager;
         private readonly IMapper _mapper;
+        private readonly IFiltrationService _filtrationService;
 
         public HomeController(IEventManager eventManager,
-                              IMapper mapper)
+                              IMapper mapper, IFiltrationService filtrationService)
         {
             _eventManager = eventManager ?? throw new ArgumentNullException(nameof(eventManager));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _filtrationService = filtrationService ?? throw new ArgumentNullException(nameof(filtrationService));
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Index(HomeViewModel homeModel, int page = 1, string name = null)
         {
-            var events = _eventManager.GetAllEvents();
-            var eventModels = _mapper.Map<IEnumerable<EventViewModel>>(events);
+            int pageSize = 4;
 
-            return View(eventModels);
+            var events = _eventManager.GetAllEvents();
+            if (!string.IsNullOrEmpty(name))
+            {
+                events = _filtrationService.FilterEvents(homeModel.FilterOptions,
+                                                         homeModel.EventFormats,
+                                                         events,
+                                                         name);
+            }
+            var count = events.Count();
+            var takedEventDtos = events.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            var model = new HomeViewModel
+
+            {
+                EventDtos = takedEventDtos,
+                PageViewModel = new PageViewModel(count, page, pageSize),
+                FilterOptions = homeModel.FilterOptions,
+                EventFormats = homeModel.EventFormats,
+            };
+
+            return View(model);
         }
     }
 }

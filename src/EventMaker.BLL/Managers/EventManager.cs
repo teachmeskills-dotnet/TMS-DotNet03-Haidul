@@ -49,7 +49,7 @@ namespace EventMaker.BLL.Managers
                 var allEvents = _repositoryEvent.GetAllWithoutTracking();
                 if(allEvents.FirstOrDefault(ev => ev.Name == eventDto.Name) != null)
                 {
-                    throw new OtherException(ExceptionResource.NameAlreadyExist);
+                    throw new OtherException<string>(ExceptionResource.NameAlreadyExist);
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace EventMaker.BLL.Managers
             }
             else
             {
-                throw new OtherException(ExceptionResource.NotCreated);
+                throw new OtherException<string>(ExceptionResource.NotCreated);
             }
         }
 
@@ -148,17 +148,13 @@ namespace EventMaker.BLL.Managers
 
         public async Task DeleteEventAsync(EventDto eventDto)
         {
-            if (eventDto is null)
+            if (eventDto != null)
             {
-                var result = await _repositoryEvent.GetEntityAsync(evName => evName.Name.ToLower().Contains(eventDto.Name));
-                if (result == null)
+                var result = await _repositoryEvent.GetEntityAsync(evId => evId.Id == eventDto.Id);
+               if (result == null)
                 {
-                    result = await _repositoryEvent.GetEntityAsync(evTitle => evTitle.Title.ToLower().Contains(eventDto.Title));
-                    if (result == null)
-                    {
-                        throw new NotFoundException(ExceptionResource.EventNotFound);
-                    }
-                }
+                    throw new NotFoundException(ExceptionResource.EventNotFound);
+                } 
                 _repositoryEvent.Delete(result);
                 await _repositoryEvent.SaveChangesAsync();
             }
@@ -207,7 +203,7 @@ namespace EventMaker.BLL.Managers
                 }
                 else
                 {
-                    throw new OtherException(ExceptionResource.AlreadyParticipant);
+                    throw new OtherException<string>(ExceptionResource.AlreadyParticipant);
                 }
             }
         }
@@ -229,12 +225,12 @@ namespace EventMaker.BLL.Managers
                     }
                     else
                     {
-                        throw new OtherException(ExceptionResource.NotDeleted);
+                        throw new OtherException<string>(ExceptionResource.NotDeleted);
                     }
                 }
                 else
                 {
-                    throw new OtherException(ExceptionResource.AlreadyParticipant);
+                    throw new OtherException<string>(ExceptionResource.AlreadyParticipant);
                 }
             }
         }

@@ -7,10 +7,12 @@ using EventMaker.BLL.Models;
 using EventMaker.Common.Exceptions;
 using EventMaker.Common.Resources;
 using EventMaker.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventMaker.Web.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly IProfileManager _profileManager;
@@ -51,7 +53,7 @@ namespace EventMaker.Web.Controllers
             }
             else
             {
-                return NotFound(ModelErrorsResource.ProfileNotFound); /// TODO : rework this exceptions
+                return NotFound(ModelErrorsResource.ProfileNotFound);
             }
             return RedirectToAction("Index", "Profile");
         }

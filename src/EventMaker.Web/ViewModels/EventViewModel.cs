@@ -80,7 +80,7 @@ namespace EventMaker.Web.ViewModels
         /// </summary>
         [Required]
         [Display(Name = nameof(Format))]
-        public EventFormat? Format { get; set; }
+        public EventFormats? Format { get; set; }
 
         /// <summary>
         /// Participants number
