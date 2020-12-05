@@ -23,9 +23,11 @@ connection.start().then(function () {
 });
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
-    var user = document.getElementById("userInput").value;
+    var userName = document.getElementById("userInput").value;
     var message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message).catch(function (err) {
+    var eventId = this.getAttribute("eventId");
+    console.log(userName, message, eventId);
+    connection.invoke("SendMessage", eventId, userName, message).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();

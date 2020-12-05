@@ -17,33 +17,38 @@ namespace EventMaker.Web.Controllers
     {
         private readonly IAccountManager _accountManager;
         private readonly IEventManager _eventManager;
+        private readonly IChatManager _chatManager;
         private readonly IMapper _mapper;
 
         public EventController(IAccountManager accountManager,
                               IEventManager eventManager,
+                              IChatManager chatManager,
                               IMapper mapper)
         {
             _accountManager = accountManager ?? throw new ArgumentNullException(nameof(accountManager));
             _eventManager = eventManager ?? throw new ArgumentNullException(nameof(eventManager));
+            _chatManager = chatManager ?? throw new ArgumentNullException(nameof(chatManager));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet]////TODO : Refactor it;
-        public async Task<IActionResult> Index(int id)
+        [HttpGet]////TODO : Refactor it; ( have event participant prop in viewmodel) 
+        public async Task<IActionResult> Index(int eventId)
         {
-            var userEvent = await _eventManager.GetEventById(id);
+            var userEvent = await _eventManager.GetEventById(eventId);
 
             if (userEvent != null)
             {
-                ViewBag.UserId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
-                var eventParticipantsDto = _eventManager.GetAllParticipants(userEvent.Id);
-                var userNames = new List<string>();
-                foreach (var userId in eventParticipantsDto)
-                {
-                    userNames.Add(await _accountManager.GetUserNameByIdAsync(userId.UserId));
-                }
-                ViewBag.ParticipantsNames = userNames;
                 var eventViewModel = _mapper.Map<EventViewModel>(userEvent);
+                var eventParticipantsDto = _eventManager.GetAllParticipants(userEvent.Id);
+                var eventComments = _chatManager.GetAllEventComments(eventId);
+                eventViewModel.Comments = eventComments;
+                var participantsList = new List<string>();
+                foreach (var participant in eventParticipantsDto)
+                {
+                    participantsList.Add(await _accountManager.GetUserNameByIdAsync(participant.UserId));
+                }
+                eventViewModel.EventParticipants = participantsList;
+                ViewBag.UserId = await _accountManager.GetUserIdByNameAsync(User.Identity.Name);
                 return View(eventViewModel);
             }
             return RedirectToAction("Index", "Home");

@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EventMaker.Common.Interfaces;
-
-namespace EventMaker.DAL.Entities
+﻿namespace EventMaker.BLL.Models
 {
-    /// <summary>
-    /// Message.
-    /// </summary>
-    public class Comment : IHasDbIdentity
+    public class CommentDto
     {
         /// <inheritdoc/>
         public int Id { get; set; }
@@ -25,10 +17,5 @@ namespace EventMaker.DAL.Entities
         /// Message text.
         /// </summary>
         public string MessageText { get; set; }
-
-        /// <summary>
-        /// Navigation to Event.
-        /// </summary>
-        public Event Event { get; set; }
     }
 }

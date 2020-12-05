@@ -36,10 +36,11 @@ namespace EventMaker.Web
             services.AddScoped<IProfileManager, ProfileManager>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IFiltrationService, FiltrationService>();
+            services.AddScoped<IChatManager, ChatManager>();
             services.AddSignalR(hubOptions =>
             {
                 hubOptions.EnableDetailedErrors = true;
-                hubOptions.KeepAliveInterval = System.TimeSpan.FromMinutes(1);
+                hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
             });
 
             // Database context
@@ -70,6 +71,7 @@ namespace EventMaker.Web
             {
                 mc.AddProfile(new EventWebProfile());
                 mc.AddProfile(new EventProfile());
+                mc.AddProfile(new CommentProfile());
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
@@ -99,7 +101,7 @@ namespace EventMaker.Web
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapHub<ChatHub>("/chat");
+                endpoints.MapHub<EventChatHub>("/chat");
             });
         }
     }
