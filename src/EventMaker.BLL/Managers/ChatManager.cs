@@ -24,7 +24,7 @@ namespace EventMaker.BLL.Managers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task SaveEventComment(int eventId , string message , string userName)
+        public async Task SaveComment(int eventId , string message , string userName)
         {
             if(message != null && userName != null)
             {

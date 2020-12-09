@@ -1,19 +1,24 @@
 ﻿
-
+const eventId = document.getElementById("sendButton").getAttribute("eventId");
 const connection = new signalR.HubConnectionBuilder()
-    .withUrl("/chat")
+    .withUrl(`/chat/${eventId}`)
     .build();
 
 
 //Disable send button until connection is established
 document.getElementById("sendButton").disabled = true;
 
-connection.on("ReceiveMessage", function (user, message) {
-    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var encodedMsg = user + " says " + msg;
-    var li = document.createElement("li");
-    li.textContent = encodedMsg;
-    document.getElementById("messagesList").appendChild(li);
+connection.on("ReceiveMessage", function (id, user, message) {
+    if (eventId == id) {
+        var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        var encodedMsg = user + " says " + msg;
+        var li = document.createElement("li");
+        li.textContent = encodedMsg;
+        document.getElementById("messagesList").appendChild(li);
+    }
+    else {
+        console.log(`hehe`);
+    }
 });
 
 connection.start().then(function () {
