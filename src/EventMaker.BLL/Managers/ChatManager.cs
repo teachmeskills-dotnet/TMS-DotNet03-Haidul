@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Models;
-using EventMaker.Common.Exceptions;
-using EventMaker.Common.Resources;
 using EventMaker.DAL.Entities;
 
 namespace EventMaker.BLL.Managers
@@ -24,9 +21,9 @@ namespace EventMaker.BLL.Managers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task SaveComment(int eventId , string message , string userName)
+        public async Task SaveComment(int eventId, string message, string userName)
         {
-            if(message != null && userName != null)
+            if (message != null && userName != null)
             {
                 var comment = new Comment
                 {
@@ -34,13 +31,13 @@ namespace EventMaker.BLL.Managers
                     AuthorName = userName,
                     MessageText = message
                 };
-               await _repositoryComment.AddAsync(comment);
-               await _repositoryComment.SaveChangesAsync();
+                await _repositoryComment.AddAsync(comment);
+                await _repositoryComment.SaveChangesAsync();
             }
         }
         public IEnumerable<CommentDto> GetAllEventComments(int eventId)
         {
-            var comments = _repositoryComment.GetAllWithoutTracking().Where(ev => ev.Id == eventId);
+            var comments = _repositoryComment.GetAllWithoutTracking().Where(ev => ev.EventId == eventId);
             var commentDto = _mapper.Map<IEnumerable<CommentDto>>(comments);
             return commentDto;
         }

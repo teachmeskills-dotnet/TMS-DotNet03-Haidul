@@ -17,9 +17,9 @@ namespace EventMaker.BLL.Services
 
         public async Task SendMessage(string eventId, string userName, string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", eventId, userName, message);
             if (string.IsNullOrWhiteSpace(message) != true)
             {
+                await Clients.All.SendAsync("ReceiveMessage", eventId, userName, message);
                 await _chatManager.SaveComment(Convert.ToInt32(eventId), userName, message);
             }
 

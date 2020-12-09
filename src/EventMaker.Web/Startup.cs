@@ -101,7 +101,7 @@ namespace EventMaker.Web
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapHub<EventChatHub>("/chat/{eventId}");
+                endpoints.MapHub<EventChatHub>("/chat");
             });
         }
     }
