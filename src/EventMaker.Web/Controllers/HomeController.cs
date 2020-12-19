@@ -2,7 +2,6 @@
 using System.Linq;
 using AutoMapper;
 using EventMaker.BLL.Interfaces;
-using EventMaker.Common.Enums;
 using EventMaker.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +27,7 @@ namespace EventMaker.Web.Controllers
             int pageSize = 4;
 
             var events = _eventManager.GetAllEvents();
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name) && homeModel != null)
             {
                 events = _filtrationService.FilterEvents(homeModel.FilterOptions,
                                                          homeModel.EventFormats,

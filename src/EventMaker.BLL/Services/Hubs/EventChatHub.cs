@@ -40,12 +40,12 @@ namespace EventMaker.BLL.Services
                 }
             }
         }
-        public async Task EditMessage(string eventId, string userName, string newMessage , string oldMessage)
+        public async Task EditMessage(string eventId, string userName, string newMessage, string oldMessage)
         {
             if ((string.IsNullOrWhiteSpace(newMessage) != true) && eventId != null && userName != null)
             {
 
-                var result = await _chatManager.UpdateComment(Convert.ToInt32(eventId), userName, newMessage , oldMessage);
+                var result = await _chatManager.UpdateComment(Convert.ToInt32(eventId), userName, newMessage, oldMessage);
                 if (result)
                 {
                     await Clients.All.SendAsync("EditMessage", eventId, userName, newMessage);

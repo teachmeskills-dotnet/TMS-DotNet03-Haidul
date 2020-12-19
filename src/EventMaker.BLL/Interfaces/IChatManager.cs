@@ -15,7 +15,7 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="message">Message.</param>
         /// <param name="eventId">Event id.</param>
         /// <param name="userName">User name.</param>
-        Task<bool> SaveComment(int eventId  , string message, string userName);
+        Task<bool> SaveComment(int eventId, string message, string userName);
 
         /// <summary> 
         /// Get all comments.
@@ -31,7 +31,7 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="userName">User name</param>
         /// <param name="message">User message</param>
         /// <returns></returns>
-        Task<bool> DeleteComment(int? eventId, string userName , string message);
+        Task<bool> DeleteComment(int? eventId, string userName, string message);
 
         /// <summary>
         /// Update comment.
@@ -41,6 +41,6 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="newMessage">New user message</param>
         /// <param name="oldMessage">Old user message</param>
         /// <returns></returns>
-        Task<bool> UpdateComment(int? eventId, string userName , string newMessage , string oldMessage);
+        Task<bool> UpdateComment(int? eventId, string userName, string newMessage, string oldMessage);
     }
 }

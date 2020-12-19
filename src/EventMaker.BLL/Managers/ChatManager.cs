@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Models;
-using EventMaker.Common.Exceptions;
-using EventMaker.Common.Resources;
 using EventMaker.DAL.Entities;
 
 namespace EventMaker.BLL.Managers
 {
+    /// <inheritdoc cref="IChatManager"/>
     public class ChatManager : IChatManager
     {
         private readonly IRepository<Comment> _repositoryComment;
@@ -23,9 +22,9 @@ namespace EventMaker.BLL.Managers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<bool> SaveComment(int eventId, string userName , string message)
+        public async Task<bool> SaveComment(int eventId, string userName, string message)
         {
-            
+
             if ((string.IsNullOrWhiteSpace(message) != true) && userName != null)
             {
                 if (!IsSpam(message))
@@ -51,14 +50,14 @@ namespace EventMaker.BLL.Managers
             return commentDto;
         }
 
-        public async Task<bool> DeleteComment(int? eventId, string userName , string message)
+        public async Task<bool> DeleteComment(int? eventId, string userName, string message)
         {
             if (eventId != null && userName != null)
             {
                 var userComment = await _repositoryComment.GetEntityAsync(comment => comment.EventId == eventId && comment.AuthorName == userName && comment.MessageText == message);
-                if(userComment != null)
+                if (userComment != null)
                 {
-                     _repositoryComment.Delete(userComment);
+                    _repositoryComment.Delete(userComment);
                     await _repositoryComment.SaveChangesAsync();
                     return true;
                 }
@@ -67,7 +66,7 @@ namespace EventMaker.BLL.Managers
             return false;
         }
 
-        public async Task<bool> UpdateComment(int? eventId, string userName ,string newMessage ,string oldMessage)
+        public async Task<bool> UpdateComment(int? eventId, string userName, string newMessage, string oldMessage)
         {
             if ((string.IsNullOrWhiteSpace(newMessage) != true) && eventId != null && userName != null)
             {
@@ -89,7 +88,7 @@ namespace EventMaker.BLL.Managers
         private bool IsSpam(string message)
         {
             var comments = _repositoryComment.GetAllWithoutTracking();
-            foreach(var comment in comments)
+            foreach (var comment in comments)
             {
                 if (comment.MessageText.ToLower() == message.ToLower())
                 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EventMaker.Common.Enums
+﻿namespace EventMaker.Common.Enums
 {
     /// <summary>
     /// Filter options.

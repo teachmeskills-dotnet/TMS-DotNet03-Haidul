@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using AutoMapper;
 using EventMaker.BLL.Interfaces;
 using EventMaker.BLL.Models;
 using EventMaker.Common.Enums;
 using EventMaker.Common.Exceptions;
 using EventMaker.Common.Resources;
-using EventMaker.DAL.Entities;
 
 namespace EventMaker.BLL.Services
 {
@@ -18,7 +14,7 @@ namespace EventMaker.BLL.Services
                                                  EventFormats? eventFormat,
                                                  IEnumerable<EventDto> eventDtos,
                                                  string name = null)
-        {       
+        {
 
             if (eventDtos != null)
             {

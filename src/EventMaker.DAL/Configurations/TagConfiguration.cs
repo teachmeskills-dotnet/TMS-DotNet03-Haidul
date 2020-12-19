@@ -1,8 +1,8 @@
-﻿using EventMaker.Common.Constants;
+﻿using System;
+using EventMaker.Common.Constants;
 using EventMaker.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace EventMaker.DAL.Configurations
 {

@@ -1,8 +1,8 @@
-﻿using EventMaker.DAL.Configurations;
+﻿using System;
+using EventMaker.DAL.Configurations;
 using EventMaker.DAL.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace EventMaker.DAL.Context
 {

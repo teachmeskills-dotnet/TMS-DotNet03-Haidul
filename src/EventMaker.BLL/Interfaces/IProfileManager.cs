@@ -1,5 +1,5 @@
-﻿using EventMaker.BLL.Models;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using EventMaker.BLL.Models;
 
 namespace EventMaker.BLL.Interfaces
 {
@@ -20,7 +20,7 @@ namespace EventMaker.BLL.Interfaces
         /// </summary>
         /// <param name="email">Email</param>
         /// <param name="userName">Username</param>
-        Task CreateProfileAsync(string email, string userName , string userId);
+        Task CreateProfileAsync(string email, string userName, string userId);
 
         /// <summary>
         /// Edit profile.

@@ -1,5 +1,5 @@
-﻿using EventMaker.Common.Interfaces;
-using System;
+﻿using System;
+using EventMaker.Common.Interfaces;
 
 namespace EventMaker.DAL.Entities
 {

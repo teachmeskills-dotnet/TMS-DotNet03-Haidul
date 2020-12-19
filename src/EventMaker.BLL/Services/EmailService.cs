@@ -1,7 +1,7 @@
-﻿using EventMaker.BLL.Interfaces;
+﻿using System.Threading.Tasks;
+using EventMaker.BLL.Interfaces;
 using MailKit.Net.Smtp;
 using MimeKit;
-using System.Threading.Tasks;
 
 namespace EventMaker.BLL.Services
 {

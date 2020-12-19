@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using EventMaker.Web.ViewModels;
+﻿using EventMaker.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;

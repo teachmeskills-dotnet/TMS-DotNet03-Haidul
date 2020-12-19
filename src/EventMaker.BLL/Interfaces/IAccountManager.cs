@@ -1,6 +1,6 @@
-﻿using EventMaker.DAL.Entities;
+﻿using System.Threading.Tasks;
+using EventMaker.DAL.Entities;
 using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
 
 namespace EventMaker.BLL.Interfaces
 {
