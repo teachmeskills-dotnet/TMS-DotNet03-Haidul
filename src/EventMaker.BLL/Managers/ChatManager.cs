@@ -67,17 +67,23 @@ namespace EventMaker.BLL.Managers
             return false;
         }
 
-        public async Task UpdateComment(int? eventId, string userName , string message)
+        public async Task<bool> UpdateComment(int? eventId, string userName ,string newMessage ,string oldMessage)
         {
-            if ((string.IsNullOrWhiteSpace(message) != true) && eventId != null && userName != null)
+            if ((string.IsNullOrWhiteSpace(newMessage) != true) && eventId != null && userName != null)
             {
-                var userComment = await _repositoryComment.GetEntityAsync(comment => comment.EventId == eventId && comment.AuthorName == userName);
-                if (userComment != null)
+                var userComment = await _repositoryComment.GetEntityAsync(comment => comment.EventId == eventId
+                                                                          && comment.AuthorName == userName
+                                                                          && comment.MessageText == oldMessage);
+                if (userComment != null && userComment.MessageText != newMessage)
                 {
+                    userComment.MessageText = newMessage;
                     _repositoryComment.Update(userComment);
                     await _repositoryComment.SaveChangesAsync();
+                    return true;
                 }
+                return false;
             }
+            return false;
         }
 
         private bool IsSpam(string message)

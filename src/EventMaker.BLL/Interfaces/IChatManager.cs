@@ -38,8 +38,9 @@ namespace EventMaker.BLL.Interfaces
         /// </summary>
         /// <param name="eventId">Event id.</param>
         /// <param name="userName">User name</param>
-        /// <param name="message">User message</param>
+        /// <param name="newMessage">New user message</param>
+        /// <param name="oldMessage">Old user message</param>
         /// <returns></returns>
-        Task UpdateComment(int? eventId, string userName , string message);
+        Task<bool> UpdateComment(int? eventId, string userName , string newMessage , string oldMessage);
     }
 }

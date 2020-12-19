@@ -25,7 +25,7 @@ namespace EventMaker.DAL.Configurations
 
             builder.Property(comment => comment.MessageText)
                .IsRequired()
-               .HasMaxLength(ConfigurationContants.SqlMaxLengthShort);
+               .HasMaxLength(ConfigurationContants.SqlMaxLengthMedium);
 
             builder.HasOne(comment => comment.Event)
                 .WithMany(ev => ev.Comments)
