@@ -45,12 +45,6 @@ namespace EventMaker.DAL.Entities
         public string? Info { get; set; }
 
         /// <summary>
-        /// Comment.
-        /// </summary>
-   
-        public string? Comment { get; set; }
-
-        /// <summary>
         /// Day of creation
         /// </summary>
         public DateTime Created { get; set; }
@@ -79,6 +73,12 @@ namespace EventMaker.DAL.Entities
         /// Remaining free seats of participants.
         /// </summary>
         public int? PFreeNumber { get; set; }
+
+        /// <summary>
+        /// Navigation to Comments.
+        /// </summary>
+
+        public IEnumerable<Comment>? Comments { get; set; }
 
         /// <summary>
         /// Navigation to Event participants.

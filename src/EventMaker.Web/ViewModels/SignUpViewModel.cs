@@ -11,8 +11,8 @@ namespace EventMaker.Web.ViewModels
         /// UserName.
         /// </summary>
         [Required(ErrorMessage = "Please enter Username")]
-        [MaxLength(15 , ErrorMessage = "Your username is too long")]
-        [MinLength(4 , ErrorMessage = "Your username is too small")]
+        [MaxLength(15, ErrorMessage = "Your username is too long")]
+        [MinLength(4, ErrorMessage = "Your username is too small")]
         [Display(Name = nameof(Username))]
         public string Username { get; set; }
 

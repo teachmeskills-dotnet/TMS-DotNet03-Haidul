@@ -13,6 +13,5 @@ namespace EventMaker.Web.ViewModels
         public EventFormats? EventFormats { get; set; }
 
         public PageViewModel PageViewModel { get; set; }
-        //public FilterViewModel? FilterViewModel { get; set; }
     }
 }

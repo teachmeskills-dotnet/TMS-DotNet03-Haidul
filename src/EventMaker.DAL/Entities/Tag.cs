@@ -1,5 +1,5 @@
-﻿using EventMaker.Common.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using EventMaker.Common.Interfaces;
 
 namespace EventMaker.DAL.Entities
 {

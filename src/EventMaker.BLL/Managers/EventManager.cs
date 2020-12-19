@@ -47,7 +47,7 @@ namespace EventMaker.BLL.Managers
             if (eventDto != null)
             {
                 var allEvents = _repositoryEvent.GetAllWithoutTracking();
-                if(allEvents.FirstOrDefault(ev => ev.Name == eventDto.Name) != null)
+                if (allEvents.FirstOrDefault(ev => ev.Name == eventDto.Name) != null)
                 {
                     throw new OtherException<string>(ExceptionResource.NameAlreadyExist);
                 }
@@ -59,7 +59,7 @@ namespace EventMaker.BLL.Managers
                     await _repositoryEvent.AddAsync(userEvent);
                     await _repositoryEvent.SaveChangesAsync();
                 }
-                
+
             }
             else
             {
@@ -151,10 +151,10 @@ namespace EventMaker.BLL.Managers
             if (eventDto != null)
             {
                 var result = await _repositoryEvent.GetEntityAsync(evId => evId.Id == eventDto.Id);
-               if (result == null)
+                if (result == null)
                 {
                     throw new NotFoundException(ExceptionResource.EventNotFound);
-                } 
+                }
                 _repositoryEvent.Delete(result);
                 await _repositoryEvent.SaveChangesAsync();
             }

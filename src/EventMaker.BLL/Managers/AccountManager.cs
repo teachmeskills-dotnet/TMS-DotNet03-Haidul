@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Threading.Tasks;
 using EventMaker.BLL.Interfaces;
 using EventMaker.Common.Exceptions;
@@ -93,7 +92,7 @@ namespace EventMaker.BLL.Managers
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
             {
-                return (null, "", false); //TODO : rework this to exception;
+                throw new OtherException<string>(ExceptionResource.UserNotFound);
             }
 
             var code = await _userManager.GeneratePasswordResetTokenAsync(user);

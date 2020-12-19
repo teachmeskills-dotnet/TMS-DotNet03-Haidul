@@ -72,42 +72,30 @@
         <div class="participants-list">
             <h2>Participant list</h2>
             <ul>
-                @foreach (var participant in ViewBag.ParticipantsNames)
+                @foreach (var participant in Model.EventParticipants)
                 {
-    <li>@participant</li>
-}
+    <li>@participant</li>}
             </ul>
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-2">User</div>
-        <div class="col-4"><input type="text" id="userInput" /></div>
-    </div>
-    <div class="row">
-        <div class="col-2">Message</div>
-        <div class="col-4"><input type="text" id="messageInput" /></div>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-6">
-            <input type="button" id="sendButton" value="Send Message" />
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        <hr />
+<div class="chat-container">
+    <form class="chat-form">
+        <textarea id="messageArea" placeholder="Add your comment"></textarea>
+        <button type="button" id="sendButton" userName="@User.Identity.Name" eventid="@Model.Id">Send button</button>
+    </form>
+    <div class="message-container">
+            @foreach(var comment in Model.Comments)
+            {
+        <div class="user-message">
+            <label class="user__authorName">@comment.AuthorName</label>
+            <p class="user-message__text">@comment.MessageText</p>
+            <button class="delete-button"><i class="fas fa-trash-alt"></i></button>
+            <button class="edit-button"><i class="fas fa-edit"></i></button>
+        </div>              
+            }
     </div>
 </div>
-<div class="row">
-    <div class="col-6">
-        <ul id="messagesList"></ul>
-    </div>
-</div>
-
 
 
 @if (ViewBag.UserId == Model.UserId)

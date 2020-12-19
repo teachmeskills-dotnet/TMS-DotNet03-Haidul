@@ -1,6 +1,6 @@
-﻿using EventMaker.BLL.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using EventMaker.BLL.Models;
 
 namespace EventMaker.BLL.Interfaces
 {
@@ -33,7 +33,7 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="eventId">Event id</param>
         /// <param name="userId">User id</param>
         /// <returns>Task<EventDto></returns>
-        Task<EventDto> GetEventById(int eventId , string userId = null);
+        Task<EventDto> GetEventById(int eventId, string userId = null);
 
         /// <summary>
         /// Get all events.
@@ -54,7 +54,7 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="eventId">Event id.</param>
         /// <param name="userId">User id.</param>
         /// <param name="eventDto">Event Dto.</param>
-        Task AddParticipantAsync(int eventId, string userId , EventDto eventDto);
+        Task AddParticipantAsync(int eventId, string userId, EventDto eventDto);
 
         /// <summary>
         /// Delete event participant.

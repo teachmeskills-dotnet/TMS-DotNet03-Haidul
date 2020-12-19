@@ -3,7 +3,7 @@
     /// <summary>
     /// Table constants.
     /// </summary>
-    public static class  TableConstants
+    public static class TableConstants
     {
         /// <summary>
         /// Profiles.
@@ -14,6 +14,11 @@
         /// Events.
         /// </summary>
         public const string Events = nameof(Events);
+
+        /// <summary>
+        /// Comments.
+        /// </summary>
+        public const string Comments = nameof(Comments);
 
         /// <summary>
         /// EventParticipants.

@@ -1,13 +1,11 @@
-﻿using EventMaker.Common.Exceptions;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using EventMaker.Common.Exceptions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace EventMaker.Web.Middlewares
 {
@@ -48,7 +46,7 @@ namespace EventMaker.Web.Middlewares
 
                 foreach (var err in error.ErrorCollection)
                 {
-                    errorList.Append($"{err.Description} ");   
+                    errorList.Append($"{err.Description} ");
                 }
                 await response.WriteAsync(errorList.ToString());
             }
@@ -70,7 +68,7 @@ namespace EventMaker.Web.Middlewares
                 await response.WriteAsync($"Error : {response.StatusCode} - {error.Message}");
 
             }
-            
+
         }
     }
 }

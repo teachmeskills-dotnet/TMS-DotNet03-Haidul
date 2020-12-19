@@ -18,7 +18,7 @@ namespace EventMaker.Web.Mappings
             CreateMap<ProfileDto, ProfileViewModel>()
                 .ForMember(ev => ev.Image, opt => opt.Ignore())
                 .ForMember(ev => ev.ByteImage, opt => opt.MapFrom(ev => ev.Image));
-              
+
 
             CreateMap<ProfileEditViewModel, ProfileDto>().ReverseMap();
 

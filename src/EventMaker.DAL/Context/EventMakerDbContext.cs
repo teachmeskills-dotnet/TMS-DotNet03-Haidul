@@ -1,8 +1,8 @@
-﻿using EventMaker.DAL.Configurations;
+﻿using System;
+using EventMaker.DAL.Configurations;
 using EventMaker.DAL.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace EventMaker.DAL.Context
 {
@@ -27,6 +27,11 @@ namespace EventMaker.DAL.Context
         /// Events.
         /// </summary>
         public DbSet<Event> Events { get; set; }
+
+        /// <summary>
+        /// Comments.
+        /// </summary>
+        public DbSet<Comment> Comments { get; set; }
 
         /// <summary>
         /// Event participants.
@@ -56,6 +61,7 @@ namespace EventMaker.DAL.Context
             modelBuilder.ApplyConfiguration(new EventParticipantConfiguration());
             modelBuilder.ApplyConfiguration(new EventTagConfiguration());
             modelBuilder.ApplyConfiguration(new TagConfiguration());
+            modelBuilder.ApplyConfiguration(new CommentConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

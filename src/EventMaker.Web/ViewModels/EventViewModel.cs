@@ -1,7 +1,9 @@
-﻿using EventMaker.Common.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using EventMaker.BLL.Models;
+using EventMaker.Common.Enums;
 
 namespace EventMaker.Web.ViewModels
 {
@@ -54,7 +56,7 @@ namespace EventMaker.Web.ViewModels
         /// Comment.
         /// </summary>
 #nullable enable
-        public string? Comment { get; set; }
+        public IEnumerable<CommentDto>? Comments { get; set; }
 
         /// <summary>
         /// Day of creation
@@ -94,6 +96,9 @@ namespace EventMaker.Web.ViewModels
         /// </summary>
         public int? PFreeNumber { get; set; }
 
-        public IEnumerable<string>? EventParticipants { get; set; }
+        /// <summary>
+        /// Collection of event participants.
+        /// </summary>
+        public IEnumerable<string>? EventParticipants { get; set;}
     }
 }

@@ -3,25 +3,25 @@
 namespace EventMaker.DAL.Entities
 {
     /// <summary>
-    /// Event participants.
+    /// Message.
     /// </summary>
-    public class EventParticipant : IHasDbIdentity, IHasUserIdentity
+    public class Comment : IHasDbIdentity
     {
         /// <inheritdoc/>
         public int Id { get; set; }
 
         /// <inheritdoc/>
-        public string UserId { get; set; }
-
-        /// <summary>
-        /// Navigation to User.
-        /// </summary>
-        public ApplicationUser User { get; set; }
-
-        /// <summary>
-        /// Event id.
-        /// </summary>
         public int EventId { get; set; }
+
+        /// <summary>
+        /// Author.
+        /// </summary>
+        public string AuthorName { get; set; }
+
+        /// <summary>
+        /// Message text.
+        /// </summary>
+        public string MessageText { get; set; }
 
         /// <summary>
         /// Navigation to Event.
