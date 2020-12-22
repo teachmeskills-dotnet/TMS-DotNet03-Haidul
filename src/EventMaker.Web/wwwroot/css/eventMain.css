@@ -8,13 +8,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top:30px;
+    margin-top: 30px;
 }
 
-.chat-form{
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.chat-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #messageArea {
@@ -29,12 +29,12 @@
     max-width: 450px;
 }
 
-.user__authorName{
-    margin-right:20px;
-    min-width:100px;
+.user__authorName {
+    margin-right: 20px;
+    min-width: 100px;
 }
 
-.fa-trash-alt , .fa-edit {
+.fa-trash-alt, .fa-edit {
     font-size: 25px;
 }
 
@@ -50,25 +50,26 @@
     margin-top: 20px;
 }
 
-.delete-button{
-    border:none;
-    width:30px;
-    background-color:#FFFFFF;
+.delete-button {
+    border: none;
+    width: 30px;
+    background-color: #FFFFFF;
 }
 
-.delete-button:hover {
-    color:#FFFFFF;
-    border-radius:5px;
-    transition: 0.6s all ease;
-    background-color:#2E2E2E;
-}
+    .delete-button:hover {
+        color: #FFFFFF;
+        border-radius: 5px;
+        transition: 0.6s all ease;
+        background-color: #2E2E2E;
+    }
 
 .edit-button:hover {
-    color:#FFFFFF;
-    border-radius:5px;
-    background-color:#2E2E2E;
+    color: #FFFFFF;
+    border-radius: 5px;
+    background-color: #2E2E2E;
     transition: 0.6s all ease;
 }
+
 .edit-button {
     margin-left: 5px;
     border: none;
@@ -92,8 +93,8 @@
     box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
     min-height: 50px;
     max-height: 200px;
-    min-width:600px;
-    max-width:600px;
+    min-width: 600px;
+    max-width: 600px;
 }
 
 #sendButton {
@@ -108,57 +109,55 @@
     margin-left: 30px;
 }
 
-
-#sendButton:hover{
-    border:solid;
-    border-color:#2E2E2E;
-    border-width:2px;
-    background-color:#FFFFFF;
-    transition: 0.6s all;
-    color: #2E2E2E;
-}
+    #sendButton:hover {
+        border: solid;
+        border-color: #2E2E2E;
+        border-width: 2px;
+        background-color: #FFFFFF;
+        transition: 0.6s all;
+        color: #2E2E2E;
+    }
 
 .left-event-side {
     max-width: 800px;
     margin-left: 70.07px;
 }
 
-.left-event-side div {
-    margin-top:40px;
-}
-
+    .left-event-side div {
+        margin-top: 40px;
+    }
 
 .right-event-side {
-    display:flex;
-    flex-direction:column;
-    width:200px;
-    max-width:350px;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    max-width: 350px;
     margin: 87.74px 70.07px 0px 30px;
 }
 
-.create-form{
-    height:100px;
+.create-form {
+    height: 100px;
 }
 
-.create-form button {
-    margin-bottom:20px;
-}
+    .create-form button {
+        margin-bottom: 20px;
+    }
 
-.participants-list{
-    margin-top:40px;
-    text-align:center;
+.participants-list {
+    margin-top: 40px;
+    text-align: center;
 }
 
 .create-form__event-buttons {
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     height: 100px;
     margin-top: 40px;
 }
 
-.create-form__event-buttons button {
-    margin-bottom:20px;
-}
+    .create-form__event-buttons button {
+        margin-bottom: 20px;
+    }
 
 .create-form__addparticipant {
     display: flex;
@@ -179,14 +178,14 @@
     padding-right: 5px;
 }
 
-.create-form__addparticipant:hover {
-    border: solid;
-    border-color: #2E2E2E;
-    border-width: 2px;
-    background-color: #FFFFFF;
-    transition: 0.6s all;
-    color: #2E2E2E;
-}
+    .create-form__addparticipant:hover {
+        border: solid;
+        border-color: #2E2E2E;
+        border-width: 2px;
+        background-color: #FFFFFF;
+        transition: 0.6s all;
+        color: #2E2E2E;
+    }
 
 .create-form__deleteparticipant {
     display: flex;
@@ -207,14 +206,14 @@
     padding-right: 5px;
 }
 
-.create-form__deleteparticipant:hover {
-    border: solid;
-    border-color: #2E2E2E;
-    border-width: 2px;
-    background-color: #FFFFFF;
-    transition: 0.6s all;
-    color: #2E2E2E;
-}
+    .create-form__deleteparticipant:hover {
+        border: solid;
+        border-color: #2E2E2E;
+        border-width: 2px;
+        background-color: #FFFFFF;
+        transition: 0.6s all;
+        color: #2E2E2E;
+    }
 
 .event-buttons__edit {
     white-space: nowrap;
@@ -232,14 +231,14 @@
     padding-right: 5px;
 }
 
-.event-buttons__edit:hover{
-     border: solid;
-    border-color: #2E2E2E;
-    border-width: 2px;
-    background-color: #FFFFFF;
-    transition: 0.6s all;
-    color: #2E2E2E;
-}
+    .event-buttons__edit:hover {
+        border: solid;
+        border-color: #2E2E2E;
+        border-width: 2px;
+        background-color: #FFFFFF;
+        transition: 0.6s all;
+        color: #2E2E2E;
+    }
 
 .event-buttons__delete {
     white-space: nowrap;
@@ -257,12 +256,11 @@
     padding-right: 5px;
 }
 
-.event-buttons__delete:hover {
-    border: solid;
-    border-color: #2E2E2E;
-    border-width: 2px;
-    background-color: #FFFFFF;
-    transition: 0.6s all;
-    color: #2E2E2E;
-}
-
+    .event-buttons__delete:hover {
+        border: solid;
+        border-color: #2E2E2E;
+        border-width: 2px;
+        background-color: #FFFFFF;
+        transition: 0.6s all;
+        color: #2E2E2E;
+    }

@@ -34,6 +34,3 @@ namespace EventMaker.DAL.Configurations
         }
     }
 }
-
-
-

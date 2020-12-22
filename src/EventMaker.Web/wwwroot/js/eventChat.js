@@ -5,7 +5,6 @@ const connection = new signalR.HubConnectionBuilder()
     .build();
 let div;
 
-
 //Disable buttons until connection is established
 document.getElementById("sendButton").disabled = true;
 document.querySelectorAll(".delete-button").forEach(comment => {
@@ -32,7 +31,7 @@ connection.on("ReceiveMessage", function (evId, userName, message) {
         deleteButton.innerHTML = `<i class="fas fa-trash-alt"></i>`
         editButton.innerHTML = `<i class="fas fa-edit"></i>`
         document.querySelector(".message-container").appendChild(div);
-        div.append(label , text , deleteButton , editButton);
+        div.append(label, text, deleteButton, editButton);
         AddDeleteEvent(deleteButton);
         AddEditEvent(editButton);
     }
@@ -62,7 +61,6 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-
 document.getElementById("sendButton").addEventListener("click", function (event) {
     let message = document.getElementById("messageArea").value;
     connection.invoke("SendMessage", eventId, userName, message).catch(function (err) {
@@ -71,35 +69,35 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     event.preventDefault();
 });
 
-if(userName )
-document.querySelectorAll(`.delete-button`).forEach(btn => AddDeleteEvent(btn));
+if (userName)
+    document.querySelectorAll(`.delete-button`).forEach(btn => AddDeleteEvent(btn));
 document.querySelectorAll(".edit-button").forEach(btn => AddEditEvent(btn));
 
-function AddEditEvent(btn){
-    if(userName == btn.parentElement.querySelector(`.user__authorName`).textContent){
+function AddEditEvent(btn) {
+    if (userName == btn.parentElement.querySelector(`.user__authorName`).textContent) {
         btn.addEventListener("dblclick", function () {
             div = btn.parentElement;
             let oldMessage = div.querySelector(`.user-message__text`).textContent;
             let textArea = document.createElement("textarea");
             textArea.value = oldMessage;
-            textArea.classList.add("edit-message-area"); 
+            textArea.classList.add("edit-message-area");
             let text = div.querySelector(`.user-message__text`)
-            div.replaceChild(textArea,text)
-            btn.addEventListener("click", function(event){
+            div.replaceChild(textArea, text)
+            btn.addEventListener("click", function (event) {
                 div = btn.parentElement;
                 newMessage = textArea.value;
-                div.replaceChild(text ,textArea);
-                connection.invoke("EditMessage", eventId , userName , newMessage , oldMessage).catch(function (err) {
+                div.replaceChild(text, textArea);
+                connection.invoke("EditMessage", eventId, userName, newMessage, oldMessage).catch(function (err) {
                     return console.error(err.toString());
                 });
                 event.preventDefault();
-            })      
+            })
         });
     }
 }
 
-function AddDeleteEvent(btn){
-    if(userName == btn.parentElement.querySelector(`.user__authorName`).textContent){
+function AddDeleteEvent(btn) {
+    if (userName == btn.parentElement.querySelector(`.user__authorName`).textContent) {
         btn.addEventListener("click", function (event) {
             div = btn.parentElement;
             let message = btn.parentElement.querySelector(`.user-message__text`).textContent;
@@ -107,7 +105,6 @@ function AddDeleteEvent(btn){
                 return console.error(err.toString());
             });
             event.preventDefault();
-    });
-    }  
+        });
+    }
 }
-

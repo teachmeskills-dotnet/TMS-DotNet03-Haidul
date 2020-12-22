@@ -40,4 +40,3 @@ namespace EventMaker.Web.ViewModels
         public string SocialNetwork { get; set; }
     }
 }
-

@@ -41,7 +41,6 @@ namespace EventMaker.BLL.Managers
             {
                 throw new OtherException<IdentityError>(result.Errors);
             }
-
         }
 
         public async Task<string> GetUserIdByNameAsync(string name)

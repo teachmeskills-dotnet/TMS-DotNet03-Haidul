@@ -39,7 +39,6 @@ namespace EventMaker.BLL.Managers
             {
                 throw new NotFoundException(ExceptionResource.EventNotFound);
             }
-
         }
 
         public async Task CreateEventAsync(EventDto eventDto)
@@ -59,7 +58,6 @@ namespace EventMaker.BLL.Managers
                     await _repositoryEvent.AddAsync(userEvent);
                     await _repositoryEvent.SaveChangesAsync();
                 }
-
             }
             else
             {
@@ -162,7 +160,6 @@ namespace EventMaker.BLL.Managers
             {
                 throw new NotFoundException(ExceptionResource.EventNotFound);
             }
-
         }
 
         public IEnumerable<EventDto> GetAllEvents()

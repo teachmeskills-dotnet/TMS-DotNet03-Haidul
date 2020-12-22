@@ -33,7 +33,6 @@ namespace EventMaker.Web.Controllers
             return View(profileView);
         }
 
-
         [HttpGet]
         public async Task<IActionResult> EditProfileIndex()
         {

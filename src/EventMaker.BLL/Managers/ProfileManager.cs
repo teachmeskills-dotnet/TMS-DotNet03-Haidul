@@ -116,7 +116,3 @@ namespace EventMaker.BLL.Managers
         }
     }
 }
-
-
-
-

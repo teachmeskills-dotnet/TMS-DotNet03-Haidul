@@ -1,7 +1,7 @@
-﻿using EventMaker.Common.Enums;
-using EventMaker.Common.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using EventMaker.Common.Enums;
+using EventMaker.Common.Interfaces;
 
 namespace EventMaker.DAL.Entities
 {
@@ -35,7 +35,7 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Title
         /// </summary>
-        
+
         public string? Title { get; set; }
 
         /// <summary>

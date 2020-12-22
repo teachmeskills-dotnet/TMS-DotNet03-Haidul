@@ -16,7 +16,6 @@ namespace EventMaker.Web.Middlewares
     {
         private readonly RequestDelegate _next;
 
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -66,9 +65,7 @@ namespace EventMaker.Web.Middlewares
 
                 var result = JsonSerializer.Serialize(new { message = error?.Message });
                 await response.WriteAsync($"Error : {response.StatusCode} - {error.Message}");
-
             }
-
         }
     }
 }

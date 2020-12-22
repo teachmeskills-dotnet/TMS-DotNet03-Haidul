@@ -8,8 +8,8 @@
 }
 
 .homepage-quicksearch__alleventsbutton {
-    width:100.39px;
-    height:45.39px;
+    width: 100.39px;
+    height: 45.39px;
     border: none;
     margin-right: 21.02px;
     background: #2E2E2E;
@@ -22,12 +22,12 @@
     color: #FFFFFF;
 }
 
-.homepage-quicksearch__alleventsbutton:hover {
-    border: solid 2px;
-    transition: all 0.6s ease;
-    color: #2E2E2E;
-    background: #FFFFFF;
-}
+    .homepage-quicksearch__alleventsbutton:hover {
+        border: solid 2px;
+        transition: all 0.6s ease;
+        color: #2E2E2E;
+        background: #FFFFFF;
+    }
 
 .homepage-quicksearch__myeventsbutton {
     border: solid 2px;

@@ -31,7 +31,7 @@ namespace EventMaker.Web.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet]////TODO : Refactor it; ( have event participant prop in viewmodel) 
+        [HttpGet]////TODO : Refactor it; ( have event participant prop in viewmodel)
         public async Task<IActionResult> Index(int eventId)
         {
             var userEvent = await _eventManager.GetEventById(eventId);
@@ -79,7 +79,6 @@ namespace EventMaker.Web.Controllers
                     {
                         return NotFound(ExceptionResource.NotCreated);
                     }
-
                 }
                 return View(model);
             }
@@ -87,7 +86,6 @@ namespace EventMaker.Web.Controllers
             {
                 throw new OtherException<string>(ExceptionResource.NotCreated);
             }
-
         }
 
         [HttpPost]
@@ -138,8 +136,6 @@ namespace EventMaker.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
             throw new NotFoundException(ExceptionResource.EventNotFound);
-
-
         }
 
         ///TODO: Refactor if;

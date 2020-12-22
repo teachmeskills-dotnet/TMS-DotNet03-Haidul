@@ -4,9 +4,8 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Mulish", sans-serif; 
+    font-family: "Mulish", sans-serif;
 }
-
 
 .main-wrapper {
     width: 1399px;
@@ -75,4 +74,3 @@ header {
         transition: 0.6s all ease;
         color: #FFFFFF;
     }
-

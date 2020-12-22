@@ -24,7 +24,6 @@ namespace EventMaker.BLL.Managers
 
         public async Task<bool> SaveComment(int eventId, string userName, string message)
         {
-
             if ((string.IsNullOrWhiteSpace(message) != true) && userName != null)
             {
                 if (!IsSpam(message))
@@ -43,6 +42,7 @@ namespace EventMaker.BLL.Managers
             }
             return false;
         }
+
         public IEnumerable<CommentDto> GetAllEventComments(int eventId)
         {
             var comments = _repositoryComment.GetAllWithoutTracking().Where(ev => ev.EventId == eventId);
@@ -97,6 +97,5 @@ namespace EventMaker.BLL.Managers
             }
             return false;
         }
-
     }
 }

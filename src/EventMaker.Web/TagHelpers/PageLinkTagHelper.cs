@@ -10,6 +10,7 @@ namespace EventMaker.Web.TagHelpers
     public class PageLinkTagHelper : TagHelper
     {
         private IUrlHelperFactory _urlHelperFactory;
+
         public PageLinkTagHelper(IUrlHelperFactory helperFactory)
         {
             _urlHelperFactory = helperFactory;
@@ -18,6 +19,7 @@ namespace EventMaker.Web.TagHelpers
         [ViewContext]
         [HtmlAttributeNotBound]
         public ViewContext ViewContext { get; set; }
+
         public PageViewModel PageModel { get; set; }
         public string PageAction { get; set; }
 
@@ -48,7 +50,7 @@ namespace EventMaker.Web.TagHelpers
             output.Content.AppendHtml(tag);
         }
 
-        TagBuilder CreateTag(int pageNumber, IUrlHelper urlHelper)
+        private TagBuilder CreateTag(int pageNumber, IUrlHelper urlHelper)
         {
             TagBuilder item = new TagBuilder("li");
             TagBuilder link = new TagBuilder("a");

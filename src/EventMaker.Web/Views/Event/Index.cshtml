@@ -2,7 +2,6 @@
 
 @{ ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.EventIndex, PageTitlesResource.SiteName); }
 
-
 <div class="container">
     <div class="left-event-side">
         <div class="form__content">
@@ -92,11 +91,10 @@
             <p class="user-message__text">@comment.MessageText</p>
             <button class="delete-button"><i class="fas fa-trash-alt"></i></button>
             <button class="edit-button"><i class="fas fa-edit"></i></button>
-        </div>              
+        </div>
             }
     </div>
 </div>
-
 
 @if (ViewBag.UserId == Model.UserId)
 {

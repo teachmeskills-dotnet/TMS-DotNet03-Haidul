@@ -63,7 +63,7 @@ namespace EventMaker.DAL.Entities
         /// <summary>
         /// Telephone number.
         /// </summary>
-        /// 
+        ///
         public string? Phone { get; set; }
 
         /// <summary>

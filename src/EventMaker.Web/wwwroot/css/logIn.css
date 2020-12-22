@@ -2,8 +2,8 @@
     box-shadow: none;
 }
 
-input{
-    background:transparent;
+input {
+    background: transparent;
 }
 
 input, label {
@@ -53,7 +53,7 @@ input, label {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left:10px;
+    padding-left: 10px;
 }
 
 .wrapper-form__input-username,
@@ -122,17 +122,17 @@ input, label {
     line-height: 20px;
     color: #FFFFFF;
     background-color: #2E2E2E;
-    padding:10px;
+    padding: 10px;
 }
 
-.wrapper-form__input-submit:hover {
-    border:solid;
-    border-color:#2E2E2E;
-    border-width:2px;
-    background-color:#FFFFFF;
-    transition: 0.6s all;
-    color: #2E2E2E;
-}
+    .wrapper-form__input-submit:hover {
+        border: solid;
+        border-color: #2E2E2E;
+        border-width: 2px;
+        background-color: #FFFFFF;
+        transition: 0.6s all;
+        color: #2E2E2E;
+    }
 
 .wrapper-form__input-remember-me {
     width: 30px;

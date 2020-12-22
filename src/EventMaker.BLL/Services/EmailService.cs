@@ -5,6 +5,9 @@ using MimeKit;
 
 namespace EventMaker.BLL.Services
 {
+    /// <summary>
+    /// <inheritdoc cref="IEmailService"/>
+    /// </summary>
     public class EmailService : IEmailService
     {
         public async Task SendEmailAsync(string email, string subject, string message)

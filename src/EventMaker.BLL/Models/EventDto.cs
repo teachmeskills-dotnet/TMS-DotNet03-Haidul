@@ -1,5 +1,5 @@
-﻿using EventMaker.Common.Enums;
-using System;
+﻿using System;
+using EventMaker.Common.Enums;
 
 namespace EventMaker.BLL.Models
 {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using EventMaker.BLL.Models;
 using EventMaker.Common.Enums;
 
@@ -99,6 +98,6 @@ namespace EventMaker.Web.ViewModels
         /// <summary>
         /// Collection of event participants.
         /// </summary>
-        public IEnumerable<string>? EventParticipants { get; set;}
+        public IEnumerable<string>? EventParticipants { get; set; }
     }
 }

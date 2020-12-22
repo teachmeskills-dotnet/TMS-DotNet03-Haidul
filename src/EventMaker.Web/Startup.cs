@@ -31,12 +31,14 @@ namespace EventMaker.Web
         {
             // Managers
             services.AddScoped(typeof(IRepository<>), typeof(RepositoryManager<>));
+
             services.AddScoped<IAccountManager, AccountManager>();
             services.AddScoped<IEventManager, EventManager>();
             services.AddScoped<IProfileManager, ProfileManager>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IFiltrationService, FiltrationService>();
             services.AddScoped<IChatManager, ChatManager>();
+
             services.AddSignalR(hubOptions =>
             {
                 hubOptions.EnableDetailedErrors = true;
@@ -75,7 +77,6 @@ namespace EventMaker.Web
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-
         }
 
         public void Configure(IApplicationBuilder app)

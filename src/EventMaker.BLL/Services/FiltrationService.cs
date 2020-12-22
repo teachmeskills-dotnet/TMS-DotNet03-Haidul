@@ -8,6 +8,9 @@ using EventMaker.Common.Resources;
 
 namespace EventMaker.BLL.Services
 {
+    /// <summary>
+    /// <inheritdoc cref="IFiltrationService"/>
+    /// </summary>
     public class FiltrationService : IFiltrationService
     {
         public IEnumerable<EventDto> FilterEvents(FilterOptions? filterOptions,
@@ -15,7 +18,6 @@ namespace EventMaker.BLL.Services
                                                  IEnumerable<EventDto> eventDtos,
                                                  string name = null)
         {
-
             if (eventDtos != null)
             {
                 if (eventFormat != null)
@@ -39,8 +41,6 @@ namespace EventMaker.BLL.Services
             {
                 throw new NotFoundException(ExceptionResource.EventNotFound);
             }
-
-
         }
     }
 }

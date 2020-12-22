@@ -58,7 +58,7 @@ namespace EventMaker.BLL.Models
         /// <summary>
         /// Telephone number.
         /// </summary>
-        /// 
+        ///
         public string? Phone { get; set; }
 
         /// <summary>

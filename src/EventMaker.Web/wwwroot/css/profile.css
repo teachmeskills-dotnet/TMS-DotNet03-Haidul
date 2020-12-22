@@ -22,9 +22,9 @@
     margin: 0 auto;
 }
 
-.profile-wrapper{
-    margin-left:60px;
-    margin-right:60px;
+.profile-wrapper {
+    margin-left: 60px;
+    margin-right: 60px;
 }
 
 .profile-top {
@@ -32,32 +32,31 @@
     justify-content: space-between;
     width: 892px;
     height: 100%;
-    border-bottom-style:solid;
+    border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: #E2E6ED;
 }
 
-.profile-choose{
-    display:flex;
-    margin-top:20px;
+.profile-choose {
+    display: flex;
+    margin-top: 20px;
 }
 
-.profile-bottom{
-    display:flex;
-    justify-content:space-between;
-    margin-top:36px;
+.profile-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 36px;
 }
 
-.profile-about{
-    display:flex;
-    justify-content:space-between;
-    margin-top:47px;
+.profile-about {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 47px;
 }
 
-.profile-about-buttons{
-    display:flex;
-    flex-direction:column;
-
+.profile-about-buttons {
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-bottom__info {
@@ -77,7 +76,6 @@
     height: 20px;
 }
 
-
 .profile-choose__info {
     font-weight: bold;
     font-size: 16px;
@@ -89,15 +87,15 @@
     cursor: pointer;
 }
 
-.profile-choose__info:active {
-    color: #2E2E2E;
-    opacity:initial;
-}
+    .profile-choose__info:active {
+        color: #2E2E2E;
+        opacity: initial;
+    }
 
-.profile-choose__info:hover {
-    color: #2E2E2E;
-      opacity:initial;
-}
+    .profile-choose__info:hover {
+        color: #2E2E2E;
+        opacity: initial;
+    }
 
 .profile-choose__events:active {
     color: #2E2E2E;
@@ -132,27 +130,26 @@
 
 .profile-top__right-button {
     text-align: center;
-    border:none;
-    border-radius:3px;
+    border: none;
+    border-radius: 3px;
     width: 100%;
     height: 100%;
     font-weight: bold;
     font-size: 16px;
     line-height: 20px;
     color: #FFFFFF;
-    background-color:#2E2E2E;
-    cursor:pointer;
+    background-color: #2E2E2E;
+    cursor: pointer;
 }
 
-
-.profile-top__right-button:hover{
-    border:solid;
-    border-color:#2E2E2E;
-    border-width:2px;
-    background-color:#FFFFFF;
-    transition: 0.6s all;
-    color: #2E2E2E;
-}
+    .profile-top__right-button:hover {
+        border: solid;
+        border-color: #2E2E2E;
+        border-width: 2px;
+        background-color: #FFFFFF;
+        transition: 0.6s all;
+        color: #2E2E2E;
+    }
 
 .profile-top__contacts {
     width: 179px;
@@ -160,8 +157,8 @@
     margin: 87px 465px 57px 0px;
 }
 
-.profile-top__icon{
-    margin:60px 15px 30px 0px;
+.profile-top__icon {
+    margin: 60px 15px 30px 0px;
 }
 
 .profile-top__icon-username {
@@ -183,10 +180,9 @@
     border-radius: 50%;
 }
 
-.profile-about-info p{
-    margin-top:20px;
+.profile-about-info p {
+    margin-top: 20px;
 }
-
 
 .profile-changepass-form {
     width: 175px;
@@ -195,7 +191,7 @@
 
 .profile-changepass-form__button {
     display: flex;
-    white-space:nowrap;
+    white-space: nowrap;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -209,21 +205,21 @@
     color: #FFFFFF;
     background-color: #2E2E2E;
     cursor: pointer;
-    padding-right:5px;
+    padding-right: 5px;
 }
 
-.profile-changepass-form__button:hover{
-    border:solid;
-    border-color:#2E2E2E;
-    border-width:2px;
-    background-color:#FFFFFF;
-    transition: 0.6s all;
-    color: #2E2E2E;
-}
+    .profile-changepass-form__button:hover {
+        border: solid;
+        border-color: #2E2E2E;
+        border-width: 2px;
+        background-color: #FFFFFF;
+        transition: 0.6s all;
+        color: #2E2E2E;
+    }
 
 .profile-avatar-form__button {
     border: none;
-    white-space:pre-line;
+    white-space: pre-line;
     display: flex;
     margin-right: 5px;
     justify-content: center;
@@ -237,17 +233,17 @@
     color: #FFFFFF;
     background-color: #2E2E2E;
     cursor: pointer;
-    padding-right:20px;
+    padding-right: 20px;
 }
 
-.profile-avatar-form__button:hover {
-    border: solid;
-    border-color: #2E2E2E;
-    border-width: 2px;
-    background-color: #FFFFFF;
-    transition: 0.6s all;
-    color: #2E2E2E;
-}
+    .profile-avatar-form__button:hover {
+        border: solid;
+        border-color: #2E2E2E;
+        border-width: 2px;
+        background-color: #FFFFFF;
+        transition: 0.6s all;
+        color: #2E2E2E;
+    }
 
 .profile-avatar-form {
     margin-top: 40px;

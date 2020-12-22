@@ -60,7 +60,6 @@ namespace EventMaker.Web.Controllers
             {
                 throw new OtherException<string>(ExceptionResource.NotCreated);
             }
-
         }
 
         [HttpGet]
@@ -89,7 +88,6 @@ namespace EventMaker.Web.Controllers
         {
             if (model != null)
             {
-
                 if (ModelState.IsValid)
                 {
                     var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
@@ -159,7 +157,6 @@ namespace EventMaker.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
             throw new OtherException<string>(ExceptionResource.NotChanged);
-
         }
 
         [HttpGet]

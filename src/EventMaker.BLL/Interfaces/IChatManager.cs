@@ -17,7 +17,7 @@ namespace EventMaker.BLL.Interfaces
         /// <param name="userName">User name.</param>
         Task<bool> SaveComment(int eventId, string message, string userName);
 
-        /// <summary> 
+        /// <summary>
         /// Get all comments.
         /// </summary>
         /// <param name="eventId">Event id.</param>

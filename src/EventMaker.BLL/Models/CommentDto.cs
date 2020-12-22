@@ -1,5 +1,8 @@
 ﻿namespace EventMaker.BLL.Models
 {
+    /// <summary>
+    /// Comment data transfer object.
+    /// </summary>
     public class CommentDto
     {
         /// <inheritdoc/>

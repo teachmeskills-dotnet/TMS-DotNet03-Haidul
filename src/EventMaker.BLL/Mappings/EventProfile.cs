@@ -5,8 +5,14 @@ using Profile = EventMaker.DAL.Entities.Profile;
 
 namespace EventMaker.BLL.Mappings
 {
+    /// <summary>
+    /// Event profile for Automapper.
+    /// </summary>
     public class EventProfile : AutoMapperProfile
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public EventProfile()
         {
             CreateMap<EventDto, Event>().ReverseMap();
