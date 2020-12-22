@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/css/app.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/font-awesome/css/all.css" rel="stylesheet" asp-append-version="true" />
+
+    @RenderSection("css", false)
+</head>
+
+<body>
+    <div class="main-wrapper">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <header class="navigation">
+                <div class="logo">
+                    <a asp-controller="Home" asp-action="Index"><img class="logo__image" src="~/images/logo.svg" alt="logo" /></a>
+                </div>
+                <form class="navigation__account-form" asp-controller="Account">
+                    <button formmethod="get" class="navigation__profile-button" asp-controller="Profile" asp-action="Index">@User.Identity.Name</button>
+                    <button formmethod="post" class="navigation__sign-out-button" asp-controller="Account" asp-action="SignOut">Sign Out</button>
+                </form>
+            </header> }
+        else
+        {
+            <header class="navigation">
+                <div class="logo">
+                    <a asp-controller="Home" asp-action="Index"><img class="logo__image" src="~/images/logo.svg" alt="logo" /></a>
+                </div>
+                <form class="navigation__account-form" asp-controller="Account">
+                    <button formmethod="get" class="navigation__log-in-button" asp-controller="Account" asp-action="LogIn">Log In</button>
+                    <button formmethod="get" class="navigation__sign-up-button" asp-controller="Account" asp-action="SignUp">Sign Up</button>
+                </form>
+            </header>}
+    </div>
+    <div class="main-wrapper">
+        @RenderBody()
+    </div>
+    @RenderSection("pageNavigation", false)
+    @RenderSection("js", false)
+</body>
+</html>

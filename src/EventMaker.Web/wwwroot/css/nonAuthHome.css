@@ -1,0 +1,52 @@
+﻿.homepage-events span {
+    margin: 0px 6.13px 0px 5.84px;
+}
+
+.homepage-quicksearch {
+    white-space: nowrap;
+    margin-top: 31.3px;
+}
+
+.homepage-quicksearch__alleventsbutton {
+    width: 100.39px;
+    height: 45.39px;
+    border: none;
+    margin-right: 21.02px;
+    background: #2E2E2E;
+    box-shadow: 0px 2px 12px -4px rgba(46, 46, 46, 0.507785);
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+    .homepage-quicksearch__alleventsbutton:hover {
+        border: solid 2px;
+        transition: all 0.6s ease;
+        color: #2E2E2E;
+        background: #FFFFFF;
+    }
+
+.homepage-quicksearch__myeventsbutton {
+    border: solid 2px;
+    transition: all 0.6s ease;
+    color: #2E2E2E;
+    background: #FFFFFF;
+}
+
+.homepage-quicksearch__myeventsbutton {
+    width: 100.39px;
+    height: 45.39px;
+    border: none;
+    margin-right: 21.02px;
+    background: #2E2E2E;
+    box-shadow: 0px 2px 12px -4px rgba(46, 46, 46, 0.507785);
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}

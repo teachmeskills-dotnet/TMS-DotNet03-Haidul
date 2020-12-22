@@ -1,0 +1,59 @@
+﻿@model ProfileViewModel
+
+@{ ViewData["Title"] = string.Format(PageTitlesResource.StringFormat, PageTitlesResource.ProfileIndex, PageTitlesResource.SiteName); }
+
+<div class="profile-wrapper">
+    <div class="profile-top">
+        <div class="profile-top__left">
+            <div class="profile-top__icon">
+                @if (Model.ByteImage != null)
+                {<label for="change-input"><img class="profile-top__icon-image" src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.ByteImage))" /></label>}
+            </div>
+            <div class="profile-top__contacts">
+                <p class="profile-top__icon-username" asp-for="Username">@User.Identity.Name</p>
+                <p class="profile-top__icon-social" asp-for="SocialNetwork">@Model.SocialNetwork</p>
+            </div>
+        </div>
+        <form class="profile-top__right">
+            <button class="profile-top__right-button" formmethod="get"
+                    asp-controller="Profile"
+                    asp-action="EditProfileIndex">
+                <i class="far fa-edit"></i>Edit
+            </button>
+        </form>
+    </div>
+    <form class="profile-choose">
+        <a class="profile-choose__info">My profile</a>
+        <a class="profile-choose__events">My events</a>
+    </form>
+    <div class="profile-bottom">
+        <p class="profile-bottom__info">About me</p>
+        <p class="profile-bottom__date">@Model.Created.ToString("dd MMMM yyyy", CultureInfo.GetCultureInfo("en-En"))</p>
+    </div>
+
+    <div class="profile-about">
+        <div class="profile-about-info">
+            <p asp-for="Email">Email : @Model.Email</p>
+            <p asp-for="FirstName">FirstName : @Model.FirstName</p>
+            <p asp-for="LastName">LastName : @Model.LastName</p>
+            <p asp-for="BirthDate">BirthDate : @if (@Model.BirthDate != null){@Model.BirthDate.Value.ToShortDateString()}</p>
+            @if (Model.Age != 0)
+            {<p asp-for="Age">Age : @Model.Age</p>}
+            @if (Model.Phone != 0)
+            {<p asp-for="Phone">Phone : @Model.Phone</p> }
+        </div>
+        <div class="profile-about-buttons">
+            <form class="profile-changepass-form">
+                <button formmethod="get" class="profile-changepass-form__button" asp-controller="Account" asp-action="ChangePassword"><i class="fas fa-unlock-alt"></i>Change Password</button>
+            </form>
+            <form  class="profile-avatar-form" enctype="multipart/form-data">
+                    <input id="change-input" asp-for="Image" type="file" hidden />
+                    <button class="profile-avatar-form__button" formmethod="post" type="submit" asp-controller="Profile" asp-action="SetAvatar"><i class="far fa-images"></i>Change image</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section css {
+    <link href="~/css/profile.css" rel="stylesheet" asp-append-version="true" />
+}
