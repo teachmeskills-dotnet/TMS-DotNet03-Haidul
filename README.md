@@ -8,10 +8,10 @@ When you go to the web application site, the user sees the main page and the opp
 
 ## Built With
 
-*N-Layer architecture;
-*ASP.NET Core 3.1;
-*Entity Framework Core
-*Serilog;
-*Automapper;
-*SignalR;
-*Web stack (HTML, CSS, JS);
+* N-Layer architecture;
+* ASP.NET Core 3.1;
+* Entity Framework Core
+* Serilog;
+* Automapper;
+* SignalR;
+* Web stack (HTML, CSS, JS);
